@@ -8,26 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root[data-theme="light"] {
-            --bg-primary: #f8f5f1;
+            --bg-primary: #f5f8fa;
             --bg-secondary: #ffffff;
             --text-primary: #2c3e50;
             --text-secondary: #34495e;
-            --accent-primary: #7c5a3c;
-            --accent-secondary: #a67c52;
-            --border-color: #e0d5c7;
+            --accent-primary: #3b6b98;
+            --accent-secondary: #4a8db7;
+            --border-color: #d1e3f0;
             --shadow-color: rgba(0, 0, 0, 0.1);
             --correct-color: #2ecc71;
             --incorrect-color: #e74c3c;
         }
 
         :root[data-theme="dark"] {
-            --bg-primary: #2c3440;
-            --bg-secondary: #1a202c;
+            --bg-primary: #1a2634;
+            --bg-secondary: #0f1924;
             --text-primary: #e2e8f0;
             --text-secondary: #a0aec0;
-            --accent-primary: #a67c52;
-            --accent-secondary: #7c5a3c;
-            --border-color: #4a5568;
+            --accent-primary: #4a8db7;
+            --accent-secondary: #3b6b98;
+            --border-color: #2d4054;
             --shadow-color: rgba(0, 0, 0, 0.25);
             --correct-color: #2d8a54;
             --incorrect-color: #a83a2d;
@@ -65,6 +65,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            margin: 0 auto;
         }
 
         .logo i {
@@ -105,6 +106,8 @@
         .stats {
             color: var(--text-secondary);
             font-size: 1.1rem;
+            margin-left: 15px;
+            display: inline-block;
         }
 
         .cert-selection {
@@ -191,10 +194,17 @@
             color: var(--accent-primary);
         }
         
-        .cert-title {
+        .cert-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-top: 70px;
+        }
+
+        .cert-title {
             font-size: 1.2rem;
             color: var(--text-secondary);
+            margin-top: 0;
         }
 
         .screen {
@@ -390,16 +400,13 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <i class="fas fa-book"></i>
-                <h1 id="cert-title">Certification Flash Cards</h1>
-            </div>
             <button id="theme-toggle" class="theme-toggle">
                 <i class="fas fa-sun"></i>
                 <span>Switch Theme</span>
             </button>
-            <div class="stats">
-                <span id="correct-count">0</span> correct / <span id="total-count">0</span> total
+            <div class="logo">
+                <i class="fas fa-book"></i>
+                <h1 id="cert-title">Certification Flash Cards</h1>
             </div>
         </header>
 
@@ -434,7 +441,12 @@
             <button id="back-to-certs-from-cards" class="back-button">
                 <i class="fas fa-arrow-left"></i> Back to Certifications
             </button>
-            <div class="cert-title" id="current-cert-title"></div>
+            <div class="cert-title-container">
+                <div class="cert-title" id="current-cert-title"></div>
+                <div class="stats">
+                    (<span id="correct-count">0</span> correct / <span id="total-count">0</span> total)
+                </div>
+            </div>
             <div class="progress-bar">
                 <div id="progress-fill"></div>
             </div>
