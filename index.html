@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification Flash Cards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .cert-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .cert-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            border-left: 5px solid var(--aws-orange);
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cert-card.aws {
+            border-left-color: var(--aws-orange);
+        }
+        
+        .cert-card.kafka {
+            border-left-color: #0063DC;
+        }
+        
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-right: 20px;
+        }
+        
+        .cert-icon.aws {
+            color: var(--aws-orange);
+        }
+        
+        .cert-icon.kafka {
+            color: #0063DC;
+        }
+        
+        .cert-info {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .cert-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--aws-dark-blue);
+        }
+        
+        .cert-info p {
+            margin: 0;
+            color: var(--aws-dark-gray);
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: var(--aws-dark-gray);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .back-button:hover {
+            background-color: var(--aws-medium-gray);
+        }
+        
+        .cert-title {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: var(--aws-dark-gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i id="cert-logo" class="fab fa-aws"></i>
+                <h1 id="cert-title">Certification Flash Cards</h1>
+            </div>
+            <div class="stats">
+                <span id="correct-count">0</span> correct / <span id="total-count">0</span> total
+            </div>
+        </header>
+
+        <div id="cert-select-screen" class="screen active">
+            <h2>Select Certification</h2>
+            <p>Choose which certification you want to study for:</p>
+            
+            <div class="cert-selection">
+                <div class="cert-card aws" id="aws-cert">
+                    <div class="cert-icon aws">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>AWS Certified Solutions Architect Associate</h3>
+                        <p>Study AWS services, architecture, and best practices</p>
+                    </div>
+                </div>
+                
+                <div class="cert-card kafka" id="kafka-cert">
+                    <div class="cert-icon kafka">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h3>Confluent Certified Developer for Apache Kafka</h3>
+                        <p>Study Apache Kafka concepts, development, and operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="start-screen" class="screen">
+            <button id="back-to-certs" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Certifications
+            </button>
+            <h2 id="start-title">Certification Flash Cards</h2>
+            <p id="start-description">Test your knowledge of concepts for the selected certification exam.</p>
+            <button id="start-btn" class="aws-btn">Start Study Session</button>
+        </div>
+
+        <div id="card-screen" class="screen">
+            <button id="back-to-certs-from-cards" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Certifications
+            </button>
+            <div class="cert-title" id="current-cert-title"></div>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <div class="card-container">
+                <div class="card" id="flashcard">
+                    <div class="card-front">
+                        <div class="card-content">
+                            <p id="question"></p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-content">
+                            <p id="answer"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-controls">
+                <button id="prev-btn" class="nav-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button id="flip-btn" class="aws-btn">Reveal Answer</button>
+                <button id="next-btn" class="nav-btn">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="feedback-controls">
+                <button id="correct-btn" class="feedback-btn correct" disabled><i class="fas fa-check"></i> Correct</button>
+                <button id="incorrect-btn" class="feedback-btn incorrect" disabled><i class="fas fa-times"></i> Incorrect</button>
+            </div>
+            <div class="session-controls">
+                <button id="restart-btn" class="aws-btn secondary">Restart Session</button>
+            </div>
+        </div>
+
+        <div id="finish-screen" class="screen">
+            <button id="back-to-certs-from-finish" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Certifications
+            </button>
+            <h2>Session Complete!</h2>
+            <div class="results">
+                <div class="result-item">
+                    <span class="result-label">Total Cards:</span>
+                    <span id="final-total" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Correct Answers:</span>
+                    <span id="final-correct" class="result-value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Success Rate:</span>
+                    <span id="success-rate" class="result-value">0%</span>
+                </div>
+            </div>
+            <button id="restart-finish-btn" class="aws-btn">Start New Session</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const certSelectScreen = document.getElementById('cert-select-screen');
+        const startScreen = document.getElementById('start-screen');
+        const cardScreen = document.getElementById('card-screen');
+        const finishScreen = document.getElementById('finish-screen');
+        
+        const awsCertBtn = document.getElementById('aws-cert');
+        const kafkaCertBtn = document.getElementById('kafka-cert');
+        const backToCertsBtn = document.getElementById('back-to-certs');
+        const backToCertsFromCardsBtn = document.getElementById('back-to-certs-from-cards');
+        const backToCertsFromFinishBtn = document.getElementById('back-to-certs-from-finish');
+        
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const restartFinishBtn = document.getElementById('restart-finish-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const flipBtn = document.getElementById('flip-btn');
+        const correctBtn = document.getElementById('correct-btn');
+        const incorrectBtn = document.getElementById('incorrect-btn');
+        
+        const questionEl = document.getElementById('question');
+        const answerEl = document.getElementById('answer');
+        const flashcard = document.getElementById('flashcard');
+        const progressFill = document.getElementById('progress-fill');
+        const correctCount = document.getElementById('correct-count');
+        const totalCount = document.getElementById('total-count');
+        const finalCorrect = document.getElementById('final-correct');
+        const finalTotal = document.getElementById('final-total');
+        const successRate = document.getElementById('success-rate');
+        
+        const certLogo = document.getElementById('cert-logo');
+        const certTitle = document.getElementById('cert-title');
+        const startTitle = document.getElementById('start-title');
+        const startDescription = document.getElementById('start-description');
+        const currentCertTitle = document.getElementById('current-cert-title');
+
+        // App State
+        let flashcards = [];
+        let currentCardIndex = 0;
+        let correctAnswers = 0;
+        let answeredCards = new Set();
+        let currentCertification = '';
+
+        // AWS Flashcards
+        const awsFlashcards = [
+            {
+                "id": 1,
+                "front": "What is Amazon EC2?",
+                "back": "Amazon Elastic Compute Cloud (EC2) is a web service that provides resizable compute capacity in the cloud, allowing you to launch virtual servers (instances)."
+            },
+            {
+                "id": 2,
+                "front": "What is an AMI?",
+                "back": "An Amazon Machine Image (AMI) is a template containing the software configuration (operating system, application server, and applications) needed to launch an EC2 instance."
+            },
+            {
+                "id": 3,
+                "front": "What is an EBS snapshot?",
+                "back": "A point-in-time copy of an EBS volume that can be used to create new volumes or restore data."
+            },
+            {
+                "id": 4,
+                "front": "What is a Security Group?",
+                "back": "A virtual firewall that controls inbound and outbound traffic to AWS resources."
+            },
+            {
+                "id": 5,
+                "front": "What is Amazon S3?",
+                "back": "Amazon Simple Storage Service (S3) is an object storage service offering industry-leading scalability, data availability, security, and performance."
+            },
+            {
+                "id": 6,
+                "front": "What is Amazon RDS?",
+                "back": "Amazon Relational Database Service (RDS) is a managed database service that makes it easier to set up, operate, and scale a relational database in the cloud."
+            },
+            {
+                "id": 7,
+                "front": "What is Amazon VPC?",
+                "back": "Amazon Virtual Private Cloud (VPC) is a service that lets you launch AWS resources in a logically isolated virtual network that you define."
+            },
+            {
+                "id": 8,
+                "front": "What is AWS Lambda?",
+                "back": "AWS Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources."
+            },
+            {
+                "id": 9,
+                "front": "What is Amazon DynamoDB?",
+                "back": "Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability."
+            },
+            {
+                "id": 10,
+                "front": "What is Amazon CloudFront?",
+                "back": "Amazon CloudFront is a content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds."
+            }
+        ];
+
+        // CCDAK Flashcards
+        const ccdakFlashcards = [
+            {
+                "id": 1,
+                "front": "What is Apache Kafka?",
+                "back": "Apache Kafka is a distributed event streaming platform capable of handling trillions of events a day. It provides low-latency, high-throughput, fault-tolerant publish and subscribe pipelines."
+            },
+            {
+                "id": 2,
+                "front": "What is a Kafka Topic?",
+                "back": "A Topic is a category or feed name to which records are published. Topics in Kafka are multi-subscriber and can have zero, one, or many consumers that subscribe to the data written to it."
+            },
+            {
+                "id": 3,
+                "front": "What is a Kafka Partition?",
+                "back": "A partition is an ordered, immutable sequence of records that is continually appended to. The records in the partitions are each assigned a sequential ID number called the offset."
+            },
+            {
+                "id": 4,
+                "front": "What is a Kafka Producer?",
+                "back": "A Producer is a client that publishes records to the Kafka cluster. The producer is responsible for choosing which record to assign to which partition within the topic."
+            },
+            {
+                "id": 5,
+                "front": "What is a Kafka Consumer?",
+                "back": "A Consumer is a client that subscribes to one or more topics and pulls data from the brokers. Consumers can be part of a consumer group where multiple consumers work together to consume a topic."
+            },
+            {
+                "id": 6,
+                "front": "What is a Kafka Broker?",
+                "back": "A Broker is a Kafka server that runs in a Kafka Cluster. Brokers receive messages from producers, assign offsets to them, and commit the messages to storage on disk."
+            },
+            {
+                "id": 7,
+                "front": "What is a Consumer Group in Kafka?",
+                "back": "A Consumer Group is a set of consumers which cooperate to consume data from some topics. The partitions of all the topics are divided among the consumers in the group."
+            },
+            {
+                "id": 8,
+                "front": "What is the Kafka Offset?",
+                "back": "An Offset is a unique sequential ID assigned to each message within a partition. It's used by consumers to track which messages they have already consumed."
+            },
+            {
+                "id": 9,
+                "front": "What is the Kafka Retention Policy?",
+                "back": "The Retention Policy determines how long Kafka will keep messages. It can be configured based on time (e.g., 7 days) or size (e.g., 1GB per partition)."
+            },
+            {
+                "id": 10,
+                "front": "What is Kafka Connect?",
+                "back": "Kafka Connect is a tool for scalably and reliably streaming data between Apache Kafka and other systems. It makes it simple to quickly define connectors that move large collections of data into and out of Kafka."
+            }
+        ];
+
+        // Shuffle array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Set certification
+        function setCertification(certType) {
+            currentCertification = certType;
+            
+            if (certType === 'aws') {
+                flashcards = awsFlashcards;
+                certLogo.className = 'fab fa-aws';
+                certTitle.textContent = 'AWS Certified Solutions Architect Associate';
+                startTitle.textContent = 'AWS Certification Flash Cards';
+                startDescription.textContent = 'Test your knowledge of AWS services and concepts for the Solutions Architect Associate exam.';
+                currentCertTitle.textContent = 'AWS Certified Solutions Architect Associate';
+            } else if (certType === 'kafka') {
+                flashcards = ccdakFlashcards;
+                certLogo.className = 'fas fa-stream';
+                certTitle.textContent = 'Confluent Certified Developer for Apache Kafka';
+                startTitle.textContent = 'Apache Kafka Certification Flash Cards';
+                startDescription.textContent = 'Test your knowledge of Apache Kafka concepts for the Confluent Certified Developer exam.';
+                currentCertTitle.textContent = 'Confluent Certified Developer for Apache Kafka';
+            }
+            
+            totalCount.textContent = flashcards.length;
+            showScreen(startScreen);
+        }
+
+        // Initialize the app
+        function initApp() {
+            // Add event listeners for certification selection
+            awsCertBtn.addEventListener('click', () => setCertification('aws'));
+            kafkaCertBtn.addEventListener('click', () => setCertification('kafka'));
+            
+            // Add event listeners for back buttons
+            backToCertsBtn.addEventListener('click', backToCertSelection);
+            backToCertsFromCardsBtn.addEventListener('click', backToCertSelection);
+            backToCertsFromFinishBtn.addEventListener('click', backToCertSelection);
+            
+            // Add event listeners for study session
+            startBtn.addEventListener('click', startSession);
+            restartBtn.addEventListener('click', restartSession);
+            restartFinishBtn.addEventListener('click', restartSession);
+            prevBtn.addEventListener('click', showPreviousCard);
+            nextBtn.addEventListener('click', showNextCard);
+            flipBtn.addEventListener('click', flipCard);
+            correctBtn.addEventListener('click', () => markCard(true));
+            incorrectBtn.addEventListener('click', () => markCard(false));
+        }
+
+        // Back to certification selection
+        function backToCertSelection() {
+            // Reset state
+            currentCardIndex = 0;
+            correctAnswers = 0;
+            answeredCards = new Set();
+            correctCount.textContent = '0';
+            
+            showScreen(certSelectScreen);
+        }
+
+        // Start a new study session
+        function startSession() {
+            flashcards = shuffleArray(flashcards);
+            currentCardIndex = 0;
+            correctAnswers = 0;
+            answeredCards = new Set();
+            
+            correctCount.textContent = correctAnswers;
+            
+            showScreen(cardScreen);
+            updateCardDisplay();
+        }
+
+        // Restart the session
+        function restartSession() {
+            startSession();
+        }
+
+        // Show a specific screen
+        function showScreen(screen) {
+            certSelectScreen.classList.remove('active');
+            startScreen.classList.remove('active');
+            cardScreen.classList.remove('active');
+            finishScreen.classList.remove('active');
+            
+            screen.classList.add('active');
+        }
+
+        // Update the card display
+        function updateCardDisplay() {
+            if (flashcards.length === 0) return;
+            
+            const currentCard = flashcards[currentCardIndex];
+            questionEl.textContent = currentCard.front;
+            answerEl.textContent = currentCard.back;
+            
+            // Reset card to front side
+            flashcard.classList.remove('flipped');
+            
+            // Update progress bar
+            const progress = ((currentCardIndex + 1) / flashcards.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentCardIndex === 0;
+            
+            // Disable feedback buttons when card is not flipped
+            correctBtn.disabled = true;
+            incorrectBtn.disabled = true;
+            
+            // Update flip button text
+            flipBtn.textContent = 'Reveal Answer';
+        }
+
+        // Flip the card
+        function flipCard() {
+            flashcard.classList.toggle('flipped');
+            
+            if (flashcard.classList.contains('flipped')) {
+                flipBtn.textContent = 'Hide Answer';
+                // Enable feedback buttons only when card is flipped
+                correctBtn.disabled = false;
+                incorrectBtn.disabled = false;
+            } else {
+                flipBtn.textContent = 'Reveal Answer';
+                correctBtn.disabled = true;
+                incorrectBtn.disabled = true;
+            }
+        }
+
+        // Show the previous card
+        function showPreviousCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                updateCardDisplay();
+            }
+        }
+
+        // Show the next card
+        function showNextCard() {
+            if (currentCardIndex < flashcards.length - 1) {
+                currentCardIndex++;
+                updateCardDisplay();
+            } else {
+                finishSession();
+            }
+        }
+
+        // Mark a card as correct or incorrect
+        function markCard(isCorrect) {
+            // Only count each card once
+            if (!answeredCards.has(currentCardIndex)) {
+                if (isCorrect) {
+                    correctAnswers++;
+                    correctCount.textContent = correctAnswers;
+                }
+                answeredCards.add(currentCardIndex);
+            }
+            
+            // Move to the next card
+            showNextCard();
+        }
+
+        // Finish the session
+        function finishSession() {
+            finalCorrect.textContent = correctAnswers;
+            finalTotal.textContent = flashcards.length;
+            
+            const rate = flashcards.length > 0 
+                ? Math.round((correctAnswers / flashcards.length) * 100) 
+                : 0;
+            successRate.textContent = `${rate}%`;
+            
+            showScreen(finishScreen);
+        }
+
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html> 

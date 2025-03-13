@@ -1,0 +1,504 @@
+{
+  "flashcards": [
+    {
+      "id": 1,
+      "question": "What is Apache Kafka?",
+      "answer": "Apache Kafka is a distributed streaming platform that allows you to publish and subscribe to streams of records, store streams of records, and process streams of records."
+    },
+    {
+      "id": 2,
+      "question": "What is a Kafka broker?",
+      "answer": "A Kafka broker is a server that runs the Kafka process and stores data. Multiple brokers together form a Kafka cluster."
+    },
+    {
+      "id": 3,
+      "question": "What is a Kafka topic?",
+      "answer": "A topic is a category or feed name to which records are published. Topics are multi-subscriber and can have zero, one, or many consumers."
+    },
+    {
+      "id": 4,
+      "question": "What is a Kafka partition?",
+      "answer": "A partition is an ordered, immutable sequence of records within a topic. Each partition is a separate log file that can be hosted on a different server."
+    },
+    {
+      "id": 5,
+      "question": "What is a consumer group?",
+      "answer": "A logical grouping of consumers that collectively consume a set of topics. Each partition is consumed by only one consumer within a group."
+    },
+    {
+      "id": 6,
+      "question": "What is a producer?",
+      "answer": "A client application that publishes records to Kafka topics."
+    },
+    {
+      "id": 7,
+      "question": "What is a consumer?",
+      "answer": "A client application that subscribes to topics and processes the records."
+    },
+    {
+      "id": 8,
+      "question": "What is a partition key?",
+      "answer": "A key used by producers to determine which partition within a topic a message should be sent to. Messages with the same key go to the same partition."
+    },
+    {
+      "id": 9,
+      "question": "What is a record/message?",
+      "answer": "The unit of data in Kafka. A record consists of a key, value, timestamp, and optional headers."
+    },
+    {
+      "id": 10,
+      "question": "What is a replica?",
+      "answer": "A copy of a partition. Each topic can have multiple replicas distributed across different brokers for fault tolerance."
+    },
+    {
+      "id": 11,
+      "question": "What is the leader replica?",
+      "answer": "The primary replica of a partition that handles all read and write requests for that partition."
+    },
+    {
+      "id": 12,
+      "question": "What is a follower replica?",
+      "answer": "A replica that passively replicates data from the leader and does not serve client requests directly."
+    },
+    {
+      "id": 13,
+      "question": "What is the replication factor?",
+      "answer": "The number of copies (replicas) of each partition in a Kafka cluster."
+    },
+    {
+      "id": 14,
+      "question": "What is the min.insync.replicas setting?",
+      "answer": "The minimum number of replicas that must acknowledge a write before it's considered successful."
+    },
+    {
+      "id": 15,
+      "question": "What are ISRs (In-Sync Replicas)?",
+      "answer": "Replicas that are fully caught up with the leader, meaning they have all the messages the leader has."
+    },
+    {
+      "id": 16,
+      "question": "What is the Kafka Controller?",
+      "answer": "A broker that is responsible for managing the state of partitions and replicas and for performing administrative tasks."
+    },
+    {
+      "id": 17,
+      "question": "What is ZooKeeper's role in Kafka?",
+      "answer": "ZooKeeper is used to manage and coordinate Kafka brokers, track broker/topic configuration, and elect a controller. (Note: Kafka is moving to a ZooKeeper-less architecture with KRaft mode.)"
+    },
+    {
+      "id": 18,
+      "question": "What is KRaft mode?",
+      "answer": "Kafka Raft (KRaft) is the consensus protocol replacing ZooKeeper for metadata management in Kafka, providing a ZooKeeper-less deployment option."
+    },
+    {
+      "id": 19,
+      "question": "What is a retention policy?",
+      "answer": "Configuration that determines how long Kafka keeps messages. Can be set by time or size limits."
+    },
+    {
+      "id": 20,
+      "question": "What is log compaction?",
+      "answer": "A cleanup policy where Kafka retains at least the last known value for each record key for a topic."
+    },
+    {
+      "id": 21,
+      "question": "What is the default serializer for keys and values?",
+      "answer": "The default is org.apache.kafka.common.serialization.StringSerializer."
+    },
+    {
+      "id": 22,
+      "question": "What is the default deserializer for keys and values?",
+      "answer": "The default is org.apache.kafka.common.serialization.StringDeserializer."
+    },
+    {
+      "id": 23,
+      "question": "What is a consumer offset?",
+      "answer": "A marker or position that represents the last message consumed by a consumer in a partition."
+    },
+    {
+      "id": 24,
+      "question": "What is the __consumer_offsets topic?",
+      "answer": "A special internal topic where Kafka stores consumer group offsets."
+    },
+    {
+      "id": 25,
+      "question": "What is auto.offset.reset?",
+      "answer": "Configuration that determines what to do when a consumer has no initial offset or the current offset no longer exists. Options are \"earliest\", \"latest\", or \"none\"."
+    },
+    {
+      "id": 26,
+      "question": "What is the enable.auto.commit property?",
+      "answer": "Configuration that enables automatic offset committing at a regular interval for consumers."
+    },
+    {
+      "id": 27,
+      "question": "What is the acks parameter in producer configuration?",
+      "answer": "Defines the number of acknowledgments the producer requires before considering a request complete. Values: 0, 1, or \"all\"."
+    },
+    {
+      "id": 28,
+      "question": "What is idempotent producer?",
+      "answer": "A producer that prevents duplicate messages by assigning each message a sequence number."
+    },
+    {
+      "id": 29,
+      "question": "What is the transactional API in Kafka?",
+      "answer": "Allows producing records to multiple topics and partitions atomically, ensuring all writes either succeed or fail together."
+    },
+    {
+      "id": 30,
+      "question": "What are the delivery semantics in Kafka?",
+      "answer": "The guarantees Kafka provides for message delivery: at-most-once, at-least-once, or exactly-once."
+    },
+    {
+      "id": 31,
+      "question": "What is at-most-once delivery?",
+      "answer": "Messages may be lost but never redelivered. (acks=0)"
+    },
+    {
+      "id": 32,
+      "question": "What is at-least-once delivery?",
+      "answer": "Messages are never lost but may be redelivered. (acks=all, retries>0)"
+    },
+    {
+      "id": 33,
+      "question": "What is exactly-once delivery?",
+      "answer": "Messages are delivered exactly one time, without loss or duplication. (Achieved with idempotent producers and transactions)"
+    },
+    {
+      "id": 34,
+      "question": "What is the bootstrap.servers configuration?",
+      "answer": "A list of host/port pairs used for establishing the initial connection to the Kafka cluster."
+    },
+    {
+      "id": 35,
+      "question": "What is the max.poll.records setting?",
+      "answer": "Controls the maximum number of records returned in a single call to poll() for the consumer."
+    },
+    {
+      "id": 36,
+      "question": "What is session.timeout.ms?",
+      "answer": "The timeout used to detect consumer failures. If no heartbeat is received within this timeout, the consumer is considered dead."
+    },
+    {
+      "id": 37,
+      "question": "What is the max.poll.interval.ms setting?",
+      "answer": "The maximum delay between invocations of poll() when using the consumer. If exceeded, the consumer is considered failed."
+    },
+    {
+      "id": 38,
+      "question": "What is the heartbeat.interval.ms setting?",
+      "answer": "The expected time between heartbeats to the consumer coordinator."
+    },
+    {
+      "id": 39,
+      "question": "What is the group.id setting?",
+      "answer": "A unique string that identifies the consumer group to which a consumer belongs."
+    },
+    {
+      "id": 40,
+      "question": "What is the retries parameter in producer configuration?",
+      "answer": "The number of times the producer will retry sending a message that fails."
+    },
+    {
+      "id": 41,
+      "question": "What is a schema registry?",
+      "answer": "A system that stores and manages schemas for serialized data, ensuring compatibility between producers and consumers."
+    },
+    {
+      "id": 42,
+      "question": "What is Avro?",
+      "answer": "A data serialization format that provides rich data structures, compact binary format, and schema evolution."
+    },
+    {
+      "id": 43,
+      "question": "What is the difference between sync and async producers?",
+      "answer": "Sync producers wait for acknowledgment before sending the next message; async producers send messages without waiting."
+    },
+    {
+      "id": 44,
+      "question": "What is the batch.size parameter in producer configuration?",
+      "answer": "The amount of memory in bytes to use for batching groups of messages to be sent to the same partition."
+    },
+    {
+      "id": 45,
+      "question": "What is the linger.ms parameter?",
+      "answer": "How long the producer waits to allow more messages to accumulate in a batch before sending it."
+    },
+    {
+      "id": 46,
+      "question": "What is the buffer.memory setting?",
+      "answer": "The total memory the producer can use to buffer messages waiting to be sent to the server."
+    },
+    {
+      "id": 47,
+      "question": "What is a dead letter queue in Kafka?",
+      "answer": "A topic where messages that cannot be processed are sent for later handling or diagnosis."
+    },
+    {
+      "id": 48,
+      "question": "What is a connector in Kafka Connect?",
+      "answer": "A ready-made component that moves data between Kafka and other systems."
+    },
+    {
+      "id": 49,
+      "question": "What is Kafka Streams?",
+      "answer": "A client library for building applications that process and analyze data stored in Kafka."
+    },
+    {
+      "id": 50,
+      "question": "What is a KStream?",
+      "answer": "A representation of a stream of records in Kafka Streams, where each record represents an independent event."
+    },
+    {
+      "id": 51,
+      "question": "What is a KTable?",
+      "answer": "A representation of a changelog stream in Kafka Streams, where each record represents an update to a key."
+    },
+    {
+      "id": 52,
+      "question": "What is a GlobalKTable?",
+      "answer": "Similar to a KTable, but replicated on each instance of a Kafka Streams application for local joins."
+    },
+    {
+      "id": 53,
+      "question": "What is a stateful operation in Kafka Streams?",
+      "answer": "Operations that maintain state across multiple messages, like aggregations, joins, or windowing."
+    },
+    {
+      "id": 54,
+      "question": "What is a stateless operation in Kafka Streams?",
+      "answer": "Operations that process each message independently, like map, filter, or flatMap."
+    },
+    {
+      "id": 55,
+      "question": "What is a processing topology in Kafka Streams?",
+      "answer": "A graph of stream processors (nodes) connected by streams (edges) representing the flow of data."
+    },
+    {
+      "id": 56,
+      "question": "What are Kafka Stream's state stores?",
+      "answer": "Local storage used by Kafka Streams applications to maintain state for stateful operations."
+    },
+    {
+      "id": 57,
+      "question": "What is the difference between a stream and a table in Kafka Streams?",
+      "answer": "Streams represent a sequence of events, while tables represent the current state for each key."
+    },
+    {
+      "id": 58,
+      "question": "What is event time in Kafka Streams?",
+      "answer": "The time at which an event actually occurred, as opposed to processing time."
+    },
+    {
+      "id": 59,
+      "question": "What is processing time in Kafka Streams?",
+      "answer": "The time at which an event is processed by the stream processing application."
+    },
+    {
+      "id": 60,
+      "question": "What is a sliding window in Kafka Streams?",
+      "answer": "A window that slides forward in time, with records potentially belonging to multiple overlapping windows."
+    },
+    {
+      "id": 61,
+      "question": "What is a tumbling window in Kafka Streams?",
+      "answer": "A window of fixed size that progresses in time intervals of the same size, with no overlap between windows."
+    },
+    {
+      "id": 62,
+      "question": "What is a session window in Kafka Streams?",
+      "answer": "A window that captures a period of activity for a specific key, bounded by periods of inactivity."
+    },
+    {
+      "id": 63,
+      "question": "What is a join in Kafka Streams?",
+      "answer": "An operation that combines records from two or more streams or tables based on a common key."
+    },
+    {
+      "id": 64,
+      "question": "What is an interactive query in Kafka Streams?",
+      "answer": "The ability to directly query the current state of a Kafka Streams application."
+    },
+    {
+      "id": 65,
+      "question": "What is a processor API in Kafka Streams?",
+      "answer": "A low-level API that provides direct access to stream processing primitives for custom processing logic."
+    },
+    {
+      "id": 66,
+      "question": "What is a DSL in Kafka Streams?",
+      "answer": "A high-level domain-specific language API that provides common stream processing operations."
+    },
+    {
+      "id": 67,
+      "question": "What is Kafka Connect's source connector?",
+      "answer": "A connector that imports data from an external system into Kafka topics."
+    },
+    {
+      "id": 68,
+      "question": "What is Kafka Connect's sink connector?",
+      "answer": "A connector that exports data from Kafka topics to an external system."
+    },
+    {
+      "id": 69,
+      "question": "What is a task in Kafka Connect?",
+      "answer": "The unit of work for a connector. A connector may create multiple tasks to parallelize data import or export."
+    },
+    {
+      "id": 70,
+      "question": "What is the purpose of Schema Validation in Kafka?",
+      "answer": "To ensure that messages conform to a predefined schema before being accepted by Kafka."
+    },
+    {
+      "id": 71,
+      "question": "What is a record header in Kafka?",
+      "answer": "Optional key-value pairs attached to a Kafka record that can carry metadata."
+    },
+    {
+      "id": 72,
+      "question": "What is the rack awareness feature in Kafka?",
+      "answer": "A feature that allows Kafka to distribute replicas across different racks, data centers, or availability zones."
+    },
+    {
+      "id": 73,
+      "question": "What is a consumer lag?",
+      "answer": "The number of messages that a consumer is behind the producer for a specific partition."
+    },
+    {
+      "id": 74,
+      "question": "What is the role of the Confluent Schema Registry?",
+      "answer": "To store and manage Avro, JSON Schema, and Protobuf schemas for Kafka topics and enforce compatibility."
+    },
+    {
+      "id": 75,
+      "question": "What is the KSQL/ksqlDB?",
+      "answer": "A streaming SQL engine for Kafka that allows writing stream processing applications using SQL-like syntax."
+    },
+    {
+      "id": 76,
+      "question": "What is ACL (Access Control List) in Kafka?",
+      "answer": "A mechanism to control access to Kafka resources like topics, consumer groups, etc."
+    },
+    {
+      "id": 77,
+      "question": "What is the Role of the AdminClient API?",
+      "answer": "An API to manage and inspect topics, brokers, configurations, and other Kafka objects programmatically."
+    },
+    {
+      "id": 78,
+      "question": "What is a preferred leader election?",
+      "answer": "The process of reassigning leadership of partitions back to their preferred replicas."
+    },
+    {
+      "id": 79,
+      "question": "What is a reassignment of partitions?",
+      "answer": "The process of moving partitions between brokers, often used for load balancing."
+    },
+    {
+      "id": 80,
+      "question": "What is the fetch.max.bytes configuration?",
+      "answer": "The maximum amount of data the server should return for a fetch request."
+    },
+    {
+      "id": 81,
+      "question": "What is the purpose of the Kafka MirrorMaker tool?",
+      "answer": "A tool for replicating data between two Kafka clusters, often across different data centers."
+    },
+    {
+      "id": 82,
+      "question": "What is Kafka's default port?",
+      "answer": "The default port for Kafka brokers is 9092."
+    },
+    {
+      "id": 83,
+      "question": "What is a Consumer Rebalance?",
+      "answer": "The process of reassigning partitions among consumers when consumers join or leave a consumer group."
+    },
+    {
+      "id": 84,
+      "question": "What are sticky partition assignments?",
+      "answer": "A strategy that minimizes partition reassignment during consumer rebalances."
+    },
+    {
+      "id": 85,
+      "question": "What is the SSL/TLS support in Kafka?",
+      "answer": "Security features that encrypt communication between clients and brokers."
+    },
+    {
+      "id": 86,
+      "question": "What is SASL authentication in Kafka?",
+      "answer": "A security framework for authentication in Kafka, supporting mechanisms like PLAIN, SCRAM, GSSAPI (Kerberos), and OAUTHBEARER."
+    },
+    {
+      "id": 87,
+      "question": "What are quotas in Kafka?",
+      "answer": "Limits on the rate of requests or bandwidth usage by clients to prevent resource exhaustion."
+    },
+    {
+      "id": 88,
+      "question": "What is the log.dirs configuration?",
+      "answer": "Specifies the directories in which the log data is stored on the Kafka broker."
+    },
+    {
+      "id": 89,
+      "question": "What is log segment?",
+      "answer": "A single file that stores a portion of the data for a partition. When a segment reaches a certain size, a new one is created."
+    },
+    {
+      "id": 90,
+      "question": "What is ProducerBatch?",
+      "answer": "A collection of records that the Kafka producer sends together in a single request."
+    },
+    {
+      "id": 91,
+      "question": "What is the difference between a compacted topic and a regular topic?",
+      "answer": "A compacted topic retains only the latest value for each key, while a regular topic retains all messages until the retention period expires."
+    },
+    {
+      "id": 92,
+      "question": "What is the max.request.size setting?",
+      "answer": "The maximum size of a request in bytes that the server will accept."
+    },
+    {
+      "id": 93,
+      "question": "What is the default Kafka partitioning strategy?",
+      "answer": "If a key is present, a hash of the key is used to determine the partition. If no key is present, a round-robin partitioner is used."
+    },
+    {
+      "id": 94,
+      "question": "What is the isolation.level setting for consumers?",
+      "answer": "Determines how transactional messages are read. Options are \"read_uncommitted\" (default) and \"read_committed\"."
+    },
+    {
+      "id": 95,
+      "question": "What is the purpose of the ReplicaManager in Kafka?",
+      "answer": "Manages the replication of partitions across brokers."
+    },
+    {
+      "id": 96,
+      "question": "What is the __transaction_state topic?",
+      "answer": "An internal topic used by Kafka to store transaction metadata."
+    },
+    {
+      "id": 97,
+      "question": "What is the producer.id configuration?",
+      "answer": "A unique identifier assigned to each producer for idempotent and transactional producers."
+    },
+    {
+      "id": 98,
+      "question": "What is the epoch in Kafka's leader election?",
+      "answer": "A monotonically increasing number that changes each time a new leader is elected for a partition."
+    },
+    {
+      "id": 99,
+      "question": "What is the fetch.min.bytes setting?",
+      "answer": "The minimum amount of data the server should return for a fetch request. If insufficient data is available, the request will wait."
+    },
+    {
+      "id": 100,
+      "question": "What is the ControllerService in KRaft mode?",
+      "answer": "The component responsible for managing metadata and handling controller operations in KRaft mode, replacing ZooKeeper's functionality."
+    }
+  ]
+}
