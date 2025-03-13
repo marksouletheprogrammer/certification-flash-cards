@@ -2,18 +2,6 @@
 
 A web-based flash card application for studying for various IT certifications. The application allows you to test your knowledge of certification concepts through interactive flash cards.
 
-## Features
-
-- Support for multiple certifications:
-  - AWS Certified Solutions Architect Associate
-  - Confluent Certified Developer for Apache Kafka (CCDAK)
-- Embedded flash cards for offline use
-- Shuffle cards between each play through
-- View front (question) and back (answer) of each card
-- Track correct answers and progress
-- Restart study sessions with reshuffled cards
-- Certification-specific styling and branding
-
 ## Getting Started
 
 ### Prerequisites
@@ -28,61 +16,83 @@ A web-based flash card application for studying for various IT certifications. T
 
 That's it! No build process, server, or installation required.
 
-## How It Works
+## How I made this.
 
-This application has the flashcards for multiple certifications embedded directly in the HTML file, which means:
+This was all made with Cursor and Claude 3.5/3.7 agents. The only human written code was code to add new flash cards. Inspired by [Andrej Karpathy's How I use LLMs](https://www.youtube.com/watch?v=EWvNQjAaOHw) and [Claudio Lassala's Breaking the Code Barrier: My First True No-Code AI Experience](https://lassala.net/2025/03/06/breaking-the-code-barrier-my-first-true-no-code-ai-experience/). 
 
-- No server is required
-- No internet connection is needed
-- You can run it by simply opening the HTML file in your browser
-- It works offline
+Here are the prompts I used:
 
-## Using the Application
+### Prompt 1
 
-1. Open the `index.html` file in your web browser
-2. Select which certification you want to study for:
-   - AWS Certified Solutions Architect Associate
-   - Confluent Certified Developer for Apache Kafka
-3. Click "Start Study Session" to begin
-4. Read the question on the front of the card
-5. Click "Reveal Answer" to see the answer
-6. Mark whether you got it correct or incorrect
-7. Navigate through cards using the Previous and Next buttons
-8. View your progress at the top of the screen
-9. When finished, see your final score and success rate
-10. Click "Start New Session" to restart with reshuffled cards
-11. Use the "Back to Certifications" button to switch to a different certification
+Initial prompt from an empty project.
 
-## Adding Your Own Flash Cards
-
-To add your own flashcards or modify existing ones, edit the appropriate array in the `index.html` file:
-
-- For AWS: Edit the `awsFlashcards` array
-- For Kafka: Edit the `ccdakFlashcards` array
-
-Each flashcard should follow this format:
-
-```javascript
-{
-    "id": 1,
-    "front": "Question text goes here",
-    "back": "Answer text goes here"
-}
+```
+Create a flash card app for studying for the AWS Certified Solutions Architect Associate exam. It should be runnable in local browser and will read data from flashcards.json. The look and feel of the web page should be familiar to a power user of AWS. All work will be done in this directory.
+Acceptance criteria:
+- Flash cards are ready from flashcards.json. This is how flashcards will be removed, added, and editted for the app.
+- The cards should be shuffled between each play through.
+- The user sees the front of the card initially, then sees the back of the card when they want to reveal it.
+- The user should be able to track how many they got correct.
+Scenarios:
+Scenario 1: User starts a study session.
+When the user opens the webpage, the flashcards should be loaded from flashcards.json.
+Initially, the user does not see any flashcards, but they are invited to start a study session.
+Scenario 2: Start a study session.
+When the user starts a study session the flashcards are shuffled and the user is shown the front of the first card.
+The user can choose to reveal the back of the card, go to the next card, or go to the previous card, or restart.
+Scenario 3: Recording progress.
+The user can indicate if they guessed correctly or not when they see the back of the card.
+They should be able to see how many they guessed right out of the total cards in the deck.
+Scenario 4: Restarting session.
+If the user decided to restart, then cards are shuffled and they start from the beginning of the deck.
+Progress is reset.
+Scenario 5: Shuffling the deck.
+When the deck is shuffled, it does not edit flashcards.json. Shuffling should be done in memory only.
+Scenario 6: Finishing session.
+When the user has finished a session, they are shown their progress and given the option to restart.
 ```
 
-## Adding New Certifications
+Everything generally worked pretty well.
 
-To add a new certification:
+### Prompt 2
 
-1. Create a new flashcard array in the JavaScript section
-2. Add a new certification card in the selection screen
-3. Update the `setCertification` function to handle the new certification type
+I decided to make it support more than 1 certification type.
 
-## License
+```
+Make a change to the flash card app such that it can support more than 1 certification. Users will be able to study for AWS Certified Solutions Architect Associate exam or the Confluent Certified Developer for Apache Kafka exam. AWS flashcards are in aws-flashcards.json and CCDAK flashcards are in ccdak-flashcards.json. 
+Acceptance criteria:
+- Users should be able to do a study session with either AWS or CCDAK, not both.
+- The look and feel should not change.
+- The workflow of a study session should not change.
+- How the app is launched should not change.
+Scenarios:
+Scenario 1: User opens the page.
+When the user opens the webpage, they will have the choice between AWS study session or CCDAK study session. They have to pick one.
+Scenario 2: User picks a study session.
+When the user selects a study session, the flash card app should work exactly as it did before this change.
+Scenario 3: Switching study sessions.
+There should be a button in the top left corner to go back to the study session select screen.
+This wipes out all progress.
+```
 
-This project is open source and available under the MIT License.
+The result was a bit clunky but overall worked.
 
-## Acknowledgments
+### Prompt 3
 
-- AWS for providing the inspiration for the design
-- All contributors to the flash card content 
+I was not happy with the layout and styling.
+
+```
+We are going to change the look and feel of this app. Currently it is styled in a way that is familiar to AWS. We will change this and it will affect all parts of the app so everything has the same look at feel.
+Acceptance criteria:
+- The application will be named Certification Flash Cards.
+- Color scheme should be one that supports concentation, memory retention, and reduce eye strain.
+- There shoul be a comfortable contract between text and background.
+- Light mode and dark mode options available.
+- It should be reminiscent of a college library.
+Scenarios:
+Scenario 1: Color mode
+There should be a light mode and dark mode that the user can toggle between. 
+Both modes adhere to acceptance criteria.
+```
+
+The result of this was very buggy. I had to go back and forth with Claude about a dozen times to fix bugs. I fixed one at a time. Not all prompts are listed here but you get the idea.
