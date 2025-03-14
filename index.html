@@ -1910,11 +1910,17 @@
             if (flashcards.length === 0) return;
             
             const currentCard = flashcards[currentCardIndex];
-            questionEl.textContent = currentCard.front;
-            answerEl.textContent = currentCard.back;
             
-            // Reset card to front side
-            flashcard.classList.remove('flipped');
+            // Update only the question first
+            questionEl.textContent = currentCard.front || currentCard.question;
+            
+            // Only update the answer when the card is flipped
+            if (flashcard.classList.contains('flipped')) {
+                answerEl.textContent = currentCard.back || currentCard.answer;
+            } else {
+                // Clear the answer text when not flipped
+                answerEl.textContent = '';
+            }
             
             // Update progress bar
             const progress = ((currentCardIndex + 1) / flashcards.length) * 100;
@@ -1936,11 +1942,18 @@
             flashcard.classList.toggle('flipped');
             
             if (flashcard.classList.contains('flipped')) {
+                // Only load the answer content when the card is flipped
+                const currentCard = flashcards[currentCardIndex];
+                answerEl.textContent = currentCard.back || currentCard.answer;
+                
                 flipBtn.textContent = 'Hide Answer';
                 // Enable feedback buttons only when card is flipped
                 correctBtn.disabled = false;
                 incorrectBtn.disabled = false;
             } else {
+                // Clear the answer when flipping back to front
+                answerEl.textContent = '';
+                
                 flipBtn.textContent = 'Reveal Answer';
                 correctBtn.disabled = true;
                 incorrectBtn.disabled = true;
@@ -1950,6 +1963,11 @@
         // Show the previous card
         function showPreviousCard() {
             if (currentCardIndex > 0) {
+                // Reset the card to front side
+                flashcard.classList.remove('flipped');
+                // Clear the answer
+                answerEl.textContent = '';
+                
                 currentCardIndex--;
                 updateCardDisplay();
             }
@@ -1958,6 +1976,11 @@
         // Show the next card
         function showNextCard() {
             if (currentCardIndex < flashcards.length - 1) {
+                // Reset the card to front side
+                flashcard.classList.remove('flipped');
+                // Clear the answer
+                answerEl.textContent = '';
+                
                 currentCardIndex++;
                 updateCardDisplay();
             } else {
@@ -1976,8 +1999,17 @@
                 answeredCards.add(currentCardIndex);
             }
             
-            // Move to the next card
-            showNextCard();
+            // Reset the card to front side
+            flashcard.classList.remove('flipped');
+            // Clear the answer
+            answerEl.textContent = '';
+            
+            if (currentCardIndex < flashcards.length - 1) {
+                currentCardIndex++;
+                updateCardDisplay();
+            } else {
+                finishSession();
+            }
         }
 
         // Finish the session
