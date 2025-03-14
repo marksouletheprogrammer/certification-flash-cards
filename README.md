@@ -1,6 +1,6 @@
 # Certification Flash Cards
 
-A web-based flash card application for studying for various IT certifications. The application allows you to test your knowledge of certification concepts through interactive flash cards.
+A web-based flash card application for studying for various IT certifications. The application allows you to test your knowledge of certification concepts through interactive flash cards. Currently supports AWS Certified Solutions Architect Associate and Confluent Certified Developer for Apache Kafka.
 
 ## Getting Started
 

@@ -499,6 +499,156 @@
       "id": 100,
       "front": "What is Amazon EventBridge?",
       "back": "A serverless event bus service that connects application data from your own applications, SaaS applications, and AWS services."
+    },
+    {
+      "id": 101,
+      "front": "What is AWS Global Accelerator?",
+      "back": "A networking service that improves the availability and performance of applications with global users by using the AWS global network infrastructure to direct traffic to optimal endpoints. It provides static IP addresses that act as fixed entry points to your applications."
+    },
+    {
+      "id": 102,
+      "front": "What is an Elastic Fabric Adapter (EFA)?",
+      "back": "A network interface for Amazon EC2 instances that enables customers to run applications requiring high levels of inter-node communications at scale on AWS. It provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud-based HPC systems."
+    },
+    {
+      "id": 103,
+      "front": "What is an Elastic Network Adapter (ENA)?",
+      "back": "A custom network interface optimized for Amazon EC2 instances that provides enhanced networking capabilities with significantly higher bandwidth, packet per second (PPS) performance, and lower inter-instance latencies compared to traditional implementations."
+    },
+    {
+      "id": 104,
+      "front": "What is AWS ParallelCluster?",
+      "back": "An AWS-supported open-source cluster management tool that helps you deploy and manage high-performance computing (HPC) clusters in the AWS Cloud. It automates the creation of VPC, subnet, cluster type, and instance types."
+    },
+    {
+      "id": 105,
+      "front": "What is Amazon FSx?",
+      "back": "A fully managed service that provides native compatibility with third-party file systems. It offers high-performance file systems that are fully managed by AWS, including FSx for Windows File Server, FSx for Lustre, FSx for OpenZFS, and FSx for NetApp ONTAP."
+    },
+    {
+      "id": 106,
+      "front": "What is AWS DataSync?",
+      "back": "A data transfer service that simplifies, automates, and accelerates moving data between on-premises storage systems and AWS storage services, as well as between AWS storage services. It's significantly faster than open-source tools and can be used for data migration, data protection, and data lake ingestion."
+    },
+    {
+      "id": 107,
+      "front": "What is AWS Directory Service?",
+      "back": "A managed service that provides multiple ways to use Microsoft Active Directory (AD) with other AWS services. Options include AWS Managed Microsoft AD, Simple AD, and AD Connector, allowing you to connect AWS resources with an existing on-premises Microsoft Active Directory."
+    },
+    {
+      "id": 108,
+      "front": "What is High Performance Computing (HPC) on AWS?",
+      "back": "A set of AWS services and features that enable running large-scale, compute-intensive workloads that traditionally required on-premises supercomputers. AWS HPC solutions include specialized compute instances, high-performance networking, low-latency storage, and orchestration tools."
+    },
+    {
+      "id": 109,
+      "front": "What is Aurora Serverless?",
+      "back": "An on-demand, auto-scaling configuration for Amazon Aurora where the database automatically starts up, shuts down, and scales capacity based on application needs. It's ideal for infrequent, intermittent, or unpredictable workloads."
+    },
+    {
+      "id": 110,
+      "front": "What is AWS Glue?",
+      "back": "A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development. It includes capabilities for data discovery, ETL, and creating a centralized data catalog."
+    },
+    {
+      "id": 111,
+      "front": "What is the difference between AWS DataSync and Storage Gateway?",
+      "back": "DataSync is primarily for one-time or scheduled data transfers between on-premises and AWS, optimized for large-scale data migrations. Storage Gateway provides ongoing, low-latency access to cloud storage from on-premises applications, appearing as local storage while data is actually stored in AWS."
+    },
+    {
+      "id": 112,
+      "front": "What are the differences between FSx Cold Storage and Hot Storage?",
+      "back": "FSx Hot Storage is for frequently accessed data requiring high performance, while Cold Storage is a lower-cost storage tier for infrequently accessed data. Cold Storage costs up to 80% less than Hot Storage but has higher access latencies. Available for FSx for Windows File Server and FSx for NetApp ONTAP."
+    },
+    {
+      "id": 113,
+      "front": "What is the difference between Cross-Region Read Replicas and Multi-AZ RDS?",
+      "back": "Multi-AZ RDS provides high availability with a synchronous standby replica in a different AZ for automatic failover (disaster recovery). Cross-Region Read Replicas are asynchronous copies in different regions used for read scaling and regional disaster recovery, but require manual promotion for failover."
+    },
+    {
+      "id": 114,
+      "front": "What is the difference between Amazon S3 Object Key and Object Metadata?",
+      "back": "The Object Key is the unique identifier for an object within a bucket (essentially its name and path). Object Metadata is a set of name-value pairs stored with the object that describes the object, including system metadata (e.g., Last-Modified) and user-defined metadata that applications can add."
+    },
+    {
+      "id": 115,
+      "front": "What is the difference between AWS Direct Connect and Site-to-Site VPN?",
+      "back": "Direct Connect provides a dedicated private connection between on-premises networks and AWS with consistent performance and reduced bandwidth costs. Site-to-Site VPN creates an encrypted connection over the public internet, which is quicker to set up but may have variable performance and security depends on encryption."
+    },
+    {
+      "id": 116,
+      "front": "What is the difference between AWS Config and AWS CloudTrail?",
+      "back": "CloudTrail records API calls and account activity for auditing who did what and when. AWS Config provides a detailed inventory of AWS resources and configuration history, focusing on what changed in your infrastructure and compliance monitoring against desired configurations."
+    },
+    {
+      "id": 117,
+      "front": "What is the difference between Security Groups and Network ACLs?",
+      "back": "Security Groups are stateful firewalls that operate at the instance level, containing only allow rules. Network ACLs are stateless firewalls that operate at the subnet level, containing both allow and deny rules. Security Groups evaluate all rules before deciding to allow traffic, while NACLs process rules in number order."
+    },
+    {
+      "id": 118,
+      "front": "What is the difference between NAT Gateway and NAT Instance?",
+      "back": "NAT Gateway is a fully managed AWS service with automatic high availability, better bandwidth, and no administration required. NAT Instance is a self-managed EC2 instance running NAT software that requires manual setup for high availability, has bandwidth limitations based on instance type, and requires more administration."
+    },
+    {
+      "id": 119,
+      "front": "What is the difference between Geolocation and Geoproximity routing policies in Route 53?",
+      "back": "Geolocation routing directs traffic based on the geographic location of users (continent, country, or US state). Geoproximity routing directs traffic based on the geographic location of resources and optionally biases traffic with expandable/shrinkable geographic regions using bias values."
+    },
+    {
+      "id": 120,
+      "front": "What is Amazon Data Lifecycle Manager?",
+      "back": "A service that automates the creation, retention, and deletion of EBS snapshots and EBS-backed AMIs. It helps implement backup strategies, simplify compliance requirements, and reduce costs by deleting outdated backups according to defined schedules and retention policies."
+    },
+    {
+      "id": 121,
+      "front": "What is AWS Transfer Family?",
+      "back": "A fully managed service that enables file transfers directly to and from Amazon S3 or Amazon EFS using SFTP, FTPS, and FTP protocols. It eliminates the need to operate your own file transfer servers while maintaining existing client workflows."
+    },
+    {
+      "id": 122,
+      "front": "What is Amazon Managed Streaming for Apache Kafka (MSK)?",
+      "back": "A fully managed service that makes it easy to build and run applications that use Apache Kafka to process streaming data. It provides the control-plane operations such as creating, updating, and deleting clusters while maintaining compatibility with open-source Kafka."
+    },
+    {
+      "id": 123,
+      "front": "What is AWS Lake Formation?",
+      "back": "A service that makes it easy to set up a secure data lake in days. It helps you collect and catalog data from databases and object storage, move the data into your Amazon S3 data lake, clean and classify data using machine learning algorithms, and secure access to your sensitive data."
+    },
+    {
+      "id": 124,
+      "front": "What is Amazon Kendra?",
+      "back": "An intelligent search service powered by machine learning that delivers highly accurate search results from unstructured and structured data across multiple data sources. It uses natural language processing to understand the context of questions and return precise answers."
+    },
+    {
+      "id": 125,
+      "front": "What is AWS Outposts?",
+      "back": "A family of fully managed solutions delivering AWS infrastructure and services to virtually any on-premises or edge location for a truly consistent hybrid experience. Outposts extends AWS infrastructure, services, APIs, and tools to customer premises."
+    },
+    {
+      "id": 126,
+      "front": "What is Amazon EventBridge Pipes?",
+      "back": "A point-to-point integration service that connects event producers directly to event consumers with advanced transformation and enrichment capabilities. It simplifies building event-driven architectures by reducing the need for custom code and infrastructure."
+    },
+    {
+      "id": 127,
+      "front": "What is AWS App Runner?",
+      "back": "A fully managed service that makes it easy to deploy web applications and APIs at scale without infrastructure expertise. It builds and deploys applications automatically, load balances traffic, scales to meet traffic needs, and provides built-in security."
+    },
+    {
+      "id": 128,
+      "front": "What is Amazon Managed Service for Prometheus?",
+      "back": "A serverless, Prometheus-compatible monitoring service for container metrics that makes it easier to securely monitor container environments at scale. It automatically scales the ingestion, storage, and querying of operational metrics."
+    },
+    {
+      "id": 129,
+      "front": "What is AWS Amplify?",
+      "back": "A set of tools and services that enables frontend web and mobile developers to build full-stack applications with AWS. It includes features for authentication, storage, API (GraphQL and REST), CI/CD, PubSub, analytics, and AI/ML capabilities."
+    },
+    {
+      "id": 130,
+      "front": "What is Amazon Managed Grafana?",
+      "back": "A fully managed service for Grafana, an open-source analytics platform that enables you to query, visualize, and alert on your metrics, logs, and traces. It simplifies the process of setting up, securing, and scaling Grafana in production environments."
     }
   ]
 }
