@@ -649,6 +649,281 @@
       "id": 130,
       "front": "What is Amazon Managed Grafana?",
       "back": "A fully managed service for Grafana, an open-source analytics platform that enables you to query, visualize, and alert on your metrics, logs, and traces. It simplifies the process of setting up, securing, and scaling Grafana in production environments."
+    },
+    {
+      "id": 131,
+      "front": "What is the passing score for the AWS Solution Architect Associate exam?",
+      "back": "At least 720 out of 1,000"
+    },
+    {
+      "id": 132,
+      "front": "What are the three main components of AWS Global Infrastructure?",
+      "back": "Regions, Availability Zones, and Edge Locations"
+    },
+    {
+      "id": 133,
+      "front": "What are Availability Zones in AWS?",
+      "back": "Isolated locations within a region connected by low-latency links, designed to ensure high availability and fault tolerance"
+    },
+    {
+      "id": 134,
+      "front": "What are Edge Locations used for in AWS?",
+      "back": "Used by Amazon CloudFront to deliver content with low latency to users around the world"
+    },
+    {
+      "id": 135,
+      "front": "What are the five main EC2 instance types?",
+      "back": "General Purpose, Compute Optimized, Memory Optimized, Storage Optimized, and Accelerated Computing"
+    },
+    {
+      "id": 136,
+      "front": "What are the four EC2 pricing models?",
+      "back": "On-Demand, Reserved, Spot, and Savings Plans"
+    },
+    {
+      "id": 137,
+      "front": "What is Amazon Lambda?",
+      "back": "A serverless compute service that lets you run code without provisioning or managing servers, automatically scaling based on demand"
+    },
+    {
+      "id": 138,
+      "front": "What programming languages does AWS Lambda support?",
+      "back": "Node.js, Python, Java, Ruby, C#, and Go"
+    },
+    {
+      "id": 139,
+      "front": "What is S3's durability rating?",
+      "back": "99.999999999% durability (11 nines)"
+    },
+    {
+      "id": 140,
+      "front": "Name the six S3 storage classes",
+      "back": "Standard, Standard-IA, One Zone-IA, Intelligent Tiering, Glacier, and Glacier Deep Archive"
+    },
+    {
+      "id": 141,
+      "front": "What is S3 Standard-IA used for?",
+      "back": "For infrequently accessed data that requires rapid access when needed, offering lower storage costs compared to Standard"
+    },
+    {
+      "id": 142,
+      "front": "What is S3 Glacier and what is its retrieval time?",
+      "back": "Long-term archival storage with retrieval times ranging from minutes to hours"
+    },
+    {
+      "id": 143,
+      "front": "What is EBS?",
+      "back": "Elastic Block Storage - provides block-level storage volumes that can be attached to EC2 instances, offering persistent storage"
+    },
+    {
+      "id": 144,
+      "front": "What database engines does Amazon RDS support?",
+      "back": "MySQL, PostgreSQL, MariaDB, Oracle, Microsoft SQL Server, and Amazon Aurora"
+    },
+    {
+      "id": 145,
+      "front": "What is Multi-AZ deployment in RDS?",
+      "back": "A feature that provides enhanced availability and durability by automatically creating a primary database in one AZ and a standby replica in another AZ"
+    },
+    {
+      "id": 146,
+      "front": "What are Read Replicas in RDS?",
+      "back": "Read-only copies of your database that improve read performance and availability by distributing read traffic across multiple instances"
+    },
+    {
+      "id": 147,
+      "front": "What is Amazon DynamoDB?",
+      "back": "A fully managed NoSQL database service that provides fast and predictable performance with seamless scalability"
+    },
+    {
+      "id": 148,
+      "front": "What data models does DynamoDB support?",
+      "back": "Key-value and document data models"
+    },
+    {
+      "id": 149,
+      "front": "What is DynamoDB's response time?",
+      "back": "Single-digit millisecond response times"
+    },
+    {
+      "id": 150,
+      "front": "When should you use DynamoDB instead of RDS?",
+      "back": "For applications needing low-latency access to large volumes of data, such as gaming, IoT, and real-time analytics"
+    },
+    {
+      "id": 151,
+      "front": "When should you use RDS instead of DynamoDB?",
+      "back": "For applications requiring complex queries, transactions, and data integrity, such as ERP systems, CRM applications, and content management"
+    },
+    {
+      "id": 152,
+      "front": "What is Amazon VPC?",
+      "back": "Virtual Private Cloud - enables you to launch AWS resources in a logically isolated virtual network that you define, giving you complete control over your network environment"
+    },
+    {
+      "id": 153,
+      "front": "What is the difference between Security Groups and Network ACLs?",
+      "back": "Security Groups are stateful and act as virtual firewalls at the instance level, while Network ACLs are stateless and provide filtering at the subnet level"
+    },
+    {
+      "id": 154,
+      "front": "What is a NAT Gateway used for?",
+      "back": "Allows instances in a private subnet to access the internet without exposing them to inbound internet traffic"
+    },
+    {
+      "id": 155,
+      "front": "What is VPC Peering?",
+      "back": "Allows you to connect VPCs within and across regions, facilitating secure communication between them"
+    },
+    {
+      "id": 156,
+      "front": "What is Amazon Route 53?",
+      "back": "A scalable and highly available DNS web service that provides domain name registration and DNS routing"
+    },
+    {
+      "id": 157,
+      "front": "Name at least four Route 53 routing policies",
+      "back": "Simple, Weighted, Latency-based, Failover, Geolocation, and Multivalue Answer"
+    },
+    {
+      "id": 158,
+      "front": "What is Amazon CloudFront?",
+      "back": "A Content Delivery Network (CDN) service that delivers content globally with low latency and high transfer speeds"
+    },
+    {
+      "id": 159,
+      "front": "What are the two types of CloudFront distributions?",
+      "back": "Web distributions for static and dynamic content, and RTMP distributions for streaming media using Adobe RTMP"
+    },
+    {
+      "id": 160,
+      "front": "What is AWS IAM?",
+      "back": "Identity and Access Management - a service that enables you to securely control access to AWS services and resources for your users"
+    },
+    {
+      "id": 161,
+      "front": "What are the four main components of IAM?",
+      "back": "Users, Groups, Roles, and Policies"
+    },
+    {
+      "id": 162,
+      "front": "What is the principle of least privilege in IAM?",
+      "back": "Ensuring users and roles have only the permissions required to perform their tasks, minimizing the risk of unauthorized access"
+    },
+    {
+      "id": 163,
+      "front": "What is AWS KMS?",
+      "back": "Key Management Service - a managed service that allows you to create and control the encryption keys used to encrypt your data"
+    },
+    {
+      "id": 164,
+      "front": "What are the two tiers of AWS Shield?",
+      "back": "Shield Standard (included free with all AWS services) and Shield Advanced (additional protections, diagnostics, cost protection, and DDoS Response Team)"
+    },
+    {
+      "id": 165,
+      "front": "What is AWS WAF?",
+      "back": "Web Application Firewall - helps protect your web applications from common web exploits and vulnerabilities"
+    },
+    {
+      "id": 166,
+      "front": "What compliance program would you need for healthcare applications?",
+      "back": "HIPAA (Health Insurance Portability and Accountability Act)"
+    },
+    {
+      "id": 167,
+      "front": "What is AWS CloudFormation?",
+      "back": "A service that enables you to model and set up your AWS resources using infrastructure as code"
+    },
+    {
+      "id": 168,
+      "front": "What formats can CloudFormation templates be written in?",
+      "back": "JSON or YAML"
+    },
+    {
+      "id": 169,
+      "front": "What is drift detection in CloudFormation?",
+      "back": "A feature that helps identify changes in stack resources, ensuring that your infrastructure remains consistent with the template definitions"
+    },
+    {
+      "id": 170,
+      "front": "What is AWS CloudWatch?",
+      "back": "A monitoring and management service that collects and tracks metrics, monitors log files, and sets alarms to automatically react to changes in your AWS resources"
+    },
+    {
+      "id": 171,
+      "front": "What are the five categories of AWS Trusted Advisor recommendations?",
+      "back": "Cost Optimization, Performance, Security, Fault Tolerance, and Service Limits"
+    },
+    {
+      "id": 172,
+      "front": "What is Amazon SQS?",
+      "back": "Simple Queue Service - a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications"
+    },
+    {
+      "id": 173,
+      "front": "What are the two types of SQS queues?",
+      "back": "Standard queues (high throughput, at-least-once delivery) and FIFO queues (strict message ordering, exactly-once processing)"
+    },
+    {
+      "id": 174,
+      "front": "What is Amazon SNS?",
+      "back": "Simple Notification Service - a fully managed messaging service that enables you to send notifications to a large number of subscribers through a publish/subscribe model"
+    },
+    {
+      "id": 175,
+      "front": "What is the key difference between SNS and SQS?",
+      "back": "SNS uses a push model to broadcast messages to multiple subscribers simultaneously, while SQS uses a pull model where messages are stored in a queue for processing"
+    },
+    {
+      "id": 176,
+      "front": "What are the three types of Elastic Load Balancers?",
+      "back": "Application Load Balancer (ALB), Network Load Balancer (NLB), and Classic Load Balancer (CLB)"
+    },
+    {
+      "id": 177,
+      "front": "What traffic does an Application Load Balancer handle?",
+      "back": "HTTP and HTTPS traffic, offering advanced routing capabilities based on URL paths and host names"
+    },
+    {
+      "id": 178,
+      "front": "What traffic does a Network Load Balancer handle?",
+      "back": "TCP traffic, designed for high performance and low latency"
+    },
+    {
+      "id": 179,
+      "front": "What is AWS Auto Scaling?",
+      "back": "A service that automatically adjusts the capacity of your resources to maintain steady, predictable performance at the lowest possible cost"
+    },
+    {
+      "id": 180,
+      "front": "Name three types of Auto Scaling policies",
+      "back": "Target Tracking, Step Scaling, Scheduled Scaling, Manual Scaling, and Predictive Scaling"
+    },
+    {
+      "id": 181,
+      "front": "What are the four main EC2 pricing models?",
+      "back": "On-Demand (pay for what you use), Reserved Instances (1-3 year commitment), Spot Instances (bid for unused capacity), and Savings Plans (commitment-based discounts)"
+    },
+    {
+      "id": 182,
+      "front": "What is the AWS TCO Calculator used for?",
+      "back": "Total Cost of Ownership Calculator - allows you to estimate the cost of running your applications on AWS compared to on-premises infrastructure"
+    },
+    {
+      "id": 183,
+      "front": "What is AWS Cost Explorer?",
+      "back": "A tool that provides visualization and analysis of your AWS spending patterns, helping you identify cost-saving opportunities"
+    },
+    {
+      "id": 184,
+      "front": "What are some common exam scenarios for the AWS Solution Architect certification?",
+      "back": "VPC configuration for secure network isolation, setting up multi-tier architectures, implementing disaster recovery solutions, and optimizing cost and performance for applications"
+    },
+    {
+      "id": 185,
+      "front": "Why are hands-on labs important for AWS certification preparation?",
+      "back": "They provide practical, interactive experience with AWS services, allowing you to apply theoretical knowledge in real-world scenarios and develop critical skills"
     }
   ]
 }
