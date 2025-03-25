@@ -336,11 +336,6 @@
       "back": "A physical server with EC2 instance capacity fully dedicated to your use, which can help you meet compliance requirements and reduce costs by using your existing server-bound software licenses."
     },
     {
-      "id": 68,
-      "front": "What is Amazon GuardDuty?",
-      "back": "A threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads."
-    },
-    {
       "id": 69,
       "front": "What is AWS Shield?",
       "back": "A managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS."
@@ -524,11 +519,6 @@
       "id": 105,
       "front": "What is Amazon FSx?",
       "back": "A fully managed service that provides native compatibility with third-party file systems. It offers high-performance file systems that are fully managed by AWS, including FSx for Windows File Server, FSx for Lustre, FSx for OpenZFS, and FSx for NetApp ONTAP."
-    },
-    {
-      "id": 106,
-      "front": "What is AWS DataSync?",
-      "back": "A data transfer service that simplifies, automates, and accelerates moving data between on-premises storage systems and AWS storage services, as well as between AWS storage services. It's significantly faster than open-source tools and can be used for data migration, data protection, and data lake ingestion."
     },
     {
       "id": 107,
@@ -1199,6 +1189,36 @@
       "id": 240,
       "front": "What service helps you set custom cost and usage budgets in AWS?",
       "back": "AWS Budget"
-    }
+    },
+    {"id": 241, "front": "What is AWS GuardDuty?", "back": "Threat detection service continuously monitoring AWS accounts for malicious activity and unauthorized behavior using machine learning and threat intelligence."},
+    {"id": 242, "front": "What is AWS Direct Connect?", "back": "Dedicated network connection from on-premises to AWS infrastructure, reducing network costs and increasing bandwidth throughput and stability."},
+    {"id": 243, "front": "What is S3 Transfer Acceleration?", "back": "Enables fast, easy, and secure file transfers to and from S3 using CloudFront edge locations, optimizing global upload/download speeds."},
+    {"id": 244, "front": "What is Amazon EBS?", "back": "Persistent block-level storage volumes for EC2 instances, supporting snapshots, encryption, and adjustable volume size/performance."},
+    {"id": 245, "front": "What is a Virtual Private Gateway (VGW)?", "back": "AWS-managed VPN endpoint on the AWS VPC side of your site-to-site VPN connection."},
+    {"id": 246, "front": "What is a Customer Gateway (CGW)?", "back": "AWS resource representing the customer's physical device or software application endpoint for establishing an AWS site-to-site VPN."},
+    {"id": 247, "front": "What is Oracle RDS Custom?", "back": "Managed RDS service allowing greater control over Oracle database and operating system customization than standard RDS."},
+    {"id": 248, "front": "What is a Spread Placement Group?", "back": "Places EC2 instances on distinct hardware to minimize correlated hardware failures, ideal for high-availability workloads."},
+    {"id": 249, "front": "What are Amazon S3 Storage Classes?", "back": "Different tiers (Standard, IA, Intelligent-Tiering, Glacier, Glacier Deep Archive) optimized for varying data access frequency, availability, and cost."},
+    {"id": 250, "front": "What are Cognito User Pools?", "back": "Managed user directories handling user registration, authentication, and authorization for applications."},
+    {"id": 251, "front": "What are Cognito Identity Pools?", "back": "Enables federated identity management, allowing users authenticated by external providers to access AWS resources securely."},
+    {"id": 252, "front": "What is an EC2 Launch Template?", "back": "Specifies EC2 instance configurations (AMI, instance type, network, security) for streamlined, repeatable instance launches."},
+    {"id": 253, "front": "What is an EC2 Launch Configuration?", "back": "Older, immutable method of specifying EC2 configurations for Auto Scaling Groups, replaced by Launch Templates."},
+    {"id": 254, "front": "What are Amazon Gateway Endpoints?", "back": "Provide secure, private connectivity from a VPC to supported AWS services (S3, DynamoDB) without internet traversal."},
+    {"id": 255, "front": "What is the AWS Schema Conversion Tool (SCT)?", "back": "Converts database schemas and objects for migrations between database engines (e.g., Oracle to PostgreSQL)."},
+    {"id": 256, "front": "What are Amazon S3 Bucket Policies?", "back": "JSON-based IAM policies attached to buckets, defining access controls for users and roles at the bucket or object level."},
+    {"id": 257, "front": "What is AWS Database Migration Service (DMS)?", "back": "Service that migrates databases quickly and securely to AWS, with continuous replication and minimal downtime. Supports consolidation to data warehouses like Amazon Redshift and Amazon S3."},
+    {"id": 258, "front": "What is Amazon Redshift Spectrum?", "back": "Enables querying data directly in S3 without loading it into Redshift, combining data warehouse analytics with data lake flexibility."},
+    {"id": 259, "front": "What is AWS VPN CloudHub?", "back": "Hub-and-spoke VPN connectivity allowing multiple remote networks to communicate securely through a central AWS-managed VPN hub."},
+    {"id": 260, "front": "What is AWS Global Accelerator?", "back": "Network layer service using AWS's global network for optimized performance and availability. Provides static anycast IPs, endpoint weights, and traffic dials for precise traffic management across AWS regions."},
+    {"id": 261, "front": "What are ideal use cases for AWS Global Accelerator?", "back": "Non-HTTP applications requiring consistent performance, such as gaming (UDP), IoT (MQTT), VoIP, or rapid blue/green deployments without DNS caching issues."},
+    {"id": 262, "front": "What is AWS Site-to-Site VPN?", "back": "Secure IPsec VPN connection between customer networks and Amazon VPC over the internet, using VPN tunnels established between Customer Gateways and Virtual Private Gateways."},
+    {"id": 263, "front": "What is a VPN Tunnel?", "back": "An encrypted link within a VPN connection allowing secure data transfer between customer networks and AWS."},
+    {"id": 264, "front": "What is Amazon SQS?", "back": "Fully-managed message queuing service enabling decoupling and scaling of microservices, distributed systems, and serverless applications, eliminating message middleware complexity."},
+    {"id": 265, "front": "What are SQS Standard vs FIFO Queues?", "back": "Standard queues: maximum throughput, best-effort ordering, at-least-once delivery. FIFO queues: guarantee exactly-once processing and strict message ordering, up to 3,000 messages/sec (with batching), queue names must end with '.fifo'."},
+    {"id": 266, "front": "How do you convert a Standard Queue to a FIFO Queue in SQS?", "back": "Existing standard queues cannot be converted to FIFO. To switch, create a new FIFO queue or delete and recreate the existing standard queue as FIFO."},
+    {"id": 267, "front": "How does AWS Lambda VPC Networking work?", "back": "Lambda functions run in AWS-owned VPCs with public internet access by default. When VPC-enabled, functions require NAT Gateway in public subnet for internet access and can access private VPC resources."},
+    {"id": 268, "front": "What is AWS VPC Sharing?", "back": "Allows multiple AWS accounts (within AWS Organizations) to share centrally managed VPC subnets. Participants manage resources in shared subnets without accessing resources of other participants or VPC owner."},
+    {"id": 269, "front": "What is AWS DataSync?", "back": "Service simplifying and accelerating transfer of large-scale data between on-premises, edge, other clouds, and AWS storage services (S3, EFS, FSx variants)."},
+    {"id": 270, "front": "What is a Network Load Balancer (NLB)?", "back": "Operates at OSI Layer 4 (Transport Layer), handles millions of requests per second, routes TCP traffic to instances or IP targets, rewriting destination IP addresses."}
   ]
 }
