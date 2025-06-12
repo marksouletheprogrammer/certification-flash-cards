@@ -579,6 +579,506 @@
       "id": 116,
       "question": "What is the ControllerService in KRaft mode?",
       "answer": "The component responsible for managing metadata and handling controller operations in KRaft mode, replacing ZooKeeper's functionality."
+    },
+    {
+      "id": 117,
+      "question": "What is Confluent Cloud?",
+      "answer": "A fully‑managed, cloud‑native Apache Kafka service on AWS, GCP, and Azure with elastic scaling, enterprise security, stream processing, and governance."
+    },
+    {
+      "id": 118,
+      "question": "What is Kora in Confluent Cloud?",
+      "answer": "Confluent’s cloud‑native Kafka engine that enables elastic scaling, high resiliency, infinite storage, and low latency."
+    },
+    {
+      "id": 119,
+      "question": "What cluster types does Confluent Cloud offer?",
+      "answer": "Basic, Standard, Enterprise, and Dedicated—differing in scaling, availability, networking, and SLA options."
+    },
+    {
+      "id": 120,
+      "question": "What is Tiered Storage?",
+      "answer": "A mechanism that offloads older topic data to durable cloud storage (e.g. S3) to enable virtually infinite retention with cost efficiency."
+    },
+    {
+      "id": 121,
+      "question": "What is Cluster Linking?",
+      "answer": "A built‑in feature to replicate topics byte‑for‑byte across Confluent clusters or regions for geo‑replication, disaster recovery, hybrid and multi‑cloud setups."
+    },
+    {
+      "id": 122,
+      "question": "How does Cluster Linking differ from MirrorMaker or Replicator?",
+      "answer": "It’s native, connector‑free, produces mirror topics with identical offsets and supports offset & ACL synchronization."
+    },
+    {
+      "id": 123,
+      "question": "What are mirror topics?",
+      "answer": "Read‑only topic copies on a destination cluster where data, partitions, and offsets match the source exactly."
+    },
+    {
+      "id": 124,
+      "question": "What metadata does Cluster Linking sync?",
+      "answer": "Topic configuration, consumer offsets, and optionally ACLs if both clusters are in the same organization."
+    },
+    {
+      "id": 125,
+      "question": "What networking options are available in Confluent Cloud?",
+      "answer": "Public endpoints, VPC/VNet peering, PrivateLink/Private Service Connect, AWS Transit Gateway for Dedicated clusters."
+    },
+    {
+      "id": 126,
+      "question": "What connectivity options support high security?",
+      "answer": "Dedicated clusters support private networking: VPC/VNet peering, AWS Transit Gateway, and PrivateLink/Private Service Connect."
+    },
+    {
+      "id": 127,
+      "question": "What authentication methods are supported?",
+      "answer": "SASL/PLAIN and SASL/OAUTHBEARER with TLS 1.2 required; Kerberos is not supported."
+    },
+    {
+      "id": 128,
+      "question": "What encryption does Confluent Cloud provide?",
+      "answer": "TLS 1.2 for in‑transit and cloud‑provider encryption at rest; BYOK supported on Dedicated clusters."
+    },
+    {
+      "id": 129,
+      "question": "What is RBAC in Confluent Cloud?",
+      "answer": "Role‑Based Access Control to assign fine‑grained roles (e.g. Developer, Operator) to control access to clusters, topics, connectors, schemas, etc."
+    },
+    {
+      "id": 130,
+      "question": "When should you use Kafka ACLs in Confluent Cloud?",
+      "answer": "When RBAC isn’t available (e.g. Basic clusters) or for fine‑grained client‑side authorization control."
+    },
+    {
+      "id": 131,
+      "question": "What compliance certifications does Confluent Cloud hold?",
+      "answer": "SOC 1/2/3, ISO 27001/27701, PCI; Dedicated clusters provide isolation from other tenants."
+    },
+    {
+      "id": 132,
+      "question": "How do you manage schemas?",
+      "answer": "Using managed Schema Registry supporting Avro, JSON Schema, and Protobuf with versioning & compatibility policy enforcement."
+    },
+    {
+      "id": 133,
+      "question": "What is Stream Governance?",
+      "answer": "A suite of tools (Schema Registry, Stream Catalog, Lineage) to enable data discovery, compliance and governance for streaming data."
+    },
+    {
+      "id": 134,
+      "question": "What is the Stream Catalog?",
+      "answer": "A central index of all streams (topics, schemas, connectors, processing apps) to improve observability and governance."
+    },
+    {
+      "id": 135,
+      "question": "What is Stream Lineage?",
+      "answer": "Feature that tracks how data flows through topics, schemas, connectors and apps to support impact analysis and auditability."
+    },
+    {
+      "id": 136,
+      "question": "What stream processing is available?",
+      "answer": "Fully‑managed serverless Flink and ksqlDB for building event‑driven apps, enrichment, filtering, joining, transformations."
+    },
+    {
+      "id": 137,
+      "question": "What is ksqlDB?",
+      "answer": "SQL‑based stream processing engine for interactive query, transformations, enrichment, join, and filtering on Kafka data."
+    },
+    {
+      "id": 138,
+      "question": "What is Flink on Confluent Cloud?",
+      "answer": "Serverless Apache Flink service for complex, low‑latency, stateful streaming workflows in a fully managed way."
+    },
+    {
+      "id": 139,
+      "question": "What are Connectors in Confluent Cloud?",
+      "answer": "Fully‑managed pre‑built Kafka Connect connectors for popular data systems—70+ available for source and sink use cases."
+    },
+    {
+      "id": 140,
+      "question": "What is Stream Designer?",
+      "answer": "A visual interface to design, test and deploy streaming pipelines using connectors and ksqlDB in Confluent Cloud."
+    },
+    {
+      "id": 141,
+      "question": "How do you monitor Confluent Cloud?",
+      "answer": "Metrics API, Control Center (UI), Prometheus exporters, Grafana integration, and CLI/API tooling."
+    },
+    {
+      "id": 142,
+      "question": "What is the Metrics API?",
+      "answer": "An endpoint providing pre‑aggregated topic, connector, and cluster metrics like lag, throughput, latency and resource usage."
+    },
+    {
+      "id": 143,
+      "question": "What is the Confluent CLI?",
+      "answer": "Command‑line tool to manage clusters, topics, connectors, schemas, links, API keys, ACLs, quotas, and billing."
+    },
+    {
+      "id": 144,
+      "question": "What APIs does Confluent Cloud expose?",
+      "answer": "REST and GraphQL APIs for clusters, topics, connectors, schemas, metrics, quotas and billing."
+    },
+    {
+      "id": 145,
+      "question": "What is ccloud‑stack?",
+      "answer": "Utility script using Confluent CLI to bootstrap all core Confluent Cloud resources for test/demo environments."
+    },
+    {
+      "id": 146,
+      "question": "What are API keys?",
+      "answer": "Credentials used by clients or services to authenticate via SASL; can be rotated or revoked via CLI/API."
+    },
+    {
+      "id": 147,
+      "question": "How are service accounts used?",
+      "answer": "Machine identities that own API keys and are granted roles to manage or access cluster resources."
+    },
+    {
+      "id": 148,
+      "question": "What are Service Quotas?",
+      "answer": "Limits on resource use (CKUs, connectors, links, storage) monitored via API/CLI; can be requested to increase."
+    },
+    {
+      "id": 149,
+      "question": "What is CKU in Confluent Cloud?",
+      "answer": "Confluent Kafka Unit: capacity and throughput allocation, scalable up or down to meet performance requirements."
+    },
+    {
+      "id": 150,
+      "question": "What is Kafka replica placement?",
+      "answer": "Fully managed rack and Availability Zone aware partition replica placement to optimize availability and fault tolerance."
+    },
+    {
+      "id": 151,
+      "question": "What is auto‑balancing?",
+      "answer": "Automatic rebalancing of partitions across brokers to optimize resource utilization."
+    },
+    {
+      "id": 152,
+      "question": "How are schema compatibility settings enforced?",
+      "answer": "Compatibility levels (backward/forward/full) are enforced at the Schema Registry to prevent breaking changes."
+    },
+    {
+      "id": 153,
+      "question": "What data protocol formats are supported?",
+      "answer": "Avro, JSON Schema and Protobuf schemas via Schema Registry."
+    },
+    {
+      "id": 154,
+      "question": "What is BYOK?",
+      "answer": "Bring‑Your‑Own‑Key encryption: customer‑managed encryption key option for Dedicated clusters at rest."
+    },
+    {
+      "id": 155,
+      "question": "Are IPs static in Confluent Cloud?",
+      "answer": "No; DNS is used. However, egress IPs are provided for use in connector and cluster‑link environments."
+    },
+    {
+      "id": 156,
+      "question": "What is public egress IP?",
+      "answer": "Static outbound IPs from connectors and cluster links for firewall whitelisting."
+    },
+    {
+      "id": 157,
+      "question": "What is PrivateLink/Private Service Connect?",
+      "answer": "Secure private networking channel between customer VPC/VNet and a Confluent Cloud service on supported clouds."
+    },
+    {
+      "id": 158,
+      "question": "What is VPC/VNet peering?",
+      "answer": "Network-level peering between customer and Confluent infrastructure for secure traffic."
+    },
+    {
+      "id": 159,
+      "question": "What is Transit Gateway support?",
+      "answer": "Integration with AWS Transit Gateway for routing between multiple VPCs and Confluent Cloud Dedicated clusters."
+    },
+    {
+      "id": 160,
+      "question": "What monitoring features are available for connectors?",
+      "answer": "Connector logs via UI/CLI, metrics via Metrics API, lag monitoring and status alerts."
+    },
+    {
+      "id": 161,
+      "question": "What auditing features exist?",
+      "answer": "Structured audit logs capture API, CLI, RBAC events into a tamper‑resistant stream for compliance tracking."
+    },
+    {
+      "id": 162,
+      "question": "What security applies to cluster linking?",
+      "answer": "Cluster Linking requires RBAC or ACL roles; uses service accounts; ACL sync works within same org."
+    },
+    {
+      "id": 163,
+      "question": "How are cluster links configured?",
+      "answer": "Via Confluent CLI (‘confluent kafka link create/list/update’) or REST API v3."
+    },
+    {
+      "id": 164,
+      "question": "Can you delete or pause mirror topics?",
+      "answer": "Yes—CLI/REST API supports pause, resume, failover, promote and delete mirror topics."
+    },
+    {
+      "id": 165,
+      "question": "What quotas apply to cluster linking?",
+      "answer": "Ingress/egress quotas for mirror replication are counted against CKU and are subject to produce/read limits."
+    },
+    {
+      "id": 166,
+      "question": "How is cluster linking throughput scaled?",
+      "answer": "By scaling CKUs on source and/or destination; Confluent monitors and adjusts performance automatically."
+    },
+    {
+      "id": 167,
+      "question": "What limitations does cluster linking have?",
+      "answer": "Max 10 links per destination; no exactly‑once transactional support; ACL sync needs same org; connectivity constraints."
+    },
+    {
+      "id": 168,
+      "question": "What client languages are supported?",
+      "answer": "Official clients in Java, plus librdkafka‑derived libraries: C/C++, Python, Go, Node.js, .NET, Ruby."
+    },
+    {
+      "id": 169,
+      "question": "What is exactly‑once delivery support?",
+      "answer": "EOS is supported by clients (Kafka 0.11+), but transactional use on mirror topics is not supported."
+    },
+    {
+      "id": 170,
+      "question": "What is follower fetching in multi‑region clusters?",
+      "answer": "Clients can read from follower or observer replicas in the same region to reduce inter‑region traffic."
+    },
+    {
+      "id": 171,
+      "question": "What are observer replicas?",
+      "answer": "Topic replicas that don’t count in ISR but can serve follower fetch/read traffic."
+    },
+    {
+      "id": 172,
+      "question": "Does Confluent Cloud support multi‑region stretched clusters?",
+      "answer": "Confluent Platform supports it; Cloud users typically use cluster linking for similar geo‑resilient architectures."
+    },
+    {
+      "id": 173,
+      "question": "What are use cases for cluster linking?",
+      "answer": "Disaster recovery/failover, migration, multi‑region high availability, hybrid bridging, data sharing, and workload separation."
+    },
+    {
+      "id": 174,
+      "question": "What is infinite storage in Confluent Cloud?",
+      "answer": "Enabled by tiered storage backed by cloud object storage like S3, GCS, or Azure blob."
+    },
+    {
+      "id": 175,
+      "question": "What is self‑balancing?",
+      "answer": "Broker‑level algorithm that balances partition load across cluster available resources."
+    },
+    {
+      "id": 176,
+      "question": "Are patching and upgrades seamless?",
+      "answer": "Yes—Kora applies zero‑touch patching and cluster‑wide upgrades without downtime."
+    },
+    {
+      "id": 177,
+      "question": "What is elastic scaling?",
+      "answer": "CKUs auto‑scale up/down for capacity; tiered storage decouples compute from storage."
+    },
+    {
+      "id": 178,
+      "question": "What is the Stream Governance suite?",
+      "answer": "Primary components include Schema Registry, Stream Catalog, and Stream Lineage."
+    },
+    {
+      "id": 179,
+      "question": "What roles exist for Schema Registry RBAC?",
+      "answer": "Roles like DeveloperRead, DeveloperWrite, DeveloperManage, and ResourceOwner enable subject‑level access control."
+    },
+    {
+      "id": 180,
+      "question": "What governs schema evolution?",
+      "answer": "Compatibility rules (backward/forward/full) enforced in the Schema Registry ensure safe evolution."
+    },
+    {
+      "id": 181,
+      "question": "What monitoring is provided for Kafka consumers?",
+      "answer": "Control Center and Metrics API allow consumer lag monitoring, throughput, offsets, health, and alerts."
+    },
+    {
+      "id": 182,
+      "question": "What is Control Center?",
+      "answer": "UI dashboard to manage, monitor, and observe clusters, topics, consumer groups, connectors, and ksqlDB apps."
+    },
+    {
+      "id": 183,
+      "question": "What observability exports are available?",
+      "answer": "Prometheus exporter and Grafana plugin integration are available for external metric visualization."
+    },
+    {
+      "id": 184,
+      "question": "How are connectors billed?",
+      "answer": "Charged per connector‑hour based on resource usage for managed connectors."
+    },
+    {
+      "id": 185,
+      "question": "How is billing managed?",
+      "answer": "Usage‑based billing on CKUs, storage, connectors, and links, viewable via billing API/CLI."
+    },
+    {
+      "id": 186,
+      "question": "What is the role of the Service Quotas API?",
+      "answer": "It provides a programmatic interface to view and request quota increases for CKUs, connectors, links, and storage."
+    },
+    {
+      "id": 187,
+      "question": "What is the Stream Catalog REST API?",
+      "answer": "Allows discovery and search of streams, schemas, connectors, and lineage metadata."
+    },
+    {
+      "id": 188,
+      "question": "What is the GraphQL API used for?",
+      "answer": "Alternative interface to query stream metadata, governance entities, and provisioning information."
+    },
+    {
+      "id": 189,
+      "question": "What is the Metrics Exporter?",
+      "answer": "Agent to push cluster metrics to Prometheus for external monitoring."
+    },
+    {
+      "id": 190,
+      "question": "Does Confluent Cloud support audit logging?",
+      "answer": "Yes—operations through CLI, API, UI, and RBAC changes are logged and searchable."
+    },
+    {
+      "id": 191,
+      "question": "What is multi‑cloud availability?",
+      "answer": "Clusters can be provisioned in 60+ regions across AWS, Azure, GCP, and cluster linking spans clouds."
+    },
+    {
+      "id": 192,
+      "question": "What is hybrid cloud support?",
+      "answer": "You can link on‑prem or MSK clusters to Confluent Cloud using cluster linking and private networking."
+    },
+    {
+      "id": 193,
+      "question": "Can cluster linking mirror ACLs?",
+      "answer": "Yes—ACL sync is available when both clusters are in the same Confluent organization."
+    },
+    {
+      "id": 194,
+      "question": "Can cluster linking mirror consumer offsets?",
+      "answer": "Yes—offset sync aligns consumer progress between source and mirror topics."
+    },
+    {
+      "id": 195,
+      "question": "Can cluster linking mirror only selected topics?",
+      "answer": "Yes—you can apply filters on topic names or regex when creating the link."
+    },
+    {
+      "id": 196,
+      "question": "What is bidirectional cluster linking?",
+      "answer": "Allows mirroring data in both directions when network connectivity permits."
+    },
+    {
+      "id": 197,
+      "question": "What is CKU ingress vs egress?",
+      "answer": "Ingress is data produced into a cluster; egress is data read or replicated out—both count toward quotas."
+    },
+    {
+      "id": 198,
+      "question": "How is private networking configured?",
+      "answer": "Enable Dedicated clusters and configure peering or PrivateLink via the UI or CLI, then exchange connection details."
+    },
+    {
+      "id": 199,
+      "question": "What is the Confluent AI Assistant?",
+      "answer": "An experimental Console feature that assists in troubleshooting and generating configuration suggestions."
+    },
+    {
+      "id": 200,
+      "question": "What is the cluster type impact on RBAC?",
+      "answer": "Basic clusters don’t support RBAC inside Kafka; Standard+ and Dedicated clusters support full RBAC."
+    },
+    {
+      "id": 201,
+      "question": "What is Structured Audit Logs?",
+      "answer": "An audit log format that write logs into Kafka topics to track permissions and system actions."
+    },
+    {
+      "id": 202,
+      "question": "What is Stream Designer used for?",
+      "answer": "A visual pipeline builder to construct and deploy streaming flows using connectors and ksqlDB."
+    },
+    {
+      "id": 203,
+      "question": "Where can you get connector logs?",
+      "answer": "Available in the UI or accessible via CLI/REST to assist in debugging connector tasks and failures."
+    },
+    {
+      "id": 204,
+      "question": "What features do Confluent clients support?",
+      "answer": "Clients in Java, Go, C/C++, Python, Node.js, .NET, Ruby support full producer/consumer and stream processing use cases."
+    },
+    {
+      "id": 205,
+      "question": "What features does Control Center provide?",
+      "answer": "Monitoring, alerting, and management of topics, consumer lag, connectors, ksqlDB apps, and governance."
+    },
+    {
+      "id": 206,
+      "question": "What is automatic schema validation?",
+      "answer": "Server‑side enforcement in the Schema Registry ensuring producers adhere to compatibility settings."
+    },
+    {
+      "id": 207,
+      "question": "What is a schema subject?",
+      "answer": "A namespace grouping related schema versions used by a topic or client to enforce compatibility."
+    },
+    {
+      "id": 208,
+      "question": "How do you manage quotas?",
+      "answer": "Use the CLI or API to list current quotas and request increases or decreases as workload needs change."
+    },
+    {
+      "id": 209,
+      "question": "What is the Service Quotas API?",
+      "answer": "A RESTful way to view and request changes to quotas programmatically."
+    },
+    {
+      "id": 210,
+      "question": "What is the Stream Governance SDK?",
+      "answer": "APIs to fetch catalog, lineage, and schema metadata for building integrations or custom tooling."
+    },
+    {
+      "id": 211,
+      "question": "What is the benefit of infinite retention?",
+      "answer": "Stores recent data in Kafka and older data in tiered storage, reducing cost while retaining full history."
+    },
+    {
+      "id": 212,
+      "question": "What is the BYOK workflow?",
+      "answer": "Customer uploads an encryption key to their KMS, applies it to a Dedicated cluster; Confluent uses it to encrypt at rest."
+    },
+    {
+      "id": 213,
+      "question": "What is the Connect REST API?",
+      "answer": "API to manage connector lifecycle, monitor tasks, and perform control operations like pause, resume, and restart."
+    },
+    {
+      "id": 214,
+      "question": "What is the ksqlDB REST API?",
+      "answer": "HTTP interface to create, run, and monitor ksqlDB queries and applications."
+    },
+    {
+      "id": 215,
+      "question": "What is cluster auto‑scale?",
+      "answer": "Confluent Cloud automatically adjusts compute resources (CKUs) to maintain performance SLAs."
+    },
+    {
+      "id": 216,
+      "question": "What is self‑healing in Confluent Cloud?",
+      "answer": "Kora automatically detects and recovers from broker failures without user intervention, maintaining uptime."
     }
   ]
 }

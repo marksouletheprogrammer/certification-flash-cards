@@ -1,0 +1,579 @@
+{
+  "flashcards": [
+    {
+      "id": 1,
+      "question": "What is the primary billing unit in Confluent Cloud's consumption-based pricing model?",
+      "answer": "Elastic Confluent Units for Kafka (eCKUs)"
+    },
+    {
+      "id": 2,
+      "question": "What are the main billable cost factors in Confluent Cloud?",
+      "answer": "eCKU/CKU hours, data transfer (ingress/egress), storage, connector tasks with throughput charges, Stream Processing CFUs, and Stream Governance beyond free tier limits"
+    },
+    {
+      "id": 3,
+      "question": "What are the main non-billable cost factors in Confluent Cloud?",
+      "answer": "Partitions, Apache ZooKeeper management, basic Kafka REST API access, intra-cluster data transfer, metadata management, and Schema Registry API calls within governance package limits"
+    },
+    {
+      "id": 4,
+      "question": "What is the purpose of Basic clusters in Confluent Cloud?",
+      "answer": "Target experimentation and early development with free tier benefits. Ideal for proof-of-concept work."
+    },
+    {
+      "id": 5,
+      "question": "What is the purpose of Standard clusters in Confluent Cloud?",
+      "answer": "Offer production-ready capabilities with infinite storage and enhanced features like RBAC for cluster resources. Include exactly-once semantics and transaction support."
+    },
+    {
+      "id": 6,
+      "question": "What networking options are supported in Standard clusters?",
+      "answer": "Public networking only"
+    },
+    {
+      "id": 7,
+      "question": "What is the purpose of Enterprise clusters in Confluent Cloud?",
+      "answer": "Provide private networking capabilities, OAuth authentication, audit logging, and advanced features like Stream Sharing."
+    },
+    {
+      "id": 8,
+      "question": "What networking options are supported in Enterprise clusters?",
+      "answer": "Both public and private networking configurations"
+    },
+    {
+      "id": 9,
+      "question": "What is the purpose of Dedicated clusters in Confluent Cloud?",
+      "answer": "Provide single-tenant infrastructure with BYOK encryption support and all networking options. Offer the highest performance."
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of Freight clusters in Confluent Cloud?",
+      "answer": "Optimize for cost-effective high-throughput workloads but sacrifice some features like exactly-once semantics and transactions."
+    },
+    {
+      "id": 11,
+      "question": "What is the top level of the Confluent Cloud resource hierarchy?",
+      "answer": "Organizations serve as the billing and administrative boundary, containing all resources for a company or business unit."
+    },
+    {
+      "id": 12,
+      "question": "What is the second level of the Confluent Cloud resource hierarchy?",
+      "answer": "Environments act as logical groupings that typically correspond to different stages of the software development lifecycle like development, staging, and production."
+    },
+    {
+      "id": 13,
+      "question": "What is the purpose of Confluent Resource Names (CRNs)?",
+      "answer": "Provide uniform resource identification with hierarchical structure reflecting the organization model."
+    },
+    {
+      "id": 14,
+      "question": "What are Confluent Cloud Networks (CCN)?",
+      "answer": "Environment-level resources for private networking, supporting single-tenant network abstraction with regional and multi-zone deployment."
+    },
+    {
+      "id": 15,
+      "question": "Which cluster types support private networking?",
+      "answer": "Enterprise and Dedicated clusters only"
+    },
+    {
+      "id": 16,
+      "question": "What AWS private networking options are available for Confluent Cloud?",
+      "answer": "VPC Peering, PrivateLink, Transit Gateway, and Private Network Interface"
+    },
+    {
+      "id": 17,
+      "question": "What Azure private networking options are available for Confluent Cloud?",
+      "answer": "VNet Peering for direct regional connections and Private Link for enhanced security across multiple subscriptions"
+    },
+    {
+      "id": 18,
+      "question": "What Google Cloud private networking options are available for Confluent Cloud?",
+      "answer": "VPC Peering with global VPC support and Private Service Connect for Dedicated clusters"
+    },
+    {
+      "id": 19,
+      "question": "What infrastructure components are managed by Confluent in Confluent Cloud?",
+      "answer": "Hardware provisioning, operating system maintenance, Kafka software installation and upgrades, cluster scaling, replication, backup and disaster recovery procedures"
+    },
+    {
+      "id": 20,
+      "question": "What security aspects are managed by Confluent in Confluent Cloud?",
+      "answer": "Security patching, data encryption at rest and in transit, infrastructure security, vulnerability management, and compliance maintenance for SOC 2, ISO 27001, HIPAA, and GDPR standards"
+    },
+    {
+      "id": 21,
+      "question": "What are the customer responsibilities in Confluent Cloud?",
+      "answer": "Application development, topic management, consumer group configuration, schema design, data quality assurance, user management, RBAC configuration, API key management, and SSO setup"
+    },
+    {
+      "id": 22,
+      "question": "What is a Broker in Kafka?",
+      "answer": "A single Kafka server that receives messages from producers, assigns offsets to them, writes them to disk storage, and services consumers by responding to fetch requests for partitions and published messages."
+    },
+    {
+      "id": 23,
+      "question": "What is a Topic in Kafka?",
+      "answer": "Categories or feeds that store messages. All Kafka messages are organized into topics that allow for instantaneous, pull-based delivery of messages to subscribers."
+    },
+    {
+      "id": 24,
+      "question": "What is a Partition in Kafka?",
+      "answer": "Topics are divided into partitions for scalability and parallel processing. Each partition can be both a leader or a replica of a topic."
+    },
+    {
+      "id": 25,
+      "question": "How are messages distributed among partitions in Kafka?",
+      "answer": "Messages without keys are distributed evenly among partitions in round-robin manner, while messages with the same key are always sent to the same partition in the same order."
+    },
+    {
+      "id": 26,
+      "question": "What is a Producer in Kafka?",
+      "answer": "Processes that publish messages to Kafka topics. The producer specifies which topics they write to and controls how events are assigned to partitions within a topic."
+    },
+    {
+      "id": 27,
+      "question": "What is a Consumer in Kafka?",
+      "answer": "Processes that subscribe to topics and read the feed of published messages. The only metadata retained per consumer is the offset or position in a topic."
+    },
+    {
+      "id": 28,
+      "question": "What is an Offset in Kafka?",
+      "answer": "The position of the consumer in the log, retained on a per-consumer basis. Each message in a partition is assigned a monotonically incrementing integer called an offset, starting at 0 and incremented with each new message."
+    },
+    {
+      "id": 29,
+      "question": "What is a Consumer Group in Kafka?",
+      "answer": "A consumer abstraction that generalizes both traditional messaging models of queuing and publish-subscribe. Consumers can label themselves with a consumer group name."
+    },
+    {
+      "id": 30,
+      "question": "What is a Cluster in Kafka?",
+      "answer": "A group of computers acting together to achieve a common purpose. Kafka brokers operate as part of a cluster, with one broker functioning as the cluster controller."
+    },
+    {
+      "id": 31,
+      "question": "What is the purpose of retention.ms in Kafka topic configuration?",
+      "answer": "Controls maximum time to retain a log before discarding old segments. Can be set to -1 for Infinite Storage."
+    },
+    {
+      "id": 32,
+      "question": "What is the purpose of cleanup.policy in Kafka topic configuration?",
+      "answer": "Designates retention policy (delete, compact, or compact,delete). You cannot directly change from delete to compact,delete - must first change to compact, then to compact,delete."
+    },
+    {
+      "id": 33,
+      "question": "What is the purpose of compression.type in Kafka topic configuration?",
+      "answer": "Specifies final compression type for a topic, accepting standard codecs like gzip, snappy, lz4, zstd."
+    },
+    {
+      "id": 34,
+      "question": "What is the purpose of the Confluent Cloud Metrics API?",
+      "answer": "Provides actionable operational metrics about Confluent Cloud deployment through a queryable HTTP API."
+    },
+    {
+      "id": 35,
+      "question": "What authentication is required for the Metrics API?",
+      "answer": "You must create a Cloud API key with the MetricsViewer role to authenticate to the Metrics API."
+    },
+    {
+      "id": 36,
+      "question": "What is a GAUGE metric type in the Metrics API?",
+      "answer": "An instantaneous measurement of a value. Gauge metrics are implicitly averaged when aggregating over time."
+    },
+    {
+      "id": 37,
+      "question": "What is a COUNTER metric type in the Metrics API?",
+      "answer": "The count of occurrences in a single sampling interval. Counter metrics are implicitly summed when aggregating over time."
+    },
+    {
+      "id": 38,
+      "question": "What third-party monitoring integrations are available for Confluent Cloud metrics?",
+      "answer": "Datadog and Grafana Labs provide out-of-the-box integrations."
+    },
+    {
+      "id": 39,
+      "question": "What is the name of the audit log topic in Confluent Cloud?",
+      "answer": "confluent-audit-log-events"
+    },
+    {
+      "id": 40,
+      "question": "Which cluster types include audit logs in Confluent Cloud?",
+      "answer": "Standard, Enterprise, Dedicated, and Freight clusters. Basic clusters do not include audit logs."
+    },
+    {
+      "id": 41,
+      "question": "What role is required to access Confluent Cloud audit logs?",
+      "answer": "OrganizationAdmin role"
+    },
+    {
+      "id": 42,
+      "question": "What are the three main categories of operations captured in Confluent Cloud audit logs?",
+      "answer": "Authentication Events, Authorization Events, and Organization Operations"
+    },
+    {
+      "id": 43,
+      "question": "What information is included in audit log records?",
+      "answer": "Who tried to do what, when they tried, and whether the system gave permission to proceed. They contain metadata about the event context and event data but not the actual content of events."
+    },
+    {
+      "id": 44,
+      "question": "What is the Confluent Terraform Provider used for?",
+      "answer": "Automates the workflow for managing environments, Apache Kafka clusters, Kafka topics, and other resources in Confluent Cloud with human-readable configuration."
+    },
+    {
+      "id": 45,
+      "question": "What resources can be managed by the Confluent Terraform Provider?",
+      "answer": "API keys, environments, Kafka clusters, topics, ACLs, RBAC, and Private Networking"
+    },
+    {
+      "id": 46,
+      "question": "What is the difference between Cloud API keys and Cluster API keys?",
+      "answer": "Cloud API keys operate at the organizational level for management APIs, metrics, and cross-cluster administrative functions, while Cluster API keys are resource-specific, scoped to individual Kafka clusters, Schema Registry instances, ksqlDB applications, or Flink regions."
+    },
+    {
+      "id": 47,
+      "question": "What is the recommended API key rotation practice in Confluent Cloud?",
+      "answer": "Regular 90-day API key rotation cycles"
+    },
+    {
+      "id": 48,
+      "question": "What are the main characteristics of user accounts in Confluent Cloud?",
+      "answer": "Designed for human interaction, provide full Confluent Cloud Console access, interactive CLI operations, and resource ownership capabilities"
+    },
+    {
+      "id": 49,
+      "question": "What authentication methods are supported for user accounts in Confluent Cloud?",
+      "answer": "Local username/password, social identity providers (Google, GitHub), and SAML SSO integration with enterprise identity providers"
+    },
+    {
+      "id": 50,
+      "question": "What are the main characteristics of service accounts in Confluent Cloud?",
+      "answer": "Purpose-built for applications and automated systems, offering programmatic access without Console login capabilities"
+    },
+    {
+      "id": 51,
+      "question": "Why are service accounts recommended for production workloads?",
+      "answer": "Their lifecycle is independent of individual users, eliminating the risk of access disruption when team members leave the organization"
+    },
+    {
+      "id": 52,
+      "question": "What are the advantages of Terraform Provider for Confluent Cloud resource management?",
+      "answer": "Declarative infrastructure-as-code with version control, state management, and drift detection. Excels in automated CI/CD pipelines and provides reproducible deployments across environments."
+    },
+    {
+      "id": 53,
+      "question": "What are the advantages of Confluent CLI for Confluent Cloud resource management?",
+      "answer": "Exceptional developer productivity and operational flexibility, making it ideal for troubleshooting, development environments, and ad-hoc operations."
+    },
+    {
+      "id": 54,
+      "question": "What are the advantages of REST APIs for Confluent Cloud resource management?",
+      "answer": "Unlimited integration possibilities and language-agnostic access to all Confluent Cloud functionality. Essential for custom applications and high-volume batch operations."
+    },
+    {
+      "id": 55,
+      "question": "What are the advantages of UI Console for Confluent Cloud resource management?",
+      "answer": "Most accessible entry point with visual feedback and real-time monitoring capabilities, though not suitable for automation or large-scale operations."
+    },
+    {
+      "id": 56,
+      "question": "What authentication methods are available for applications connecting to Confluent Cloud?",
+      "answer": "SASL/PLAIN over TLS 1.2+ encryption, SASL/OAUTHBEARER with enterprise identity providers, or mTLS for high-security environments"
+    },
+    {
+      "id": 57,
+      "question": "What are the best practices for securely onboarding applications to Confluent Cloud?",
+      "answer": "Creating separate service accounts per application, implementing least privilege access, and enabling comprehensive audit logging for authorization events"
+    },
+    {
+      "id": 58,
+      "question": "What is RBAC in Confluent Cloud?",
+      "answer": "Role-Based Access Control provides scalable, role-based access management with predefined roles ranging from read-only Operator to full OrganizationAdmin privileges"
+    },
+    {
+      "id": 59,
+      "question": "What is the ResourceOwner role in RBAC?",
+      "answer": "A role that supports delegation and integrates seamlessly with enterprise LDAP/Active Directory systems"
+    },
+    {
+      "id": 60,
+      "question": "What are ACLs in Confluent Cloud?",
+      "answer": "Access Control Lists offer fine-grained, resource-specific permissions with explicit DENY capabilities that override ALLOW rules"
+    },
+    {
+      "id": 61,
+      "question": "When should you use RBAC in Confluent Cloud?",
+      "answer": "Enterprise-scale deployments requiring role delegation, cross-platform access management (Kafka, Schema Registry, Connect, ksqlDB), and existing LDAP integration"
+    },
+    {
+      "id": 62,
+      "question": "When should you use ACLs in Confluent Cloud?",
+      "answer": "Scenarios requiring explicit DENY rules, fine-grained resource permissions, or simple deployments with limited resources"
+    },
+    {
+      "id": 63,
+      "question": "What is the order of precedence between RBAC and ACLs?",
+      "answer": "ACL DENY rules have highest priority and always block access, followed by ACL ALLOW rules and RBAC permissions evaluated together, with default DENY if no explicit permissions exist"
+    },
+    {
+      "id": 64,
+      "question": "What is SASL/PLAIN authentication in Confluent Cloud?",
+      "answer": "The primary authentication mechanism requiring username/password over TLS encryption. It's simple to implement and widely supported across Kafka clients."
+    },
+    {
+      "id": 65,
+      "question": "What is SASL/OAUTHBEARER authentication in Confluent Cloud?",
+      "answer": "Enables OAuth 2.0/OIDC integration with enterprise identity providers, supporting automatic token refresh and enhanced security through short-lived tokens"
+    },
+    {
+      "id": 66,
+      "question": "What is mutual TLS (mTLS) authentication in Confluent Cloud?",
+      "answer": "Provides the highest security level with two-way authentication for both client and server. Requires dedicated clusters and PKI infrastructure."
+    },
+    {
+      "id": 67,
+      "question": "What is the data flow for source connectors?",
+      "answer": "External System → Source Connector -> SMT -> Serializer → Kafka Topics"
+    },
+    {
+      "id": 68,
+      "question": "What is the data flow for sink connectors?",
+      "answer": "Kafka Topics → Deserializer -> SMT -> Sink Connector → External System"
+    },
+    {
+      "id": 69,
+      "question": "What serialization formats are supported by Confluent Cloud connectors?",
+      "answer": "Avro, JSON Schema, Protobuf, JSON, and raw bytes"
+    },
+    {
+      "id": 70,
+      "question": "What security mechanisms are available for connectors in Confluent Cloud?",
+      "answer": "API key authentication, OAuth/OIDC integration, and limited availability mutual TLS"
+    },
+    {
+      "id": 71,
+      "question": "What network security options are available for connectors in Confluent Cloud?",
+      "answer": "AWS PrivateLink, Azure Private Link, VPC peering, and transit gateway support"
+    },
+    {
+      "id": 72,
+      "question": "What is tasks.max in Kafka Connect?",
+      "answer": "Controls maximum task count, though many Confluent Cloud connectors are limited to one task for stability in the managed environment"
+    },
+    {
+      "id": 73,
+      "question": "What is the purpose of schemas in Confluent Cloud?",
+      "answer": "Serve as foundational blueprints for data structure validation, supporting Avro, JSON Schema, and Protobuf formats with automatic ID-based serialization/deserialization"
+    },
+    {
+      "id": 74,
+      "question": "What happens when a producer sends a message with a schema?",
+      "answer": "Producers look up schemas in Schema Registry, cache them for performance, serialize messages using the schema, and prepend the schema ID to the payload"
+    },
+    {
+      "id": 75,
+      "question": "What happens when a consumer receives a message with a schema?",
+      "answer": "Consumers extract schema IDs, request corresponding schemas from the registry, cache for reuse, and deserialize messages accordingly"
+    },
+    {
+      "id": 76,
+      "question": "What is the default subject naming strategy in Schema Registry?",
+      "answer": "TopicNameStrategy deriving subject names from topic names"
+    },
+    {
+      "id": 77,
+      "question": "What is the RecordNameStrategy in Schema Registry?",
+      "answer": "Uses record names for subject naming, allowing any number of event types in the same topic"
+    },
+    {
+      "id": 78,
+      "question": "What is the TopicRecordNameStrategy in Schema Registry?",
+      "answer": "Combines both topic names and record names for subject naming"
+    },
+    {
+      "id": 79,
+      "question": "What is BACKWARD compatibility in Schema Registry?",
+      "answer": "Consumers using new schema can read data from latest registered schema"
+    },
+    {
+      "id": 80,
+      "question": "What is BACKWARD_TRANSITIVE compatibility in Schema Registry?",
+      "answer": "Consumers using new schema can read data from all previously registered schemas"
+    },
+    {
+      "id": 81,
+      "question": "What is FORWARD compatibility in Schema Registry?",
+      "answer": "Consumers using latest schema can read data from new schema"
+    },
+    {
+      "id": 82,
+      "question": "What is FORWARD_TRANSITIVE compatibility in Schema Registry?",
+      "answer": "Consumers using all previous schemas can read data from new schema"
+    },
+    {
+      "id": 83,
+      "question": "What is FULL compatibility in Schema Registry?",
+      "answer": "New schema is both forward and backward compatible"
+    },
+    {
+      "id": 84,
+      "question": "What is the default compatibility type in Schema Registry?",
+      "answer": "BACKWARD"
+    },
+    {
+      "id": 85,
+      "question": "When is auto-registration of schemas appropriate?",
+      "answer": "Convenient for development but should be disabled in production in favor of controlled deployment mechanisms like CI/CD pipelines"
+    },
+    {
+      "id": 86,
+      "question": "What is Schema Linking in Confluent Cloud?",
+      "answer": "A feature for continuous migration between registries, supporting complex deployment scenarios"
+    },
+    {
+      "id": 87,
+      "question": "What are the primary use cases for Cluster Linking?",
+      "answer": "Global replication for multi-continent operations, hybrid cloud architectures, disaster recovery implementations, cluster migration projects, data aggregation from multiple clusters, and secure data sharing between teams or organizations"
+    },
+    {
+      "id": 88,
+      "question": "What are the primary use cases for Schema Linking?",
+      "answer": "Disaster recovery preparation for Schema Registries, development/staging/production environment synchronization, schema aggregation and backup strategies, multi-region schema deployment, and organizational schema sharing"
+    },
+    {
+      "id": 89,
+      "question": "When should you use both Cluster Linking and Schema Linking together?",
+      "answer": "When implementing complete disaster recovery solutions, migrating entire Kafka environments including schemas, establishing global event meshes with consistent data contracts, and building development pipelines requiring synchronized data and schemas across environments"
+    },
+    {
+      "id": 90,
+      "question": "What is the focus of High Availability (HA) in Confluent Cloud?",
+      "answer": "Maintaining continuous service during expected failures and routine maintenance activities"
+    },
+    {
+      "id": 91,
+      "question": "What HA scenarios does Confluent Cloud address?",
+      "answer": "Single availability zone failures within a region, individual broker or service component failures, routine maintenance and software updates, network partition recovery, and planned capacity scaling operations"
+    },
+    {
+      "id": 92,
+      "question": "What is the primary difference between High Availability and Disaster Recovery in Confluent Cloud?",
+      "answer": "HA focuses on maintaining continuous service during expected failures within a region, while DR addresses recovery from catastrophic regional failures and maintaining business continuity across geographically distant locations"
+    },
+    {
+      "id": 93,
+      "question": "What RBAC role is needed for a user to read from a topic?",
+      "answer": "DeveloperRead role for the topic resource"
+    },
+    {
+      "id": 94,
+      "question": "What RBAC role is needed for a user to write to a topic?",
+      "answer": "DeveloperWrite role for the topic resource"
+    },
+    {
+      "id": 95,
+      "question": "What RBAC role is needed for a user to create and manage topics?",
+      "answer": "DeveloperManage role for the topic resource"
+    },
+    {
+      "id": 96,
+      "question": "What RBAC role is needed for a user to read schemas from Schema Registry?",
+      "answer": "DeveloperRead role for the subject resource"
+    },
+    {
+      "id": 97,
+      "question": "What RBAC role is needed for a user to create and update schemas?",
+      "answer": "DeveloperWrite role for the subject resource"
+    },
+    {
+      "id": 98,
+      "question": "What RBAC role provides administrative control over all resources in an environment?",
+      "answer": "EnvironmentAdmin role"
+    },
+    {
+      "id": 99,
+      "question": "What RBAC role provides organization-wide administrative control?",
+      "answer": "OrganizationAdmin role"
+    },
+    {
+      "id": 100,
+      "question": "What is the principle of least privilege in Confluent Cloud security?",
+      "answer": "Granting only the minimum permissions necessary for users and applications to perform their required functions, reducing the potential attack surface and impact of compromised credentials"
+    },
+    {
+      "id": 101,
+      "question": "How does Confluent Cloud implement multi-zone high availability?",
+      "answer": "By replicating data across three cloud provider Availability Zones with a minimum of two in-sync replicas required for write operations"
+    },
+    {
+      "id": 102,
+      "question": "What stream processing services are available in Confluent Cloud?",
+      "answer": "ksqlDB clusters for SQL-based stream processing and Apache Flink for advanced stream processing with exactly-once semantics and stateful computations"
+    },
+    {
+      "id": 103,
+      "question": "What are the key differences between ksqlDB and Flink in Confluent Cloud?",
+      "answer": "ksqlDB offers SQL-based stream processing ideal for simpler use cases, while Flink provides a more powerful programming model for complex event processing, windowing operations, and stateful applications"
+    },
+    {
+      "id": 104,
+      "question": "What are the Stream Governance packages available in Confluent Cloud?",
+      "answer": "Essentials package (basic schema validation and management), Advanced package (includes data catalog and business metadata), and Stream Quality (provides data quality management tools)"
+    },
+    {
+      "id": 105,
+      "question": "What is Stream Lineage in Confluent Cloud?",
+      "answer": "A feature that provides visibility into data flows across your Kafka ecosystem, showing how data moves from producers through topics to consumers"
+    },
+    {
+      "id": 106,
+      "question": "What is Stream Catalog in Confluent Cloud?",
+      "answer": "A searchable data catalog that helps teams discover, understand, and govern data streams by providing metadata, documentation, and business context"
+    },
+    {
+      "id": 107,
+      "question": "What is Stream Quality in Confluent Cloud?",
+      "answer": "A feature that monitors and ensures data quality by validating data against defined rules and alerting on quality issues"
+    },
+    {
+      "id": 108,
+      "question": "How does multi-region Cluster Linking differ from standard replication?",
+      "answer": "Cluster Linking provides a managed, secure, scalable way to replicate data across regions or between on-premises and cloud environments, with support for filtering, transformation, and different security domains"
+    },
+    {
+      "id": 109,
+      "question": "What disaster recovery strategies are available in Confluent Cloud?",
+      "answer": "Cluster Linking for cross-region replication, Schema Linking for schema synchronization, multi-region deployments with active-passive or active-active configurations, and backup/restore options for critical data"
+    },
+    {
+      "id": 110,
+      "question": "How are client security credentials typically provisioned in Confluent Cloud?",
+      "answer": "Through service accounts with API keys that have specific role-based permissions, following the principle of least privilege"
+    },
+    {
+      "id": 111,
+      "question": "When would you choose a fully-managed connector over a self-managed connector in Confluent Cloud?",
+      "answer": "When the connector type is available as fully-managed, when you want Confluent to handle scaling, updates, and monitoring, and when you don't need custom connector configurations not supported in managed connectors"
+    },
+    {
+      "id": 112,
+      "question": "What is the relationship between partitioning and parallelism in Kafka?",
+      "answer": "Partitions enable parallel processing of data within a topic, with each partition being processed by at most one consumer in a consumer group, allowing applications to scale horizontally"
+    },
+    {
+      "id": 113,
+      "question": "What is the relationship between Kafka Connect and external systems?",
+      "answer": "Kafka Connect provides standardized integration between Kafka and external systems, with source connectors bringing data from external systems into Kafka topics and sink connectors exporting data from Kafka to external destinations"
+    },
+    {
+      "id": 114,
+      "question": "How do Connector tasks relate to performance in Kafka Connect?",
+      "answer": "Tasks are the unit of parallelism in Kafka Connect, with the tasks.max parameter controlling maximum task count. More tasks enable higher throughput by distributing the workload, though many Confluent Cloud connectors limit tasks for stability."
+    },
+    {
+      "id": 115,
+      "question": "What is CCN Routing in Confluent Cloud?",
+      "answer": "A feature that enables serverless products like Flink and Schema Registry to reuse existing network infrastructure without separate PrivateLink attachments, simplifying private networking architecture"
+    }
+  ]
+}
