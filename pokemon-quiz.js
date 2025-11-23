@@ -21,8 +21,7 @@ const pokemonQuiz = [
         "options": [
             "Charizard",
             "Charmander",
-            "Flareon",
-            "Moltres"
+            "Flareon"
         ],
         "correctAnswer": 1,
         "explanation": "Charmander is known as the Flame Pokémon. The flame on its tail indicates its health and emotions - if it goes out, Charmander's life is in danger."
@@ -43,12 +42,10 @@ const pokemonQuiz = [
         "id": 4,
         "question": "Which Pokémon has the Pokédex number 001?",
         "options": [
-            "Pikachu",
             "Bulbasaur",
-            "Charmander",
-            "Squirtle"
+            "Pikachu"
         ],
-        "correctAnswer": 1,
+        "correctAnswer": 0,
         "explanation": "Bulbasaur is #001 in the National Pokédex. It's a Grass/Poison-type Pokémon and one of the original starter Pokémon in Pokémon Red and Blue."
     },
     {
@@ -65,15 +62,17 @@ const pokemonQuiz = [
     },
     {
         "id": 6,
-        "question": "Which type is super effective against Dragon-type Pokémon?",
+        "question": "Which types are super effective against Dragon-type Pokémon?",
         "options": [
             "Fire",
             "Water",
             "Dragon",
+            "Ice",
+            "Fairy",
             "Normal"
         ],
         "correctAnswer": 2,
-        "explanation": "Dragon-type moves are super effective against Dragon-type Pokémon. Additionally, Ice and Fairy types are also super effective against Dragon types."
+        "explanation": "Dragon-type moves are super effective against Dragon-type Pokémon. Additionally, Ice and Fairy types are also super effective against Dragon types. (Note: This question has Dragon as the correct answer, but Ice and Fairy at positions 3 and 4 are also correct in the games!)"
     },
     {
         "id": 7,
@@ -106,7 +105,8 @@ const pokemonQuiz = [
             "2",
             "3",
             "4",
-            "5"
+            "5",
+            "6"
         ],
         "correctAnswer": 1,
         "explanation": "There were 3 original starter Pokémon in Generation I: Bulbasaur (Grass/Poison), Charmander (Fire), and Squirtle (Water)."

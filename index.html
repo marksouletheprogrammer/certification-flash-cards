@@ -69,6 +69,9 @@
                     </div>
 
                     <div class="cert-card quiz" id="pokemon-quiz">
+                        <button class="review-mode-btn" id="review-mode-toggle" title="Review Mode: Hide answers until end" aria-label="Toggle review mode">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
                         <div class="cert-icon quiz">
                             <i class="fas fa-clipboard-list"></i>
                         </div>
@@ -190,8 +193,14 @@
                 </div>
 
                 <div class="quiz-controls">
-                    <button id="quiz-next-btn" class="aws-btn" disabled>
-                        Next Question <i class="fas fa-arrow-right"></i>
+                    <button id="quiz-prev-btn" class="nav-btn">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button id="quiz-submit-btn" class="aws-btn" disabled>
+                        Submit Answer <i class="fas fa-check"></i>
+                    </button>
+                    <button id="quiz-next-btn" class="nav-btn">
+                        Next <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
 

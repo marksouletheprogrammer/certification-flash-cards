@@ -81,8 +81,11 @@ const quizOptionsContainer = document.getElementById("quiz-options");
 const quizFeedback = document.getElementById("quiz-feedback");
 const feedbackIcon = document.getElementById("feedback-icon");
 const feedbackText = document.getElementById("feedback-text");
+const quizPrevBtn = document.getElementById("quiz-prev-btn");
 const quizNextBtn = document.getElementById("quiz-next-btn");
+const quizSubmitBtn = document.getElementById("quiz-submit-btn");
 const quizRestartBtn = document.getElementById("quiz-restart-btn");
+const reviewModeToggle = document.getElementById("review-mode-toggle");
 
 // Flashcard data is loaded from separate script tags above
 // - aws-flashcards.js defines: awsFlashcards
@@ -104,6 +107,9 @@ let selectedAnswer = null;
 let hasAnswered = false;
 let currentQuizType = "";
 let shuffledCorrectAnswer = null; // Tracks correct answer after option shuffle
+let isReviewMode = false; // Review mode: see answers at end only
+let userAnswers = []; // Store all user answers for review mode
+let correctAnswerPositions = []; // Store correct answer position for each question
 
 // Note: Flashcard data is now imported from separate .js files
 // To add/edit flashcards, edit the respective .js files:
@@ -172,6 +178,22 @@ function initApp() {
     pokemonQuizBtn.addEventListener("click", () =>
         startQuiz("pokemon"),
     );
+    
+    // Handle review mode button toggle
+    reviewModeToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        reviewModeToggle.classList.toggle("active");
+        
+        // Toggle icon and tooltip between eye-slash (inactive) and eye (active)
+        const icon = reviewModeToggle.querySelector("i");
+        if (reviewModeToggle.classList.contains("active")) {
+            icon.className = "fas fa-eye";
+            reviewModeToggle.title = "Review Mode: ON (answers at end)";
+        } else {
+            icon.className = "fas fa-eye-slash";
+            reviewModeToggle.title = "Review Mode: OFF (instant feedback)";
+        }
+    });
 
     // Add event listeners for back buttons
     backToCertsFromCardsBtn.addEventListener(
@@ -197,7 +219,9 @@ function initApp() {
     incorrectBtn.addEventListener("click", () => markCard(false));
     
     // Add event listeners for quiz
-    quizNextBtn.addEventListener("click", nextQuestion);
+    quizPrevBtn.addEventListener("click", previousQuestion);
+    quizNextBtn.addEventListener("click", navigateNextQuestion);
+    quizSubmitBtn.addEventListener("click", submitAnswer);
     quizRestartBtn.addEventListener("click", () => startQuiz(currentQuizType));
 
     // Initialize search functionality
@@ -426,10 +450,15 @@ function startQuiz(quizType) {
         currentQuizTitle.textContent = "Pokemon Practice Quiz";
     }
     
+    // Check if review mode is enabled
+    isReviewMode = reviewModeToggle.classList.contains("active");
+    
     currentQuestionIndex = 0;
     quizScore = 0;
     selectedAnswer = null;
     hasAnswered = false;
+    userAnswers = new Array(quizQuestions.length).fill(null);
+    correctAnswerPositions = new Array(quizQuestions.length).fill(null);
     
     totalQuestions.textContent = quizQuestions.length;
     
@@ -462,9 +491,17 @@ function displayQuestion() {
         opt => opt.originalIndex === question.correctAnswer
     );
     
+    // Store correct answer position for review mode
+    correctAnswerPositions[currentQuestionIndex] = shuffledCorrectAnswer;
+    
     // Clear and create option buttons
     quizOptionsContainer.innerHTML = "";
-    const letters = ["A", "B", "C", "D"];
+    
+    // Generate letters dynamically based on number of options
+    const generateLetters = (count) => {
+        return Array.from({ length: count }, (_, i) => String.fromCharCode(65 + i));
+    };
+    const letters = generateLetters(shuffledOptions.length);
     
     shuffledOptions.forEach((option, index) => {
         const optionDiv = document.createElement("div");
@@ -488,14 +525,49 @@ function displayQuestion() {
     
     // Reset feedback and button state
     quizFeedback.classList.remove("show");
-    quizNextBtn.disabled = true;
-    quizNextBtn.innerHTML = 'Submit Answer <i class="fas fa-check"></i>';
+    quizSubmitBtn.disabled = true;
     selectedAnswer = null;
     hasAnswered = false;
+    
+    // In review mode, hide submit button since answers auto-submit
+    if (isReviewMode) {
+        quizSubmitBtn.style.display = "none";
+    } else {
+        quizSubmitBtn.style.display = "";
+    }
+    
+    // Update navigation button states
+    quizPrevBtn.disabled = currentQuestionIndex === 0;
+    
+    // Update Next button text based on position
+    if (currentQuestionIndex >= quizQuestions.length - 1) {
+        quizNextBtn.innerHTML = 'Finish Quiz <i class=\"fas fa-flag-checkered\"></i>';
+    } else {
+        quizNextBtn.innerHTML = 'Next <i class=\"fas fa-arrow-right\"></i>';
+    }
+    quizNextBtn.disabled = false;
+    
+    // In review mode, restore previous answer if it exists
+    if (isReviewMode && userAnswers[currentQuestionIndex] !== null) {
+        selectedAnswer = userAnswers[currentQuestionIndex];
+        // Don't set hasAnswered in review mode - allow changing answers
+        // Highlight the previously selected option
+        const options = quizOptionsContainer.querySelectorAll(".quiz-option");
+        options[selectedAnswer].classList.add("selected");
+    }
+    
+    // In normal mode, restore if already answered
+    if (!isReviewMode && userAnswers[currentQuestionIndex] !== null) {
+        hasAnswered = true;
+        selectedAnswer = userAnswers[currentQuestionIndex];
+        // Show the feedback again
+        showFeedbackForCurrentQuestion();
+    }
 }
 
 function selectOption(index) {
-    if (hasAnswered) return;
+    // In review mode, allow changing answers even after submission
+    if (!isReviewMode && hasAnswered) return;
     
     selectedAnswer = index;
     
@@ -505,14 +577,33 @@ function selectOption(index) {
     options[index].classList.add("selected");
     
     // Enable submit button
-    quizNextBtn.disabled = false;
+    quizSubmitBtn.disabled = false;
+    
+    // In review mode, auto-submit on selection
+    if (isReviewMode) {
+        submitAnswer();
+    }
 }
 
 function checkAnswer() {
-    if (hasAnswered || selectedAnswer === null) return;
+    if (!isReviewMode && (hasAnswered || selectedAnswer === null)) return;
+    if (isReviewMode && selectedAnswer === null) return;
     
-    hasAnswered = true;
     const question = quizQuestions[currentQuestionIndex];
+    
+    // Store answer for both modes
+    userAnswers[currentQuestionIndex] = selectedAnswer;
+    
+    // In review mode, don't show feedback and allow changing answers
+    if (isReviewMode) {
+        // Don't set hasAnswered in review mode so user can change selection
+        return;
+    }
+    
+    // Set hasAnswered for normal mode only
+    hasAnswered = true;
+    
+    // Normal mode: show immediate feedback
     const isCorrect = selectedAnswer === shuffledCorrectAnswer;
     
     if (isCorrect) {
@@ -535,29 +626,95 @@ function checkAnswer() {
     feedbackIcon.className = isCorrect ? "feedback-icon correct" : "feedback-icon incorrect";
     feedbackText.textContent = question.explanation;
     quizFeedback.classList.add("show");
-    
-    // Enable next button
-    quizNextBtn.disabled = false;
 }
 
-function nextQuestion() {
-    // If haven't answered yet, submit the answer
-    if (!hasAnswered) {
-        checkAnswer();
-        quizNextBtn.innerHTML = 'Next Question <i class="fas fa-arrow-right"></i>';
-        return;
-    }
+// Submit the current answer
+function submitAnswer() {
+    if (selectedAnswer === null) return;
     
-    // Move to next question or finish
+    checkAnswer();
+    
+    if (!isReviewMode) {
+        // In normal mode, disable options after submitting
+        const options = quizOptionsContainer.querySelectorAll(".quiz-option");
+        options.forEach(opt => opt.classList.add("disabled"));
+    }
+}
+
+// Navigate to next question
+function navigateNextQuestion() {
     if (currentQuestionIndex < quizQuestions.length - 1) {
         currentQuestionIndex++;
         displayQuestion();
     } else {
-        finishQuiz();
+        // Last question - finish quiz
+        if (isReviewMode) {
+            finishQuizReviewMode();
+        } else {
+            finishQuiz();
+        }
     }
 }
 
+// Navigate to previous question
+function previousQuestion() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+    }
+}
+
+// Show feedback for already-answered question
+function showFeedbackForCurrentQuestion() {
+    const question = quizQuestions[currentQuestionIndex];
+    const isCorrect = selectedAnswer === correctAnswerPositions[currentQuestionIndex];
+    
+    // Show feedback
+    const options = quizOptionsContainer.querySelectorAll(".quiz-option");
+    options.forEach((opt, index) => {
+        opt.classList.add("disabled");
+        
+        if (index === correctAnswerPositions[currentQuestionIndex]) {
+            opt.classList.add("correct");
+        } else if (index === selectedAnswer && !isCorrect) {
+            opt.classList.add("incorrect");
+        }
+        
+        // Restore selection
+        if (index === selectedAnswer) {
+            opt.classList.add("selected");
+        }
+    });
+    
+    // Display feedback message
+    feedbackIcon.className = isCorrect ? "feedback-icon correct" : "feedback-icon incorrect";
+    feedbackText.textContent = question.explanation;
+    quizFeedback.classList.add("show");
+}
+
 function finishQuiz() {
+    finalCorrect.textContent = quizScore;
+    finalTotal.textContent = quizQuestions.length;
+    
+    const rate = Math.round((quizScore / quizQuestions.length) * 100);
+    successRate.textContent = `${rate}%`;
+    
+    showScreen(finishScreen);
+}
+
+function finishQuizReviewMode() {
+    // Calculate score from stored answers
+    quizScore = 0;
+    userAnswers.forEach((answer, index) => {
+        if (answer !== null) {
+            // Compare user's answer with the stored correct answer position
+            const isCorrect = answer === correctAnswerPositions[index];
+            if (isCorrect) {
+                quizScore++;
+            }
+        }
+    });
+    
     finalCorrect.textContent = quizScore;
     finalTotal.textContent = quizQuestions.length;
     

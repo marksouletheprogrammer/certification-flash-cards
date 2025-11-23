@@ -133,6 +133,7 @@ h1 {
     display: flex;
     align-items: center;
     border-left: 5px solid var(--accent-primary);
+    position: relative;
 }
 
 .cert-card:hover {
@@ -202,6 +203,38 @@ h1 {
 .cert-info p {
     margin: 0;
     color: var(--text-secondary);
+}
+
+.review-mode-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.review-mode-btn:hover {
+    background-color: var(--quiz-accent-primary);
+    color: white;
+    border-color: var(--quiz-accent-primary);
+    transform: scale(1.1);
+}
+
+.review-mode-btn.active {
+    background-color: var(--quiz-accent-primary);
+    color: white;
+    border-color: var(--quiz-accent-primary);
 }
 
 .back-button {
@@ -699,15 +732,33 @@ button {
 .quiz-controls {
     display: flex;
     justify-content: center;
-    margin: 10px 0;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#quiz-next-btn {
+.quiz-controls #quiz-prev-btn {
+    margin-right: auto;
+}
+
+.quiz-controls #quiz-next-btn {
+    margin-left: auto;
+}
+
+#quiz-submit-btn {
     background-color: var(--quiz-accent-primary);
 }
 
-#quiz-next-btn:hover:not(:disabled) {
+#quiz-submit-btn:hover:not(:disabled) {
     background-color: var(--quiz-accent-secondary);
+}
+
+#quiz-submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #quiz-restart-btn {
