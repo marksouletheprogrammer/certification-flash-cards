@@ -2,7 +2,10 @@
 
 ## Project Overview
 
-**Certification Flash Cards** is a client-side web application for studying IT certifications. It runs entirely in the browser without requiring a server (works with `file://` protocol). The app supports multiple certifications with flashcard data stored in separate JavaScript files.
+**Certification Flash Cards** is a client-side web application for studying IT certifications. It runs entirely in the browser without requiring a server (works with `file://` protocol). The app supports:
+
+1. **Flashcards** - Traditional flashcard study sessions for 3 certifications
+2. **Quizzes** - Multiple-choice practice tests with review mode and navigation
 
 ## Architecture
 
@@ -17,14 +20,15 @@
 
 ```
 certification-flash-cards/
-├── index.html              # HTML structure only (185 lines)
-├── styles.css              # All styling, theme variables (528 lines)
-├── app.js                  # All application logic (514 lines)
+├── index.html              # HTML structure (268 lines)
+├── styles.css              # All styling, theme variables (828 lines)
+├── app.js                  # All application logic (916 lines)
 ├── aws-flashcards.js       # AWS certification flashcard data
 ├── ccco-flashcards.js      # Confluent Cloud Operator flashcard data
 ├── ccdak-flashcards.js     # Confluent Kafka Developer flashcard data
-├── README.md               # User-facing documentation
-└── AGENTS.md               # This file - AI agent documentation
+├── pokemon-quiz.js         # Pokemon practice quiz data (126 lines)
+├── README.md               # User-facing documentation (202 lines)
+└── AGENTS.md               # This file - AI agent documentation (377 lines)
 ```
 
 ## File Dependencies
@@ -35,45 +39,55 @@ index.html
 ├── aws-flashcards.js       (defines: awsFlashcards)
 ├── ccco-flashcards.js      (defines: cccoFlashcards)
 ├── ccdak-flashcards.js     (defines: ccdakFlashcards)
+├── pokemon-quiz.js         (defines: pokemonQuiz)
 └── app.js                  (main logic, expects above variables)
 ```
 
-**Load Order:** Flashcard data files must load before `app.js` because `app.js` references the global variables they define.
+**Load Order:** Data files (flashcards and quizzes) must load before `app.js` because `app.js` references the global variables they define.
 
 ## Core Files
 
-### index.html (185 lines)
+### index.html (268 lines)
 - **Purpose:** HTML structure only, no inline styles or scripts
-- **Structure:** 3 screens (cert selection, card display, finish screen)
+- **Structure:** 5 screens (cert selection, card display, quiz, quiz review, finish)
 - **Key IDs:** All interactive elements have IDs for JavaScript manipulation
+- **Quiz Elements:** Review mode toggle button, quiz navigation, review grid
 - **Modification:** Only modify when adding new UI elements or changing page structure
 
-### styles.css (528 lines)
+### styles.css (828 lines)
 - **Purpose:** All styling and theme definitions
 - **Features:**
-  - CSS variables for light/dark themes
+  - CSS variables for light/dark themes (includes quiz purple accent)
   - Responsive design
   - Card flip animations
   - Search/filter animations
+  - Quiz-specific styling (options, feedback, review grid)
+  - Review mode toggle button (circular, corner-positioned)
 - **Theme System:** Uses `data-theme` attribute on `<html>` element
 - **Modification:** Edit for visual changes, new components, or theme adjustments
 
-### app.js (514 lines)
+### app.js (916 lines)
 - **Purpose:** All application logic
 - **Key Components:**
   - Theme management (localStorage persistence)
   - DOM element references (all `getElementById` calls)
-  - App state (current card, scores, etc.)
+  - Flashcard state (current card, scores, search)
+  - Quiz state (answers, review mode, navigation)
   - Card navigation (prev/next/flip)
+  - Quiz navigation (prev/next, submit, review)
   - Search/filter functionality
   - Session management (start/restart/finish)
+  - Quiz review screen generation
 - **Global Variables Used:**
   - `awsFlashcards` (from aws-flashcards.js)
   - `cccoFlashcards` (from ccco-flashcards.js)
   - `ccdakFlashcards` (from ccdak-flashcards.js)
+  - `pokemonQuiz` (from pokemon-quiz.js)
 - **Modification:** Edit for new features, bug fixes, or behavior changes
 
-### Flashcard Data Files (3 files)
+### Data Files
+
+**Flashcard Files (3 files):**
 - **Purpose:** Store flashcard content as JavaScript arrays
 - **Format:**
   ```javascript
@@ -88,6 +102,27 @@ index.html
   ```
 - **Note:** AWS uses `front`/`back`, Confluent certs use `question`/`answer`
 - **Modification:** Add/edit/remove flashcards here
+
+**Quiz Files (e.g., pokemon-quiz.js):**
+- **Purpose:** Store multiple-choice quiz questions
+- **Format:**
+  ```javascript
+  const pokemonQuiz = [
+    {
+      "id": 1,
+      "question": "Question text?",
+      "options": ["A", "B", "C", "D"],  // 2-6+ options supported
+      "correctAnswer": 0,  // Index (0 = A, 1 = B, etc.)
+      "explanation": "Why this is correct"
+    },
+    // ... more questions
+  ];
+  ```
+- **Features:** 
+  - Variable number of options (2-6+)
+  - Options shuffle on each question display
+  - Questions shuffle on quiz start
+- **Modification:** Add/edit/remove quiz questions here
 
 ## Workflow for Common Tasks
 
@@ -104,6 +139,41 @@ index.html
    ```
 3. Save the file
 4. Refresh browser - changes appear immediately
+
+### Adding New Quiz Questions
+
+1. Open the quiz file (e.g., `pokemon-quiz.js`)
+2. Add a new question object to the array:
+   ```javascript
+   {
+     "id": 11,  // Use next available ID
+     "question": "Your question?",
+     "options": ["Option 1", "Option 2", "Option 3"],  // 2-6+ options
+     "correctAnswer": 0,  // Index of correct answer
+     "explanation": "Why this is the correct answer."
+   }
+   ```
+3. Save the file
+4. Refresh browser - new question appears in quiz
+
+**Note:** Support for variable number of options (2-6+). Dynamic letter generation (A, B, C...) happens automatically.
+
+### Adding a New Quiz
+
+1. **Create data file:**
+   - Create `newquiz-quiz.js`
+   - Define: `const newquizQuiz = [ /* questions */ ];`
+   - Follow quiz format with id, question, options, correctAnswer, explanation
+
+2. **Update index.html:**
+   - Add `<script src="newquiz-quiz.js"></script>` before `app.js`
+   - Add quiz card in cert-select-screen section
+   - Add review mode toggle button to card
+
+3. **Update app.js:**
+   - Add button reference in DOM Elements section
+   - Add event listener in `initApp()`
+   - Add case in `startQuiz()` function
 
 ### Adding a New Certification
 
@@ -182,20 +252,36 @@ index.html
 
 ## Feature Checklist
 
-Current features:
+**Flashcard Features:**
 - ✅ Multiple certification support (3 certs)
 - ✅ Card shuffling (Fisher-Yates algorithm)
 - ✅ Progress tracking (correct/total)
 - ✅ Search/filter cards by keyword
-- ✅ Light/dark theme toggle
-- ✅ Keyboard-friendly navigation
 - ✅ Previous/next card navigation
 - ✅ Card flip animation
 - ✅ Session completion screen with stats
 
+**Quiz Features:**
+- ✅ Multiple choice questions with 2-6+ options
+- ✅ Review Mode toggle (hide answers until end)
+- ✅ Question and option shuffling
+- ✅ Free navigation between questions
+- ✅ Answer submission and feedback
+- ✅ Auto-submit in review mode
+- ✅ Quiz review screen (grid view of all questions)
+- ✅ Change answers before final submission
+- ✅ Dynamic letter generation (A, B, C...)
+- ✅ Immediate or delayed feedback modes
+
+**General Features:**
+- ✅ Light/dark theme toggle (persists in localStorage)
+- ✅ Fully offline (no server required)
+- ✅ File:// protocol compatible
+- ✅ Responsive design
+
 ## Testing Procedure
 
-**Manual Testing Checklist:**
+**Flashcard Testing:**
 1. ✅ Open `index.html` in browser (use `file://`)
 2. ✅ Select each certification - verify cards load
 3. ✅ Navigate through cards - prev/next work
@@ -204,8 +290,26 @@ Current features:
 6. ✅ Search cards - filter works
 7. ✅ Clear search - original cards restore
 8. ✅ Complete session - stats screen shows
-9. ✅ Toggle theme - preference persists
-10. ✅ Restart session - cards reshuffle
+9. ✅ Restart session - cards reshuffle
+
+**Quiz Testing:**
+1. ✅ Click quiz card - verify quiz loads
+2. ✅ Toggle review mode button - icon changes
+3. ✅ Questions display with shuffled options
+4. ✅ Select option - submit button enables
+5. ✅ Submit answer - feedback shows (normal mode)
+6. ✅ Navigate prev/next - questions change
+7. ✅ Review mode - answers auto-submit, no feedback
+8. ✅ Last question - "Review Answers" button appears
+9. ✅ Review screen - grid shows answered/unanswered
+10. ✅ Click question from grid - navigates to question
+11. ✅ Submit quiz - final score displays
+12. ✅ Restart quiz - questions reshuffle
+
+**General Testing:**
+1. ✅ Toggle theme - preference persists
+2. ✅ Back buttons - navigate to main screen
+3. ✅ Refresh browser - theme persists
 
 ## Common Pitfalls for AI Agents
 
@@ -240,16 +344,34 @@ Current features:
 
 This project was built entirely with AI assistance (Cursor + Claude). The original implementation had all code inline in a single HTML file. It was refactored to follow clean code principles with proper separation of concerns while maintaining the constraint of working without a server.
 
+**Major Updates:**
+1. Initial flashcard implementation with single HTML file
+2. Refactored to separate HTML, CSS, JS files
+3. Added multiple certification support (3 certifications)
+4. Added search/filter functionality for flashcards
+5. **Quiz Feature** - Complete multiple-choice quiz system with:
+   - Variable options (2-6+ per question)
+   - Review mode toggle (corner button)
+   - Question/option shuffling
+   - Free navigation between questions
+   - Quiz review screen before final submission
+   - Auto-submit in review mode
+   - Dynamic letter generation (A, B, C...)
+
 ## Future Considerations
 
 If expanding the project, consider:
+- Add more quizzes (AWS, Kafka, etc. - follow "Adding New Quiz" workflow)
 - Add more certifications (follow "Adding New Certification" workflow)
 - Spaced repetition algorithm (modify scoring in app.js)
 - Export/import custom card sets (add file handling)
 - Statistics dashboard (new screen in index.html + app.js)
 - Keyboard shortcuts (add event listeners in app.js)
+- Timer per question (quiz enhancement)
+- Detailed quiz analytics (question-by-question breakdown)
 
 **Do NOT consider:**
 - Adding a backend (violates offline-first principle)
 - Using build tools (violates simplicity principle)
 - Framework migration (unnecessary complexity)
+- ES6 modules (breaks file:// protocol)

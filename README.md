@@ -1,6 +1,17 @@
 # Certification Flash Cards
 
-A web-based flash card application for studying for various IT certifications. The application allows you to test your knowledge of certification concepts through interactive flash cards. Currently supports AWS Certified Solutions Architect Associate and Confluent Certified Developer for Apache Kafka.
+A web-based study application for IT certifications featuring interactive flashcards and multiple-choice practice quizzes. The application runs entirely in your browser with no server required.
+
+## Features
+
+- **Flashcards**: Study with traditional flashcards for AWS, Confluent Cloud Operator, and Kafka Developer certifications
+- **Practice Quizzes**: Test your knowledge with multiple-choice questions (currently Pokemon quiz as example)
+- **Review Mode**: Hide answers until the end and review all questions before final submission
+- **Question Navigation**: Move freely between questions, change answers, and review your selections
+- **Smart Shuffling**: Questions and answer options randomize each time
+- **Progress Tracking**: See your score and success rate
+- **Theme Toggle**: Switch between light and dark modes for comfortable studying
+- **Offline First**: Works completely offline - no internet required
 
 ## Getting Started
 
@@ -16,18 +27,23 @@ A web-based flash card application for studying for various IT certifications. T
 
 That's it! No build process, server, or installation required.
 
-## Managing Flashcards
+## Managing Content
 
-Flashcard data is stored in JavaScript files (`.js` files), not JSON files. The app loads these files using standard `<script>` tags, so no server is needed - it works perfectly with `file://` URLs!
+All study content is stored in JavaScript files (`.js` files), not JSON. The app loads these files using standard `<script>` tags, so no server is needed - it works perfectly with `file://` URLs!
 
-### Adding or Editing Flashcards
+### Content Types
+
+1. **Flashcards** - Traditional front/back study cards
+2. **Quizzes** - Multiple choice questions with explanations
+
+### Flashcard Files
 
 1. Open the relevant flashcard file:
    - `aws-flashcards.js` - AWS Certified Solutions Architect Associate
    - `ccco-flashcards.js` - Confluent Certified Cloud Operator
    - `ccdak-flashcards.js` - Confluent Certified Developer for Apache Kafka
 
-2. Edit the flashcard array directly in the file:
+2. Edit the flashcard array directly in the file (front/back or question/answer format):
    ```javascript
    const awsFlashcards = [
      {
@@ -43,14 +59,67 @@ Flashcard data is stored in JavaScript files (`.js` files), not JSON files. The 
 
 4. Refresh your browser - changes will appear immediately!
 
-### Flashcard Format
+### Quiz Files
 
-Each flashcard is an object with three properties:
-- `id` - A unique number for the flashcard
-- `front` - The question (AWS cards use "front"/"back")
-- `back` - The answer
+1. Open the quiz file (e.g., `pokemon-quiz.js`)
 
-Note: CCCO and CCDAK cards use `question`/`answer` instead of `front`/`back`.
+2. Edit the quiz array:
+   ```javascript
+   const pokemonQuiz = [
+     {
+       "id": 1,
+       "question": "Your question text?",
+       "options": [
+         "Option A",
+         "Option B", 
+         "Option C",
+         "Option D"
+       ],
+       "correctAnswer": 0,  // Index of correct option (0 = A, 1 = B, etc.)
+       "explanation": "Why this answer is correct"
+     },
+     // ... more questions
+   ];
+   ```
+
+3. Save the file and refresh your browser
+
+**Note:** Quizzes support 2-6+ options per question. Options and questions are shuffled automatically.
+
+### Data Formats
+
+**Flashcard Format:**
+- `id` - Unique number
+- `front`/`back` (AWS) or `question`/`answer` (Confluent certs)
+
+**Quiz Format:**
+- `id` - Unique number  
+- `question` - Question text
+- `options` - Array of possible answers (2-6+ options)
+- `correctAnswer` - Index of correct option (0-based)
+- `explanation` - Why the answer is correct
+
+## Quiz Features
+
+### Review Mode
+
+Toggle the eye icon (👁️) on the quiz card to enable **Review Mode**:
+- **OFF** (eye-slash): See feedback immediately after each answer
+- **ON** (eye): Hide all feedback until you finish and submit
+
+### Navigation
+
+- **Previous/Next buttons**: Navigate freely between questions
+- **Auto-submit in Review Mode**: Answers save automatically when you click an option
+- **Change answers anytime**: In Review Mode, change your selection before final submission
+
+### Review Screen
+
+Before seeing your final score:
+1. Click "Review Answers" on the last question
+2. See a grid showing all questions (✓ = answered, ! = unanswered)
+3. Click any question to review or change your answer
+4. Click "Submit Quiz" when ready to see results
 
 ## How I made this.
 

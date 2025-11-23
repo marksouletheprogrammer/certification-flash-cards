@@ -33,6 +33,7 @@ const certSelectScreen =
     document.getElementById("cert-select-screen");
 const cardScreen = document.getElementById("card-screen");
 const quizScreen = document.getElementById("quiz-screen");
+const quizReviewScreen = document.getElementById("quiz-review-screen");
 const finishScreen = document.getElementById("finish-screen");
 
 const awsCertBtn = document.getElementById("aws-cert");
@@ -86,6 +87,9 @@ const quizNextBtn = document.getElementById("quiz-next-btn");
 const quizSubmitBtn = document.getElementById("quiz-submit-btn");
 const quizRestartBtn = document.getElementById("quiz-restart-btn");
 const reviewModeToggle = document.getElementById("review-mode-toggle");
+const questionGrid = document.getElementById("question-grid");
+const submitQuizBtn = document.getElementById("submit-quiz-btn");
+const backToQuizFromReview = document.getElementById("back-to-quiz-from-review");
 
 // Flashcard data is loaded from separate script tags above
 // - aws-flashcards.js defines: awsFlashcards
@@ -223,6 +227,14 @@ function initApp() {
     quizNextBtn.addEventListener("click", navigateNextQuestion);
     quizSubmitBtn.addEventListener("click", submitAnswer);
     quizRestartBtn.addEventListener("click", () => startQuiz(currentQuizType));
+    
+    // Add event listeners for review screen
+    submitQuizBtn.addEventListener("click", finalizeQuiz);
+    backToQuizFromReview.addEventListener("click", () => {
+        currentQuestionIndex = 0;
+        showScreen(quizScreen);
+        displayQuestion();
+    });
 
     // Initialize search functionality
     initSearchFunctionality();
@@ -290,6 +302,7 @@ function showScreen(screen) {
     certSelectScreen.classList.remove("active");
     cardScreen.classList.remove("active");
     quizScreen.classList.remove("active");
+    quizReviewScreen.classList.remove("active");
     finishScreen.classList.remove("active");
 
     screen.classList.add("active");
@@ -541,7 +554,7 @@ function displayQuestion() {
     
     // Update Next button text based on position
     if (currentQuestionIndex >= quizQuestions.length - 1) {
-        quizNextBtn.innerHTML = 'Finish Quiz <i class=\"fas fa-flag-checkered\"></i>';
+        quizNextBtn.innerHTML = 'Review Answers <i class=\"fas fa-clipboard-check\"></i>';
     } else {
         quizNextBtn.innerHTML = 'Next <i class=\"fas fa-arrow-right\"></i>';
     }
@@ -647,12 +660,8 @@ function navigateNextQuestion() {
         currentQuestionIndex++;
         displayQuestion();
     } else {
-        // Last question - finish quiz
-        if (isReviewMode) {
-            finishQuizReviewMode();
-        } else {
-            finishQuiz();
-        }
+        // Last question - show review screen
+        showReviewScreen();
     }
 }
 
@@ -692,17 +701,46 @@ function showFeedbackForCurrentQuestion() {
     quizFeedback.classList.add("show");
 }
 
-function finishQuiz() {
-    finalCorrect.textContent = quizScore;
-    finalTotal.textContent = quizQuestions.length;
+// Show review screen with question grid
+function showReviewScreen() {
+    // Generate question grid
+    questionGrid.innerHTML = "";
     
-    const rate = Math.round((quizScore / quizQuestions.length) * 100);
-    successRate.textContent = `${rate}%`;
+    quizQuestions.forEach((question, index) => {
+        const btn = document.createElement("button");
+        btn.className = "question-btn";
+        
+        const isAnswered = userAnswers[index] !== null;
+        if (isAnswered) {
+            btn.classList.add("answered");
+        } else {
+            btn.classList.add("unanswered");
+        }
+        
+        const numberSpan = document.createElement("div");
+        numberSpan.textContent = index + 1;
+        
+        const statusSpan = document.createElement("div");
+        statusSpan.className = "question-btn-status";
+        statusSpan.textContent = isAnswered ? "✓" : "!";
+        
+        btn.appendChild(numberSpan);
+        btn.appendChild(statusSpan);
+        
+        btn.addEventListener("click", () => {
+            currentQuestionIndex = index;
+            showScreen(quizScreen);
+            displayQuestion();
+        });
+        
+        questionGrid.appendChild(btn);
+    });
     
-    showScreen(finishScreen);
+    showScreen(quizReviewScreen);
 }
 
-function finishQuizReviewMode() {
+// Finalize quiz and show results
+function finalizeQuiz() {
     // Calculate score from stored answers
     quizScore = 0;
     userAnswers.forEach((answer, index) => {

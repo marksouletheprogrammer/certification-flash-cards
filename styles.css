@@ -768,3 +768,61 @@ button {
 #quiz-restart-btn:hover {
     background-color: var(--quiz-accent-primary);
 }
+
+/* Quiz Review Screen */
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.question-btn {
+    aspect-ratio: 1;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.question-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.question-btn.answered {
+    background-color: var(--quiz-accent-primary);
+    color: white;
+    border-color: var(--quiz-accent-primary);
+}
+
+.question-btn.unanswered {
+    border-color: var(--incorrect-color);
+    border-width: 3px;
+}
+
+.question-btn-status {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+#submit-quiz-btn {
+    background-color: var(--quiz-accent-primary);
+    font-size: 1.1rem;
+    padding: 12px 30px;
+}
+
+#submit-quiz-btn:hover {
+    background-color: var(--quiz-accent-secondary);
+}
