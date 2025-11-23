@@ -67,6 +67,18 @@
                             </p>
                         </div>
                     </div>
+
+                    <div class="cert-card quiz" id="pokemon-quiz">
+                        <div class="cert-icon quiz">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h3>Pokemon Practice Quiz <span class="quiz-badge">Practice Test</span></h3>
+                            <p>
+                                Test your knowledge with multiple choice questions
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -149,6 +161,47 @@
                 </div>
             </div>
 
+            <div id="quiz-screen" class="screen">
+                <button id="back-to-certs-from-quiz" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Certifications
+                </button>
+                <div class="cert-title-container">
+                    <div class="cert-title" id="current-quiz-title"></div>
+                    <div class="stats">
+                        Question <span id="question-number">1</span> of <span id="total-questions">10</span>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="quiz-progress-fill"></div>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">
+                        <p id="quiz-question-text"></p>
+                    </div>
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Options will be generated dynamically -->
+                    </div>
+                    <div class="quiz-feedback" id="quiz-feedback">
+                        <div class="feedback-icon" id="feedback-icon"></div>
+                        <p id="feedback-text"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-controls">
+                    <button id="quiz-next-btn" class="aws-btn" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="session-controls">
+                    <button id="quiz-restart-btn" class="aws-btn secondary">
+                        Restart Quiz
+                    </button>
+                </div>
+            </div>
+
             <div id="finish-screen" class="screen">
                 <button id="back-to-certs-from-finish" class="back-button">
                     <i class="fas fa-arrow-left"></i> Back to Certifications
@@ -178,6 +231,9 @@
         <script src="aws-flashcards.js"></script>
         <script src="ccco-flashcards.js"></script>
         <script src="ccdak-flashcards.js"></script>
+
+        <!-- Load quiz data -->
+        <script src="pokemon-quiz.js"></script>
 
         <!-- Main application logic -->
         <script src="app.js"></script>

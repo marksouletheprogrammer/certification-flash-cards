@@ -32,12 +32,17 @@ function updateThemeToggle(theme) {
 const certSelectScreen =
     document.getElementById("cert-select-screen");
 const cardScreen = document.getElementById("card-screen");
+const quizScreen = document.getElementById("quiz-screen");
 const finishScreen = document.getElementById("finish-screen");
 
 const awsCertBtn = document.getElementById("aws-cert");
 const kafkaCertBtn = document.getElementById("kafka-cert");
+const pokemonQuizBtn = document.getElementById("pokemon-quiz");
 const backToCertsFromCardsBtn = document.getElementById(
     "back-to-certs-from-cards",
+);
+const backToCertsFromQuizBtn = document.getElementById(
+    "back-to-certs-from-quiz",
 );
 const backToCertsFromFinishBtn = document.getElementById(
     "back-to-certs-from-finish",
@@ -66,6 +71,19 @@ const certTitle = document.getElementById("cert-title");
 const currentCertTitle =
     document.getElementById("current-cert-title");
 
+// Quiz DOM Elements
+const currentQuizTitle = document.getElementById("current-quiz-title");
+const questionNumber = document.getElementById("question-number");
+const totalQuestions = document.getElementById("total-questions");
+const quizProgressFill = document.getElementById("quiz-progress-fill");
+const quizQuestionText = document.getElementById("quiz-question-text");
+const quizOptionsContainer = document.getElementById("quiz-options");
+const quizFeedback = document.getElementById("quiz-feedback");
+const feedbackIcon = document.getElementById("feedback-icon");
+const feedbackText = document.getElementById("feedback-text");
+const quizNextBtn = document.getElementById("quiz-next-btn");
+const quizRestartBtn = document.getElementById("quiz-restart-btn");
+
 // Flashcard data is loaded from separate script tags above
 // - aws-flashcards.js defines: awsFlashcards
 // - ccco-flashcards.js defines: cccoFlashcards
@@ -77,6 +95,15 @@ let currentCardIndex = 0;
 let correctAnswers = 0;
 let answeredCards = new Set();
 let currentCertification = "";
+
+// Quiz State
+let quizQuestions = [];
+let currentQuestionIndex = 0;
+let quizScore = 0;
+let selectedAnswer = null;
+let hasAnswered = false;
+let currentQuizType = "";
+let shuffledCorrectAnswer = null; // Tracks correct answer after option shuffle
 
 // Note: Flashcard data is now imported from separate .js files
 // To add/edit flashcards, edit the respective .js files:
@@ -140,9 +167,18 @@ function initApp() {
     document
         .getElementById("ccco-cert")
         .addEventListener("click", () => setCertification("ccco"));
+    
+    // Add event listener for quiz
+    pokemonQuizBtn.addEventListener("click", () =>
+        startQuiz("pokemon"),
+    );
 
     // Add event listeners for back buttons
     backToCertsFromCardsBtn.addEventListener(
+        "click",
+        backToCertSelection,
+    );
+    backToCertsFromQuizBtn.addEventListener(
         "click",
         backToCertSelection,
     );
@@ -153,12 +189,16 @@ function initApp() {
 
     // Add event listeners for study session
     restartBtn.addEventListener("click", restartSession);
-    restartFinishBtn.addEventListener("click", restartSession);
+    restartFinishBtn.addEventListener("click", handleFinishRestart);
     prevBtn.addEventListener("click", showPreviousCard);
     nextBtn.addEventListener("click", showNextCard);
     flipBtn.addEventListener("click", flipCard);
     correctBtn.addEventListener("click", () => markCard(true));
     incorrectBtn.addEventListener("click", () => markCard(false));
+    
+    // Add event listeners for quiz
+    quizNextBtn.addEventListener("click", nextQuestion);
+    quizRestartBtn.addEventListener("click", () => startQuiz(currentQuizType));
 
     // Initialize search functionality
     initSearchFunctionality();
@@ -166,7 +206,7 @@ function initApp() {
 
 // Back to certification selection
 function backToCertSelection() {
-    // Reset state
+    // Reset flashcard state
     currentCardIndex = 0;
     correctAnswers = 0;
     answeredCards = new Set();
@@ -183,6 +223,11 @@ function backToCertSelection() {
     document
         .querySelector(".feedback-controls")
         .classList.remove("filtered-mode");
+
+    // Reset quiz state
+    currentQuizType = "";
+    quizScore = 0;
+    currentQuestionIndex = 0;
 
     showScreen(certSelectScreen);
 }
@@ -205,10 +250,22 @@ function restartSession() {
     startSession();
 }
 
+// Handle restart from finish screen - different behavior for quiz vs flashcards
+function handleFinishRestart() {
+    if (currentQuizType) {
+        // If we finished a quiz, go back to main screen
+        backToCertSelection();
+    } else {
+        // If we finished flashcards, restart the session
+        restartSession();
+    }
+}
+
 // Show a specific screen
 function showScreen(screen) {
     certSelectScreen.classList.remove("active");
     cardScreen.classList.remove("active");
+    quizScreen.classList.remove("active");
     finishScreen.classList.remove("active");
 
     screen.classList.add("active");
@@ -357,6 +414,156 @@ function finishSession() {
             : 0;
     successRate.textContent = `${rate}%`;
 
+    showScreen(finishScreen);
+}
+
+// Quiz Functions
+function startQuiz(quizType) {
+    currentQuizType = quizType;
+    
+    if (quizType === "pokemon") {
+        quizQuestions = shuffleArray(pokemonQuiz);
+        currentQuizTitle.textContent = "Pokemon Practice Quiz";
+    }
+    
+    currentQuestionIndex = 0;
+    quizScore = 0;
+    selectedAnswer = null;
+    hasAnswered = false;
+    
+    totalQuestions.textContent = quizQuestions.length;
+    
+    showScreen(quizScreen);
+    displayQuestion();
+}
+
+function displayQuestion() {
+    const question = quizQuestions[currentQuestionIndex];
+    
+    // Update question number
+    questionNumber.textContent = currentQuestionIndex + 1;
+    
+    // Update progress bar
+    const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+    quizProgressFill.style.width = `${progress}%`;
+    
+    // Display question
+    quizQuestionText.textContent = question.question;
+    
+    // Shuffle options and track correct answer position
+    const optionsWithIndices = question.options.map((option, index) => ({
+        text: option,
+        originalIndex: index
+    }));
+    const shuffledOptions = shuffleArray(optionsWithIndices);
+    
+    // Find where the correct answer ended up after shuffling
+    shuffledCorrectAnswer = shuffledOptions.findIndex(
+        opt => opt.originalIndex === question.correctAnswer
+    );
+    
+    // Clear and create option buttons
+    quizOptionsContainer.innerHTML = "";
+    const letters = ["A", "B", "C", "D"];
+    
+    shuffledOptions.forEach((option, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "quiz-option";
+        optionDiv.dataset.index = index;
+        
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "quiz-option-letter";
+        letterSpan.textContent = letters[index];
+        
+        const textSpan = document.createElement("span");
+        textSpan.textContent = option.text;
+        
+        optionDiv.appendChild(letterSpan);
+        optionDiv.appendChild(textSpan);
+        
+        optionDiv.addEventListener("click", () => selectOption(index));
+        
+        quizOptionsContainer.appendChild(optionDiv);
+    });
+    
+    // Reset feedback and button state
+    quizFeedback.classList.remove("show");
+    quizNextBtn.disabled = true;
+    quizNextBtn.innerHTML = 'Submit Answer <i class="fas fa-check"></i>';
+    selectedAnswer = null;
+    hasAnswered = false;
+}
+
+function selectOption(index) {
+    if (hasAnswered) return;
+    
+    selectedAnswer = index;
+    
+    // Update visual selection
+    const options = quizOptionsContainer.querySelectorAll(".quiz-option");
+    options.forEach(opt => opt.classList.remove("selected"));
+    options[index].classList.add("selected");
+    
+    // Enable submit button
+    quizNextBtn.disabled = false;
+}
+
+function checkAnswer() {
+    if (hasAnswered || selectedAnswer === null) return;
+    
+    hasAnswered = true;
+    const question = quizQuestions[currentQuestionIndex];
+    const isCorrect = selectedAnswer === shuffledCorrectAnswer;
+    
+    if (isCorrect) {
+        quizScore++;
+    }
+    
+    // Show feedback
+    const options = quizOptionsContainer.querySelectorAll(".quiz-option");
+    options.forEach((opt, index) => {
+        opt.classList.add("disabled");
+        
+        if (index === shuffledCorrectAnswer) {
+            opt.classList.add("correct");
+        } else if (index === selectedAnswer && !isCorrect) {
+            opt.classList.add("incorrect");
+        }
+    });
+    
+    // Display feedback message
+    feedbackIcon.className = isCorrect ? "feedback-icon correct" : "feedback-icon incorrect";
+    feedbackText.textContent = question.explanation;
+    quizFeedback.classList.add("show");
+    
+    // Enable next button
+    quizNextBtn.disabled = false;
+}
+
+function nextQuestion() {
+    // If haven't answered yet, submit the answer
+    if (!hasAnswered) {
+        checkAnswer();
+        quizNextBtn.innerHTML = 'Next Question <i class="fas fa-arrow-right"></i>';
+        return;
+    }
+    
+    // Move to next question or finish
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        displayQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function finishQuiz() {
+    finalCorrect.textContent = quizScore;
+    finalTotal.textContent = quizQuestions.length;
+    
+    const rate = Math.round((quizScore / quizQuestions.length) * 100);
+    successRate.textContent = `${rate}%`;
+    
     showScreen(finishScreen);
 }
 
