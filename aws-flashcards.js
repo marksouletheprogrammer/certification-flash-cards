@@ -1,0 +1,1347 @@
+// AWS Certification Flash Cards
+// Source of truth for AWS flashcard data
+// Edit this file directly to add/update/remove flashcards
+
+const awsFlashcards = [
+  {
+    "id": 1,
+    "front": "What is Amazon EC2?",
+    "back": "Amazon Elastic Compute Cloud (EC2) is a web service that provides resizable compute capacity in the cloud, allowing you to launch virtual servers (instances)."
+  },
+  {
+    "id": 2,
+    "front": "What is an AMI?",
+    "back": "An Amazon Machine Image (AMI) is a template containing the software configuration (operating system, application server, and applications) needed to launch an EC2 instance."
+  },
+  {
+    "id": 3,
+    "front": "What is an EBS snapshot?",
+    "back": "A point-in-time copy of an EBS volume that can be used to create new volumes or restore data."
+  },
+  {
+    "id": 4,
+    "front": "What is a Security Group?",
+    "back": "A virtual firewall that controls inbound and outbound traffic to AWS resources at the instance level. It only contains allow rules and is stateful."
+  },
+  {
+    "id": 5,
+    "front": "What is a Network ACL?",
+    "back": "A network access control list is a security layer for your VPC that acts as a firewall at the subnet level. It contains both allow and deny rules and is stateless."
+  },
+  {
+    "id": 6,
+    "front": "What is a VPC?",
+    "back": "Amazon Virtual Private Cloud (VPC) is a logically isolated section of the AWS cloud where you can launch AWS resources in a virtual network you define."
+  },
+  {
+    "id": 7,
+    "front": "What is a public subnet?",
+    "back": "A subnet with a route to an Internet Gateway, allowing resources within it to directly access the internet."
+  },
+  {
+    "id": 8,
+    "front": "What is a private subnet?",
+    "back": "A subnet without a direct route to an Internet Gateway. Resources in private subnets can only access the internet via a NAT Gateway or NAT Instance."
+  },
+  {
+    "id": 9,
+    "front": "What is a NAT Gateway?",
+    "back": "A managed service that allows instances in a private subnet to connect to the internet or other AWS services while preventing the internet from initiating connections to those instances."
+  },
+  {
+    "id": 10,
+    "front": "What is an Internet Gateway?",
+    "back": "A horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet."
+  },
+  {
+    "id": 11,
+    "front": "What is Amazon S3?",
+    "back": "Amazon Simple Storage Service (S3) is an object storage service offering industry-leading scalability, data availability, security, and performance."
+  },
+  {
+    "id": 12,
+    "front": "What is S3 Standard storage class?",
+    "back": "The default storage class in S3 designed for frequently accessed data with 99.99% availability and 11 9's of durability, stored redundantly across multiple AZs."
+  },
+  {
+    "id": 13,
+    "front": "What is S3 Standard-IA storage class?",
+    "back": "A storage class for infrequently accessed data that still requires rapid access when needed, with lower storage cost but higher retrieval cost than S3 Standard."
+  },
+  {
+    "id": 14,
+    "front": "What is S3 One Zone-IA storage class?",
+    "back": "A lower-cost option for infrequently accessed data that doesn't require the multiple Availability Zone redundancy of other S3 storage classes."
+  },
+  {
+    "id": 15,
+    "front": "What is S3 Glacier Instant Retrieval?",
+    "back": "An archive storage class that delivers the lowest-cost storage for long-lived data that requires milliseconds retrieval for rare but immediate access."
+  },
+  {
+    "id": 16,
+    "front": "What is S3 Glacier Flexible Retrieval?",
+    "back": "An archive storage class for data that is accessed 1-2 times per year with retrieval times ranging from minutes to hours."
+  },
+  {
+    "id": 17,
+    "front": "What is S3 Glacier Deep Archive?",
+    "back": "Amazon S3's lowest-cost storage class designed for long-term retention of data that is accessed less than once per year, with retrieval times of 12-48 hours."
+  },
+  {
+    "id": 18,
+    "front": "What is S3 Intelligent-Tiering?",
+    "back": "A storage class that automatically moves objects between access tiers based on changing access patterns, optimizing costs."
+  },
+  {
+    "id": 19,
+    "front": "What is S3 versioning?",
+    "back": "A feature that keeps multiple variants of an object in the same bucket, allowing you to preserve, retrieve, and restore every version of every object."
+  },
+  {
+    "id": 20,
+    "front": "What is S3 Cross-Region Replication (CRR)?",
+    "back": "Automatic, asynchronous copying of objects across buckets in different AWS Regions to provide geographic redundancy and minimize latency for users in different locations."
+  },
+  {
+    "id": 21,
+    "front": "What is Amazon RDS?",
+    "back": "Amazon Relational Database Service (RDS) is a managed service that makes it easy to set up, operate, and scale a relational database in the cloud."
+  },
+  {
+    "id": 22,
+    "front": "What is RDS Multi-AZ deployment?",
+    "back": "A high-availability feature that maintains a synchronous standby replica of your database in a different Availability Zone for automatic failover."
+  },
+  {
+    "id": 23,
+    "front": "What is Amazon Aurora?",
+    "back": "A MySQL and PostgreSQL-compatible relational database built for the cloud that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases."
+  },
+  {
+    "id": 24,
+    "front": "What is Amazon DynamoDB?",
+    "back": "A fully managed NoSQL database service that provides fast and predictable performance with seamless scalability and no servers to manage."
+  },
+  {
+    "id": 25,
+    "front": "What is DynamoDB Global Tables?",
+    "back": "A multi-region, multi-active database that provides globally distributed applications with low-latency data access to local AWS Regions."
+  },
+  {
+    "id": 26,
+    "front": "What is DynamoDB Accelerator (DAX)?",
+    "back": "A fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement by enabling response times in microseconds."
+  },
+  {
+    "id": 27,
+    "front": "What is Amazon ElastiCache?",
+    "back": "A fully managed in-memory data store and cache service supporting Redis and Memcached engines to improve the performance of web applications."
+  },
+  {
+    "id": 28,
+    "front": "What is Amazon Redshift?",
+    "back": "A fully managed, petabyte-scale data warehouse service in the cloud that makes it simple and cost-effective to analyze data using standard SQL and existing BI tools."
+  },
+  {
+    "id": 29,
+    "front": "What is AWS Lambda?",
+    "back": "A serverless compute service that runs your code in response to events and automatically manages the underlying compute resources."
+  },
+  {
+    "id": 30,
+    "front": "What is Amazon EC2 Auto Scaling?",
+    "back": "A service that automatically adjusts the number of EC2 instances in a group based on demand to maintain application availability and reduce costs."
+  },
+  {
+    "id": 31,
+    "front": "What is Elastic Load Balancing?",
+    "back": "A service that automatically distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses."
+  },
+  {
+    "id": 32,
+    "front": "What is an Application Load Balancer (ALB)?",
+    "back": "A Layer 7 load balancer that routes traffic based on application content like HTTP headers, methods, host, and paths to different target groups."
+  },
+  {
+    "id": 33,
+    "front": "What is a Network Load Balancer (NLB)?",
+    "back": "A Layer 4 load balancer that routes TCP/UDP traffic based on IP protocol data and can handle millions of requests per second while maintaining ultra-low latencies."
+  },
+  {
+    "id": 34,
+    "front": "What is a Gateway Load Balancer (GWLB)?",
+    "back": "A service that makes it easy to deploy, scale, and manage third-party virtual appliances such as firewalls, intrusion detection systems, and deep packet inspection systems."
+  },
+  {
+    "id": 35,
+    "front": "What is Amazon CloudFront?",
+    "back": "A fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds."
+  },
+  {
+    "id": 36,
+    "front": "What is Amazon Route 53?",
+    "back": "A highly available and scalable cloud Domain Name System (DNS) web service that routes users to applications by translating domain names into IP addresses."
+  },
+  {
+    "id": 37,
+    "front": "What is Route 53 Weighted Routing?",
+    "back": "A routing policy that lets you distribute traffic across multiple resources based on proportional weights you assign."
+  },
+  {
+    "id": 38,
+    "front": "What is Route 53 Latency-Based Routing?",
+    "back": "A routing policy that directs traffic to the AWS Region that provides the lowest network latency for your end users."
+  },
+  {
+    "id": 39,
+    "front": "What is Route 53 Failover Routing?",
+    "back": "A routing policy that routes traffic to a primary resource and fails over to a secondary resource when the primary is unavailable or fails health checks."
+  },
+  {
+    "id": 40,
+    "front": "What is Route 53 Geolocation Routing?",
+    "back": "A routing policy that routes traffic based on the geographic location of your users."
+  },
+  {
+    "id": 41,
+    "front": "What is Amazon VPC peering?",
+    "back": "A networking connection between two VPCs that enables routing using private IP addresses as if they were within the same network."
+  },
+  {
+    "id": 42,
+    "front": "What is AWS Transit Gateway?",
+    "back": "A network transit hub that simplifies your network architecture by connecting VPCs and on-premises networks through a central hub."
+  },
+  {
+    "id": 43,
+    "front": "What is a VPC Endpoint?",
+    "back": "A component that enables private connections between your VPC and supported AWS services without requiring an internet gateway, NAT device, VPN, or Direct Connect."
+  },
+  {
+    "id": 44,
+    "front": "What is AWS Direct Connect?",
+    "back": "A cloud service solution that establishes a dedicated network connection from your premises to AWS, providing more consistent network experience than internet-based connections."
+  },
+  {
+    "id": 45,
+    "front": "What is AWS Identity and Access Management (IAM)?",
+    "back": "A service that helps you securely control access to AWS resources by managing permissions for AWS users and groups."
+  },
+  {
+    "id": 46,
+    "front": "What is an IAM Role?",
+    "back": "An identity with permission policies that determine what the identity can do in AWS, but without permanent credentials, used by services or users that assume it temporarily."
+  },
+  {
+    "id": 47,
+    "front": "What is AWS Organizations?",
+    "back": "A service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage."
+  },
+  {
+    "id": 48,
+    "front": "What is a Service Control Policy (SCP)?",
+    "back": "A policy type in AWS Organizations that specifies the maximum permissions available for accounts within an organization or organizational unit."
+  },
+  {
+    "id": 49,
+    "front": "What is Amazon CloudWatch?",
+    "back": "A monitoring and observability service that provides data and actionable insights for AWS resources and applications."
+  },
+  {
+    "id": 50,
+    "front": "What is AWS CloudTrail?",
+    "back": "A service that enables governance, compliance, operational auditing, and risk auditing of your AWS account by tracking user activity and API usage."
+  },
+  {
+    "id": 51,
+    "front": "What is Amazon Cognito?",
+    "back": "A service that provides authentication, authorization, and user management for web and mobile applications."
+  },
+  {
+    "id": 52,
+    "front": "What is AWS Key Management Service (KMS)?",
+    "back": "A managed service that makes it easy for you to create and control the encryption keys used to encrypt your data."
+  },
+  {
+    "id": 53,
+    "front": "What is Amazon SNS?",
+    "back": "Amazon Simple Notification Service is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication."
+  },
+  {
+    "id": 54,
+    "front": "What is Amazon SQS?",
+    "back": "Amazon Simple Queue Service is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications."
+  },
+  {
+    "id": 55,
+    "front": "What is AWS CloudFormation?",
+    "back": "A service that helps you model and set up your AWS resources by creating templates that define your infrastructure as code."
+  },
+  {
+    "id": 56,
+    "front": "What is AWS Elastic Beanstalk?",
+    "back": "A service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker."
+  },
+  {
+    "id": 57,
+    "front": "What is Amazon API Gateway?",
+    "back": "A fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale."
+  },
+  {
+    "id": 58,
+    "front": "What is AWS Step Functions?",
+    "back": "A serverless function orchestrator that makes it easy to sequence multiple AWS services into business-critical applications."
+  },
+  {
+    "id": 59,
+    "front": "What is Amazon EFS?",
+    "back": "Amazon Elastic File System is a fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources."
+  },
+  {
+    "id": 60,
+    "front": "What is AWS Storage Gateway?",
+    "back": "A hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage."
+  },
+  {
+    "id": 61,
+    "front": "What is an EC2 Placement Group?",
+    "back": "A logical grouping of instances within a single Availability Zone to control how instances are placed on the underlying hardware."
+  },
+  {
+    "id": 62,
+    "front": "What is a Cluster Placement Group?",
+    "back": "A placement group that packs instances close together inside an Availability Zone, providing low-latency network performance for tightly-coupled node-to-node communication."
+  },
+  {
+    "id": 63,
+    "front": "What is a Spread Placement Group?",
+    "back": "A placement group that places instances on distinct underlying hardware to reduce correlated failures."
+  },
+  {
+    "id": 64,
+    "front": "What is a Partition Placement Group?",
+    "back": "A placement group that spreads instances across logical partitions, ensuring that instances in one partition do not share underlying hardware with instances in other partitions."
+  },
+  {
+    "id": 65,
+    "front": "What is Amazon EC2 Spot Instance?",
+    "back": "An EC2 instance that uses spare EC2 capacity available at up to a 90% discount compared to On-Demand prices, but might be interrupted with a 2-minute notification."
+  },
+  {
+    "id": 66,
+    "front": "What is an EC2 Reserved Instance?",
+    "back": "A billing discount applied to On-Demand Instances in your account when specific attributes match those of the Reserved Instance, with 1-year or 3-year term commitment."
+  },
+  {
+    "id": 67,
+    "front": "What is Amazon EC2 Dedicated Host?",
+    "back": "A physical server with EC2 instance capacity fully dedicated to your use, which can help you meet compliance requirements and reduce costs by using your existing server-bound software licenses."
+  },
+  {
+    "id": 69,
+    "front": "What is AWS Shield?",
+    "back": "A managed Distributed Denial of Service (DDoS) protection service that safeguards applications running on AWS."
+  },
+  {
+    "id": 70,
+    "front": "What is AWS WAF?",
+    "back": "A web application firewall that helps protect your web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources."
+  },
+  {
+    "id": 71,
+    "front": "What is Amazon Macie?",
+    "back": "A fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS."
+  },
+  {
+    "id": 72,
+    "front": "What is AWS Secrets Manager?",
+    "back": "A service that helps you protect secrets needed to access your applications, services, and IT resources, with automatic rotation capability."
+  },
+  {
+    "id": 73,
+    "front": "What is the AWS Well-Architected Framework?",
+    "back": "A guide for designing secure, high-performing, resilient, and efficient infrastructure for applications, based on six pillars: operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability."
+  },
+  {
+    "id": 74,
+    "front": "What is Amazon Inspector?",
+    "back": "An automated vulnerability management service that continually scans AWS workloads for software vulnerabilities and unintended network exposure."
+  },
+  {
+    "id": 75,
+    "front": "What is AWS Config?",
+    "back": "A service that enables you to assess, audit, and evaluate the configurations of your AWS resources for compliance monitoring, resource change tracking, and security analysis."
+  },
+  {
+    "id": 76,
+    "front": "What is AWS Trusted Advisor?",
+    "back": "An online tool that provides real-time guidance to help you provision your resources following AWS best practices in areas of cost optimization, security, fault tolerance, performance, and service limits."
+  },
+  {
+    "id": 77,
+    "front": "What is an EC2 Instance Store?",
+    "back": "Temporary block-level storage for your instance located on disks that are physically attached to the host computer, which is erased when an instance is stopped or terminated."
+  },
+  {
+    "id": 78,
+    "front": "What is AWS Snowball?",
+    "back": "A petabyte-scale data transport solution that uses secure devices to transfer large amounts of data into and out of the AWS Cloud."
+  },
+  {
+    "id": 79,
+    "front": "What is AWS Snowmobile?",
+    "back": "An exabyte-scale data transfer service used to move extremely large amounts of data to AWS, with each Snowmobile coming as a 45-foot long shipping container pulled by a semi-trailer truck."
+  },
+  {
+    "id": 80,
+    "front": "What is AWS DataSync?",
+    "back": "A data transfer service that simplifies, automates, and accelerates moving and replicating data between on-premises storage systems and AWS storage services."
+  },
+  {
+    "id": 81,
+    "front": "What is Amazon FSx?",
+    "back": "A fully managed service that provides native compatibility with third-party file systems, offering features like fully managed Windows and Lustre file systems."
+  },
+  {
+    "id": 82,
+    "front": "What is Amazon EMR?",
+    "back": "A cloud big data platform for processing vast amounts of data using open source tools such as Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto."
+  },
+  {
+    "id": 83,
+    "front": "What is Amazon Kinesis?",
+    "back": "A platform for collecting, processing, and analyzing real-time streaming data at any scale, including Kinesis Data Streams, Firehose, Analytics, and Video Streams."
+  },
+  {
+    "id": 84,
+    "front": "What is Amazon Athena?",
+    "back": "An interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL, with no servers to manage."
+  },
+  {
+    "id": 85,
+    "front": "What is AWS Glue?",
+    "back": "A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development."
+  },
+  {
+    "id": 86,
+    "front": "What is the AWS Shared Responsibility Model?",
+    "back": "A security framework that defines AWS responsibility for security \"of\" the cloud (infrastructure) and customer responsibility for security \"in\" the cloud (data, configuration, etc.)."
+  },
+  {
+    "id": 87,
+    "front": "What is AWS Certificate Manager (ACM)?",
+    "back": "A service that handles the complexity of creating, storing, and renewing public and private SSL/TLS X.509 certificates and keys for your AWS resources."
+  },
+  {
+    "id": 88,
+    "front": "What is an AWS Cost and Usage Report?",
+    "back": "The most comprehensive set of AWS cost and usage data available that provides information about your AWS usage and estimated charges."
+  },
+  {
+    "id": 89,
+    "front": "What is Amazon Rekognition?",
+    "back": "A service that makes it easy to add image and video analysis to your applications using proven, highly scalable deep learning technology."
+  },
+  {
+    "id": 90,
+    "front": "What is AWS Billing and Cost Management?",
+    "back": "A service that helps you monitor your costs and usage, analyze and optimize your spending, and plan for future AWS usage."
+  },
+  {
+    "id": 91,
+    "front": "What is Amazon WorkSpaces?",
+    "back": "A fully managed desktop virtualization service that enables you to access resources from any supported device."
+  },
+  {
+    "id": 92,
+    "front": "What is Amazon AppStream 2.0?",
+    "back": "A fully managed non-persistent application streaming service that allows users to access desktop applications from anywhere without acquiring, provisioning, and operating hardware or infrastructure."
+  },
+  {
+    "id": 93,
+    "front": "What is an EBS-optimized EC2 instance?",
+    "back": "An instance that provides additional, dedicated capacity for Amazon EBS I/O, optimizing performance between EC2 and EBS."
+  },
+  {
+    "id": 94,
+    "front": "What is AWS X-Ray?",
+    "back": "A service that helps developers analyze and debug distributed applications, understand how their application and its underlying services are performing, and identify and troubleshoot the root cause of performance issues and errors."
+  },
+  {
+    "id": 95,
+    "front": "What is Amazon MQ?",
+    "back": "A managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud."
+  },
+  {
+    "id": 96,
+    "front": "What is Amazon Comprehend?",
+    "back": "A natural language processing (NLP) service that uses machine learning to find insights and relationships in text."
+  },
+  {
+    "id": 97,
+    "front": "What is an AWS Systems Manager Parameter Store?",
+    "back": "A capability of AWS Systems Manager that provides secure, hierarchical storage for configuration data management and secrets management."
+  },
+  {
+    "id": 98,
+    "front": "What is AWS Resource Access Manager (RAM)?",
+    "back": "A service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization."
+  },
+  {
+    "id": 99,
+    "front": "What is AWS Global Accelerator?",
+    "back": "A networking service that improves the availability and performance of applications offered to global users by using the AWS global network infrastructure."
+  },
+  {
+    "id": 100,
+    "front": "What is Amazon EventBridge?",
+    "back": "A serverless event bus service that connects application data from your own applications, SaaS applications, and AWS services."
+  },
+  {
+    "id": 101,
+    "front": "What is AWS Global Accelerator?",
+    "back": "A networking service that improves the availability and performance of applications with global users by using the AWS global network infrastructure to direct traffic to optimal endpoints. It provides static IP addresses that act as fixed entry points to your applications."
+  },
+  {
+    "id": 102,
+    "front": "What is an Elastic Fabric Adapter (EFA)?",
+    "back": "A network interface for Amazon EC2 instances that enables customers to run applications requiring high levels of inter-node communications at scale on AWS. It provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud-based HPC systems."
+  },
+  {
+    "id": 103,
+    "front": "What is an Elastic Network Adapter (ENA)?",
+    "back": "A custom network interface optimized for Amazon EC2 instances that provides enhanced networking capabilities with significantly higher bandwidth, packet per second (PPS) performance, and lower inter-instance latencies compared to traditional implementations."
+  },
+  {
+    "id": 104,
+    "front": "What is AWS ParallelCluster?",
+    "back": "An AWS-supported open-source cluster management tool that helps you deploy and manage high-performance computing (HPC) clusters in the AWS Cloud. It automates the creation of VPC, subnet, cluster type, and instance types."
+  },
+  {
+    "id": 105,
+    "front": "What is Amazon FSx?",
+    "back": "A fully managed service that provides native compatibility with third-party file systems. It offers high-performance file systems that are fully managed by AWS, including FSx for Windows File Server, FSx for Lustre, FSx for OpenZFS, and FSx for NetApp ONTAP."
+  },
+  {
+    "id": 107,
+    "front": "What is AWS Directory Service?",
+    "back": "A managed service that provides multiple ways to use Microsoft Active Directory (AD) with other AWS services. Options include AWS Managed Microsoft AD, Simple AD, and AD Connector, allowing you to connect AWS resources with an existing on-premises Microsoft Active Directory."
+  },
+  {
+    "id": 108,
+    "front": "What is High Performance Computing (HPC) on AWS?",
+    "back": "A set of AWS services and features that enable running large-scale, compute-intensive workloads that traditionally required on-premises supercomputers. AWS HPC solutions include specialized compute instances, high-performance networking, low-latency storage, and orchestration tools."
+  },
+  {
+    "id": 109,
+    "front": "What is Aurora Serverless?",
+    "back": "An on-demand, auto-scaling configuration for Amazon Aurora where the database automatically starts up, shuts down, and scales capacity based on application needs. It's ideal for infrequent, intermittent, or unpredictable workloads."
+  },
+  {
+    "id": 110,
+    "front": "What is AWS Glue?",
+    "back": "A serverless data integration service that makes it easy to discover, prepare, and combine data for analytics, machine learning, and application development. It includes capabilities for data discovery, ETL, and creating a centralized data catalog."
+  },
+  {
+    "id": 111,
+    "front": "What is the difference between AWS DataSync and Storage Gateway?",
+    "back": "DataSync is primarily for one-time or scheduled data transfers between on-premises and AWS, optimized for large-scale data migrations. Storage Gateway provides ongoing, low-latency access to cloud storage from on-premises applications, appearing as local storage while data is actually stored in AWS."
+  },
+  {
+    "id": 112,
+    "front": "What are the differences between FSx Cold Storage and Hot Storage?",
+    "back": "FSx Hot Storage is for frequently accessed data requiring high performance, while Cold Storage is a lower-cost storage tier for infrequently accessed data. Cold Storage costs up to 80% less than Hot Storage but has higher access latencies. Available for FSx for Windows File Server and FSx for NetApp ONTAP."
+  },
+  {
+    "id": 113,
+    "front": "What is the difference between Cross-Region Read Replicas and Multi-AZ RDS?",
+    "back": "Multi-AZ RDS provides high availability with a synchronous standby replica in a different AZ for automatic failover (disaster recovery). Cross-Region Read Replicas are asynchronous copies in different regions used for read scaling and regional disaster recovery, but require manual promotion for failover."
+  },
+  {
+    "id": 114,
+    "front": "What is the difference between Amazon S3 Object Key and Object Metadata?",
+    "back": "The Object Key is the unique identifier for an object within a bucket (essentially its name and path). Object Metadata is a set of name-value pairs stored with the object that describes the object, including system metadata (e.g., Last-Modified) and user-defined metadata that applications can add."
+  },
+  {
+    "id": 115,
+    "front": "What is the difference between AWS Direct Connect and Site-to-Site VPN?",
+    "back": "Direct Connect provides a dedicated private connection between on-premises networks and AWS with consistent performance and reduced bandwidth costs. Site-to-Site VPN creates an encrypted connection over the public internet, which is quicker to set up but may have variable performance and security depends on encryption."
+  },
+  {
+    "id": 116,
+    "front": "What is the difference between AWS Config and AWS CloudTrail?",
+    "back": "CloudTrail records API calls and account activity for auditing who did what and when. AWS Config provides a detailed inventory of AWS resources and configuration history, focusing on what changed in your infrastructure and compliance monitoring against desired configurations."
+  },
+  {
+    "id": 117,
+    "front": "What is the difference between Security Groups and Network ACLs?",
+    "back": "Security Groups are stateful firewalls that operate at the instance level, containing only allow rules. Network ACLs are stateless firewalls that operate at the subnet level, containing both allow and deny rules. Security Groups evaluate all rules before deciding to allow traffic, while NACLs process rules in number order."
+  },
+  {
+    "id": 118,
+    "front": "What is the difference between NAT Gateway and NAT Instance?",
+    "back": "NAT Gateway is a fully managed AWS service with automatic high availability, better bandwidth, and no administration required. NAT Instance is a self-managed EC2 instance running NAT software that requires manual setup for high availability, has bandwidth limitations based on instance type, and requires more administration."
+  },
+  {
+    "id": 119,
+    "front": "What is the difference between Geolocation and Geoproximity routing policies in Route 53?",
+    "back": "Geolocation routing directs traffic based on the geographic location of users (continent, country, or US state). Geoproximity routing directs traffic based on the geographic location of resources and optionally biases traffic with expandable/shrinkable geographic regions using bias values."
+  },
+  {
+    "id": 120,
+    "front": "What is Amazon Data Lifecycle Manager?",
+    "back": "A service that automates the creation, retention, and deletion of EBS snapshots and EBS-backed AMIs. It helps implement backup strategies, simplify compliance requirements, and reduce costs by deleting outdated backups according to defined schedules and retention policies."
+  },
+  {
+    "id": 121,
+    "front": "What is AWS Transfer Family?",
+    "back": "A fully managed service that enables file transfers directly to and from Amazon S3 or Amazon EFS using SFTP, FTPS, and FTP protocols. It eliminates the need to operate your own file transfer servers while maintaining existing client workflows."
+  },
+  {
+    "id": 122,
+    "front": "What is Amazon Managed Streaming for Apache Kafka (MSK)?",
+    "back": "A fully managed service that makes it easy to build and run applications that use Apache Kafka to process streaming data. It provides the control-plane operations such as creating, updating, and deleting clusters while maintaining compatibility with open-source Kafka."
+  },
+  {
+    "id": 123,
+    "front": "What is AWS Lake Formation?",
+    "back": "A service that makes it easy to set up a secure data lake in days. It helps you collect and catalog data from databases and object storage, move the data into your Amazon S3 data lake, clean and classify data using machine learning algorithms, and secure access to your sensitive data."
+  },
+  {
+    "id": 124,
+    "front": "What is Amazon Kendra?",
+    "back": "An intelligent search service powered by machine learning that delivers highly accurate search results from unstructured and structured data across multiple data sources. It uses natural language processing to understand the context of questions and return precise answers."
+  },
+  {
+    "id": 125,
+    "front": "What is AWS Outposts?",
+    "back": "A family of fully managed solutions delivering AWS infrastructure and services to virtually any on-premises or edge location for a truly consistent hybrid experience. Outposts extends AWS infrastructure, services, APIs, and tools to customer premises."
+  },
+  {
+    "id": 126,
+    "front": "What is Amazon EventBridge Pipes?",
+    "back": "A point-to-point integration service that connects event producers directly to event consumers with advanced transformation and enrichment capabilities. It simplifies building event-driven architectures by reducing the need for custom code and infrastructure."
+  },
+  {
+    "id": 127,
+    "front": "What is AWS App Runner?",
+    "back": "A fully managed service that makes it easy to deploy web applications and APIs at scale without infrastructure expertise. It builds and deploys applications automatically, load balances traffic, scales to meet traffic needs, and provides built-in security."
+  },
+  {
+    "id": 128,
+    "front": "What is Amazon Managed Service for Prometheus?",
+    "back": "A serverless, Prometheus-compatible monitoring service for container metrics that makes it easier to securely monitor container environments at scale. It automatically scales the ingestion, storage, and querying of operational metrics."
+  },
+  {
+    "id": 129,
+    "front": "What is AWS Amplify?",
+    "back": "A set of tools and services that enables frontend web and mobile developers to build full-stack applications with AWS. It includes features for authentication, storage, API (GraphQL and REST), CI/CD, PubSub, analytics, and AI/ML capabilities."
+  },
+  {
+    "id": 130,
+    "front": "What is Amazon Managed Grafana?",
+    "back": "A fully managed service for Grafana, an open-source analytics platform that enables you to query, visualize, and alert on your metrics, logs, and traces. It simplifies the process of setting up, securing, and scaling Grafana in production environments."
+  },
+  {
+    "id": 131,
+    "front": "What is the passing score for the AWS Solution Architect Associate exam?",
+    "back": "At least 720 out of 1,000"
+  },
+  {
+    "id": 132,
+    "front": "What are the three main components of AWS Global Infrastructure?",
+    "back": "Regions, Availability Zones, and Edge Locations"
+  },
+  {
+    "id": 133,
+    "front": "What are Availability Zones in AWS?",
+    "back": "Isolated locations within a region connected by low-latency links, designed to ensure high availability and fault tolerance"
+  },
+  {
+    "id": 134,
+    "front": "What are Edge Locations used for in AWS?",
+    "back": "Used by Amazon CloudFront to deliver content with low latency to users around the world"
+  },
+  {
+    "id": 135,
+    "front": "What are the five main EC2 instance types?",
+    "back": "General Purpose, Compute Optimized, Memory Optimized, Storage Optimized, and Accelerated Computing"
+  },
+  {
+    "id": 136,
+    "front": "What are the four EC2 pricing models?",
+    "back": "On-Demand, Reserved, Spot, and Savings Plans"
+  },
+  {
+    "id": 137,
+    "front": "What is Amazon Lambda?",
+    "back": "A serverless compute service that lets you run code without provisioning or managing servers, automatically scaling based on demand"
+  },
+  {
+    "id": 138,
+    "front": "What programming languages does AWS Lambda support?",
+    "back": "Node.js, Python, Java, Ruby, C#, and Go"
+  },
+  {
+    "id": 139,
+    "front": "What is S3's durability rating?",
+    "back": "99.999999999% durability (11 nines)"
+  },
+  {
+    "id": 140,
+    "front": "Name the six S3 storage classes",
+    "back": "Standard, Standard-IA, One Zone-IA, Intelligent Tiering, Glacier, and Glacier Deep Archive"
+  },
+  {
+    "id": 141,
+    "front": "What is S3 Standard-IA used for?",
+    "back": "For infrequently accessed data that requires rapid access when needed, offering lower storage costs compared to Standard"
+  },
+  {
+    "id": 142,
+    "front": "What is S3 Glacier and what is its retrieval time?",
+    "back": "Long-term archival storage with retrieval times ranging from minutes to hours"
+  },
+  {
+    "id": 143,
+    "front": "What is EBS?",
+    "back": "Elastic Block Storage - provides block-level storage volumes that can be attached to EC2 instances, offering persistent storage"
+  },
+  {
+    "id": 144,
+    "front": "What database engines does Amazon RDS support?",
+    "back": "MySQL, PostgreSQL, MariaDB, Oracle, Microsoft SQL Server, and Amazon Aurora"
+  },
+  {
+    "id": 145,
+    "front": "What is Multi-AZ deployment in RDS?",
+    "back": "A feature that provides enhanced availability and durability by automatically creating a primary database in one AZ and a standby replica in another AZ"
+  },
+  {
+    "id": 146,
+    "front": "What are Read Replicas in RDS?",
+    "back": "Read-only copies of your database that improve read performance and availability by distributing read traffic across multiple instances"
+  },
+  {
+    "id": 147,
+    "front": "What is Amazon DynamoDB?",
+    "back": "A fully managed NoSQL database service that provides fast and predictable performance with seamless scalability"
+  },
+  {
+    "id": 148,
+    "front": "What data models does DynamoDB support?",
+    "back": "Key-value and document data models"
+  },
+  {
+    "id": 149,
+    "front": "What is DynamoDB's response time?",
+    "back": "Single-digit millisecond response times"
+  },
+  {
+    "id": 150,
+    "front": "When should you use DynamoDB instead of RDS?",
+    "back": "For applications needing low-latency access to large volumes of data, such as gaming, IoT, and real-time analytics"
+  },
+  {
+    "id": 151,
+    "front": "When should you use RDS instead of DynamoDB?",
+    "back": "For applications requiring complex queries, transactions, and data integrity, such as ERP systems, CRM applications, and content management"
+  },
+  {
+    "id": 152,
+    "front": "What is Amazon VPC?",
+    "back": "Virtual Private Cloud - enables you to launch AWS resources in a logically isolated virtual network that you define, giving you complete control over your network environment"
+  },
+  {
+    "id": 153,
+    "front": "What is the difference between Security Groups and Network ACLs?",
+    "back": "Security Groups are stateful and act as virtual firewalls at the instance level, while Network ACLs are stateless and provide filtering at the subnet level"
+  },
+  {
+    "id": 154,
+    "front": "What is a NAT Gateway used for?",
+    "back": "Allows instances in a private subnet to access the internet without exposing them to inbound internet traffic"
+  },
+  {
+    "id": 155,
+    "front": "What is VPC Peering?",
+    "back": "Allows you to connect VPCs within and across regions, facilitating secure communication between them"
+  },
+  {
+    "id": 156,
+    "front": "What is Amazon Route 53?",
+    "back": "A scalable and highly available DNS web service that provides domain name registration and DNS routing"
+  },
+  {
+    "id": 157,
+    "front": "Name at least four Route 53 routing policies",
+    "back": "Simple, Weighted, Latency-based, Failover, Geolocation, and Multivalue Answer"
+  },
+  {
+    "id": 158,
+    "front": "What is Amazon CloudFront?",
+    "back": "A Content Delivery Network (CDN) service that delivers content globally with low latency and high transfer speeds"
+  },
+  {
+    "id": 159,
+    "front": "What are the two types of CloudFront distributions?",
+    "back": "Web distributions for static and dynamic content, and RTMP distributions for streaming media using Adobe RTMP"
+  },
+  {
+    "id": 160,
+    "front": "What is AWS IAM?",
+    "back": "Identity and Access Management - a service that enables you to securely control access to AWS services and resources for your users"
+  },
+  {
+    "id": 161,
+    "front": "What are the four main components of IAM?",
+    "back": "Users, Groups, Roles, and Policies"
+  },
+  {
+    "id": 162,
+    "front": "What is the principle of least privilege in IAM?",
+    "back": "Ensuring users and roles have only the permissions required to perform their tasks, minimizing the risk of unauthorized access"
+  },
+  {
+    "id": 163,
+    "front": "What is AWS KMS?",
+    "back": "Key Management Service - a managed service that allows you to create and control the encryption keys used to encrypt your data"
+  },
+  {
+    "id": 164,
+    "front": "What are the two tiers of AWS Shield?",
+    "back": "Shield Standard (included free with all AWS services) and Shield Advanced (additional protections, diagnostics, cost protection, and DDoS Response Team)"
+  },
+  {
+    "id": 165,
+    "front": "What is AWS WAF?",
+    "back": "Web Application Firewall - helps protect your web applications from common web exploits and vulnerabilities"
+  },
+  {
+    "id": 166,
+    "front": "What compliance program would you need for healthcare applications?",
+    "back": "HIPAA (Health Insurance Portability and Accountability Act)"
+  },
+  {
+    "id": 167,
+    "front": "What is AWS CloudFormation?",
+    "back": "A service that enables you to model and set up your AWS resources using infrastructure as code"
+  },
+  {
+    "id": 168,
+    "front": "What formats can CloudFormation templates be written in?",
+    "back": "JSON or YAML"
+  },
+  {
+    "id": 169,
+    "front": "What is drift detection in CloudFormation?",
+    "back": "A feature that helps identify changes in stack resources, ensuring that your infrastructure remains consistent with the template definitions"
+  },
+  {
+    "id": 170,
+    "front": "What is AWS CloudWatch?",
+    "back": "A monitoring and management service that collects and tracks metrics, monitors log files, and sets alarms to automatically react to changes in your AWS resources"
+  },
+  {
+    "id": 171,
+    "front": "What are the five categories of AWS Trusted Advisor recommendations?",
+    "back": "Cost Optimization, Performance, Security, Fault Tolerance, and Service Limits"
+  },
+  {
+    "id": 172,
+    "front": "What is Amazon SQS?",
+    "back": "Simple Queue Service - a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications"
+  },
+  {
+    "id": 173,
+    "front": "What are the two types of SQS queues?",
+    "back": "Standard queues (high throughput, at-least-once delivery) and FIFO queues (strict message ordering, exactly-once processing)"
+  },
+  {
+    "id": 174,
+    "front": "What is Amazon SNS?",
+    "back": "Simple Notification Service - a fully managed messaging service that enables you to send notifications to a large number of subscribers through a publish/subscribe model"
+  },
+  {
+    "id": 175,
+    "front": "What is the key difference between SNS and SQS?",
+    "back": "SNS uses a push model to broadcast messages to multiple subscribers simultaneously, while SQS uses a pull model where messages are stored in a queue for processing"
+  },
+  {
+    "id": 176,
+    "front": "What are the three types of Elastic Load Balancers?",
+    "back": "Application Load Balancer (ALB), Network Load Balancer (NLB), and Classic Load Balancer (CLB)"
+  },
+  {
+    "id": 177,
+    "front": "What traffic does an Application Load Balancer handle?",
+    "back": "HTTP and HTTPS traffic, offering advanced routing capabilities based on URL paths and host names"
+  },
+  {
+    "id": 178,
+    "front": "What traffic does a Network Load Balancer handle?",
+    "back": "TCP traffic, designed for high performance and low latency"
+  },
+  {
+    "id": 179,
+    "front": "What is AWS Auto Scaling?",
+    "back": "A service that automatically adjusts the capacity of your resources to maintain steady, predictable performance at the lowest possible cost"
+  },
+  {
+    "id": 180,
+    "front": "Name three types of Auto Scaling policies",
+    "back": "Target Tracking, Step Scaling, Scheduled Scaling, Manual Scaling, and Predictive Scaling"
+  },
+  {
+    "id": 181,
+    "front": "What are the four main EC2 pricing models?",
+    "back": "On-Demand (pay for what you use), Reserved Instances (1-3 year commitment), Spot Instances (bid for unused capacity), and Savings Plans (commitment-based discounts)"
+  },
+  {
+    "id": 182,
+    "front": "What is the AWS TCO Calculator used for?",
+    "back": "Total Cost of Ownership Calculator - allows you to estimate the cost of running your applications on AWS compared to on-premises infrastructure"
+  },
+  {
+    "id": 183,
+    "front": "What is AWS Cost Explorer?",
+    "back": "A tool that provides visualization and analysis of your AWS spending patterns, helping you identify cost-saving opportunities"
+  },
+  {
+    "id": 184,
+    "front": "What are some common exam scenarios for the AWS Solution Architect certification?",
+    "back": "VPC configuration for secure network isolation, setting up multi-tier architectures, implementing disaster recovery solutions, and optimizing cost and performance for applications"
+  },
+  {
+    "id": 185,
+    "front": "Why are hands-on labs important for AWS certification preparation?",
+    "back": "They provide practical, interactive experience with AWS services, allowing you to apply theoretical knowledge in real-world scenarios and develop critical skills"
+  },
+  {
+    "id": 186,
+    "front": "Is IAM a regional or global service?",
+    "back": "IAM is a global service, not tied to any specific region"
+  },
+  {
+    "id": 187,
+    "front": "What are the two main types of IAM user access?",
+    "back": "Console password for AWS Management Console and Access keys for programmatic access (CLI, SDK, API)"
+  },
+  {
+    "id": 188,
+    "front": "What is the recommended practice for the root account in AWS?",
+    "back": "Root account should never be used for day-to-day operations, only for initial setup"
+  },
+  {
+    "id": 189,
+    "front": "What security feature should be enabled for all AWS users, especially the root account?",
+    "back": "Multi-Factor Authentication (MFA)"
+  },
+  {
+    "id": 190,
+    "front": "What are IAM Roles used for?",
+    "back": "IAM Roles allow EC2 instances and AWS services to access AWS resources securely without embedding access keys"
+  },
+  {
+    "id": 191,
+    "front": "What principle should IAM policies follow?",
+    "back": "The 'least privilege principle' - only give users permissions they need"
+  },
+  {
+    "id": 192,
+    "front": "What are the two main IAM security tools?",
+    "back": "IAM Credentials Report (account-level) and IAM Access Advisor (user-level)"
+  },
+  {
+    "id": 193,
+    "front": "What is the IAM Credentials Report used for?",
+    "back": "Lists all users in an account and the status of their credentials"
+  },
+  {
+    "id": 194,
+    "front": "What is the IAM Access Advisor used for?",
+    "back": "Shows service permissions granted to a user and when those services were last accessed"
+  },
+  {
+    "id": 195,
+    "front": "What are the four main EC2 instance purchasing options?",
+    "back": "On-Demand Instances, Reserved Instances, Spot Instances, and Dedicated Hosts"
+  },
+  {
+    "id": 196,
+    "front": "Which EC2 instance type is best for short-term, unpredictable workloads?",
+    "back": "On-Demand Instances"
+  },
+  {
+    "id": 197,
+    "front": "What EC2 instance type offers up to 72% discount with a 1 or 3 year commitment?",
+    "back": "Reserved Instances"
+  },
+  {
+    "id": 198,
+    "front": "What are the payment options for Reserved Instances?",
+    "back": "No Upfront, Partial Upfront, and All Upfront"
+  },
+  {
+    "id": 199,
+    "front": "Which EC2 instance type can be terminated any time if the market price exceeds your bid?",
+    "back": "Spot Instances"
+  },
+  {
+    "id": 200,
+    "front": "Which EC2 instance type is NOT suitable for critical jobs or databases?",
+    "back": "Spot Instances"
+  },
+  {
+    "id": 201,
+    "front": "Which EC2 instance type provides a physical server dedicated to your use?",
+    "back": "Dedicated Hosts"
+  },
+  {
+    "id": 202,
+    "front": "When would you use EC2 Dedicated Hosts?",
+    "back": "For compliance requirements and server-bound software licenses"
+  },
+  {
+    "id": 203,
+    "front": "What is a Security Group in AWS?",
+    "back": "A virtual firewall for EC2 instances that controls inbound and outbound traffic"
+  },
+  {
+    "id": 204,
+    "front": "Are Security Groups stateful or stateless?",
+    "back": "Stateful - if traffic is allowed inbound, it's automatically allowed outbound"
+  },
+  {
+    "id": 205,
+    "front": "What is the default traffic policy for Security Groups?",
+    "back": "All inbound traffic is blocked by default; all outbound traffic is allowed by default"
+  },
+  {
+    "id": 206,
+    "front": "Can Security Groups reference other Security Groups instead of IP ranges?",
+    "back": "Yes, Security Groups can reference other Security Groups"
+  },
+  {
+    "id": 207,
+    "front": "Is Route 53 a regional or global service?",
+    "back": "Route 53 is a global service"
+  },
+  {
+    "id": 208,
+    "front": "What are the main record types in Route 53?",
+    "back": "A, AAAA, CNAME, NS"
+  },
+  {
+    "id": 209,
+    "front": "Which Route 53 routing policy routes traffic based on weights?",
+    "back": "Weighted routing policy"
+  },
+  {
+    "id": 210,
+    "front": "Which Route 53 routing policy routes traffic to the resource with lowest latency?",
+    "back": "Latency-based routing policy"
+  },
+  {
+    "id": 211,
+    "front": "Which Route 53 routing policy routes traffic to primary resource, or secondary if primary is unavailable?",
+    "back": "Failover routing policy"
+  },
+  {
+    "id": 212,
+    "front": "Which Route 53 routing policy routes traffic based on user location?",
+    "back": "Geolocation routing policy"
+  },
+  {
+    "id": 213,
+    "front": "Which Route 53 routing policy routes traffic based on geographic location with bias adjustments?",
+    "back": "Geoproximity routing policy"
+  },
+  {
+    "id": 214,
+    "front": "Which database systems is Amazon Aurora compatible with?",
+    "back": "MySQL and PostgreSQL"
+  },
+  {
+    "id": 215,
+    "front": "How many times better performance does Aurora offer compared to MySQL?",
+    "back": "5 times better performance"
+  },
+  {
+    "id": 216,
+    "front": "How does Aurora storage grow?",
+    "back": "Automatically in increments of 10GB, up to 128TB"
+  },
+  {
+    "id": 217,
+    "front": "How many read replicas can Aurora support?",
+    "back": "Up to 15 replicas with sub-10ms replication lag"
+  },
+  {
+    "id": 218,
+    "front": "How does Aurora failover compare to RDS?",
+    "back": "Failover is instantaneous - it's HA (High Availability) native"
+  },
+  {
+    "id": 219,
+    "front": "How does Aurora's cost compare to RDS?",
+    "back": "Costs more than RDS (20% more) but is more efficient"
+  },
+  {
+    "id": 220,
+    "front": "What are the three types of load balancers in AWS?",
+    "back": "Application Load Balancer (ALB), Network Load Balancer (NLB), and Classic Load Balancer (CLB)"
+  },
+  {
+    "id": 221,
+    "front": "Which load balancer operates at Layer 7 and handles HTTP/HTTPS traffic?",
+    "back": "Application Load Balancer (ALB)"
+  },
+  {
+    "id": 222,
+    "front": "Which load balancer operates at Layer 4 and offers ultra-high performance?",
+    "back": "Network Load Balancer (NLB)"
+  },
+  {
+    "id": 223,
+    "front": "Which load balancer is considered legacy in AWS?",
+    "back": "Classic Load Balancer (CLB)"
+  },
+  {
+    "id": 224,
+    "front": "Why are health checks important for load balancers?",
+    "back": "To ensure traffic only goes to healthy instances"
+  },
+  {
+    "id": 225,
+    "front": "What does an Auto Scaling Group (ASG) do?",
+    "back": "Automatically adjusts capacity based on demand"
+  },
+  {
+    "id": 226,
+    "front": "What is the cost of using Auto Scaling Groups?",
+    "back": "Free to use - you only pay for underlying resources"
+  },
+  {
+    "id": 227,
+    "front": "What are ASG scaling policies based on?",
+    "back": "CloudWatch alarms"
+  },
+  {
+    "id": 228,
+    "front": "Name three types of Auto Scaling policies",
+    "back": "Target Tracking, Simple/Step Scaling, and Scheduled Scaling"
+  },
+  {
+    "id": 229,
+    "front": "What is Amazon EFS?",
+    "back": "A managed NFS (Network File System) that can be mounted on many EC2 instances"
+  },
+  {
+    "id": 230,
+    "front": "Does EFS work across multiple Availability Zones?",
+    "back": "Yes, EFS works across multiple AZs within a region"
+  },
+  {
+    "id": 231,
+    "front": "How does EFS cost compare to EBS?",
+    "back": "EFS is more expensive (3x the cost of EBS)"
+  },
+  {
+    "id": 232,
+    "front": "What are the two EFS Performance Modes?",
+    "back": "General Purpose (default) - low latency, and Max I/O - higher latency, higher throughput"
+  },
+  {
+    "id": 233,
+    "front": "What are the two EFS Throughput Modes?",
+    "back": "Bursting - throughput scales with file system size, and Provisioned - specify throughput regardless of size"
+  },
+  {
+    "id": 234,
+    "front": "What happens to a Public IP address when an EC2 instance stops?",
+    "back": "It's lost when the instance stops"
+  },
+  {
+    "id": 235,
+    "front": "What is an Elastic IP in AWS?",
+    "back": "A fixed public IP that you can attach to instances as needed"
+  },
+  {
+    "id": 236,
+    "front": "What is a VPC in AWS?",
+    "back": "A logically isolated network for your AWS resources"
+  },
+  {
+    "id": 237,
+    "front": "Does a VPC span all Availability Zones in a region?",
+    "back": "Yes, a VPC spans all AZs in the region"
+  },
+  {
+    "id": 238,
+    "front": "Are subnets tied to specific Availability Zones?",
+    "back": "Yes, subnets are tied to specific AZs"
+  },
+  {
+    "id": 239,
+    "front": "What is AWS CloudShell?",
+    "back": "A browser-based shell with AWS CLI pre-installed"
+  },
+  {
+    "id": 240,
+    "front": "What service helps you set custom cost and usage budgets in AWS?",
+    "back": "AWS Budget"
+  },
+  {
+    "id": 241,
+    "front": "What is AWS GuardDuty?",
+    "back": "Threat detection service continuously monitoring AWS accounts for malicious activity and unauthorized behavior using machine learning and threat intelligence."
+  },
+  {
+    "id": 242,
+    "front": "What is AWS Direct Connect?",
+    "back": "Dedicated network connection from on-premises to AWS infrastructure, reducing network costs and increasing bandwidth throughput and stability."
+  },
+  {
+    "id": 243,
+    "front": "What is S3 Transfer Acceleration?",
+    "back": "Enables fast, easy, and secure file transfers to and from S3 using CloudFront edge locations, optimizing global upload/download speeds."
+  },
+  {
+    "id": 244,
+    "front": "What is Amazon EBS?",
+    "back": "Persistent block-level storage volumes for EC2 instances, supporting snapshots, encryption, and adjustable volume size/performance."
+  },
+  {
+    "id": 245,
+    "front": "What is a Virtual Private Gateway (VGW)?",
+    "back": "AWS-managed VPN endpoint on the AWS VPC side of your site-to-site VPN connection."
+  },
+  {
+    "id": 246,
+    "front": "What is a Customer Gateway (CGW)?",
+    "back": "AWS resource representing the customer's physical device or software application endpoint for establishing an AWS site-to-site VPN."
+  },
+  {
+    "id": 247,
+    "front": "What is Oracle RDS Custom?",
+    "back": "Managed RDS service allowing greater control over Oracle database and operating system customization than standard RDS."
+  },
+  {
+    "id": 248,
+    "front": "What is a Spread Placement Group?",
+    "back": "Places EC2 instances on distinct hardware to minimize correlated hardware failures, ideal for high-availability workloads."
+  },
+  {
+    "id": 249,
+    "front": "What are Amazon S3 Storage Classes?",
+    "back": "Different tiers (Standard, IA, Intelligent-Tiering, Glacier, Glacier Deep Archive) optimized for varying data access frequency, availability, and cost."
+  },
+  {
+    "id": 250,
+    "front": "What are Cognito User Pools?",
+    "back": "Managed user directories handling user registration, authentication, and authorization for applications."
+  },
+  {
+    "id": 251,
+    "front": "What are Cognito Identity Pools?",
+    "back": "Enables federated identity management, allowing users authenticated by external providers to access AWS resources securely."
+  },
+  {
+    "id": 252,
+    "front": "What is an EC2 Launch Template?",
+    "back": "Specifies EC2 instance configurations (AMI, instance type, network, security) for streamlined, repeatable instance launches."
+  },
+  {
+    "id": 253,
+    "front": "What is an EC2 Launch Configuration?",
+    "back": "Older, immutable method of specifying EC2 configurations for Auto Scaling Groups, replaced by Launch Templates."
+  },
+  {
+    "id": 254,
+    "front": "What are Amazon Gateway Endpoints?",
+    "back": "Provide secure, private connectivity from a VPC to supported AWS services (S3, DynamoDB) without internet traversal."
+  },
+  {
+    "id": 255,
+    "front": "What is the AWS Schema Conversion Tool (SCT)?",
+    "back": "Converts database schemas and objects for migrations between database engines (e.g., Oracle to PostgreSQL)."
+  },
+  {
+    "id": 256,
+    "front": "What are Amazon S3 Bucket Policies?",
+    "back": "JSON-based IAM policies attached to buckets, defining access controls for users and roles at the bucket or object level."
+  },
+  {
+    "id": 257,
+    "front": "What is AWS Database Migration Service (DMS)?",
+    "back": "Service that migrates databases quickly and securely to AWS, with continuous replication and minimal downtime. Supports consolidation to data warehouses like Amazon Redshift and Amazon S3."
+  },
+  {
+    "id": 258,
+    "front": "What is Amazon Redshift Spectrum?",
+    "back": "Enables querying data directly in S3 without loading it into Redshift, combining data warehouse analytics with data lake flexibility."
+  },
+  {
+    "id": 259,
+    "front": "What is AWS VPN CloudHub?",
+    "back": "Hub-and-spoke VPN connectivity allowing multiple remote networks to communicate securely through a central AWS-managed VPN hub."
+  },
+  {
+    "id": 260,
+    "front": "What is AWS Global Accelerator?",
+    "back": "Network layer service using AWS's global network for optimized performance and availability. Provides static anycast IPs, endpoint weights, and traffic dials for precise traffic management across AWS regions."
+  },
+  {
+    "id": 261,
+    "front": "What are ideal use cases for AWS Global Accelerator?",
+    "back": "Non-HTTP applications requiring consistent performance, such as gaming (UDP), IoT (MQTT), VoIP, or rapid blue/green deployments without DNS caching issues."
+  },
+  {
+    "id": 262,
+    "front": "What is AWS Site-to-Site VPN?",
+    "back": "Secure IPsec VPN connection between customer networks and Amazon VPC over the internet, using VPN tunnels established between Customer Gateways and Virtual Private Gateways."
+  },
+  {
+    "id": 263,
+    "front": "What is a VPN Tunnel?",
+    "back": "An encrypted link within a VPN connection allowing secure data transfer between customer networks and AWS."
+  },
+  {
+    "id": 264,
+    "front": "What is Amazon SQS?",
+    "back": "Fully-managed message queuing service enabling decoupling and scaling of microservices, distributed systems, and serverless applications, eliminating message middleware complexity."
+  },
+  {
+    "id": 265,
+    "front": "What are SQS Standard vs FIFO Queues?",
+    "back": "Standard queues: maximum throughput, best-effort ordering, at-least-once delivery. FIFO queues: guarantee exactly-once processing and strict message ordering, up to 3,000 messages/sec (with batching), queue names must end with '.fifo'."
+  },
+  {
+    "id": 266,
+    "front": "How do you convert a Standard Queue to a FIFO Queue in SQS?",
+    "back": "Existing standard queues cannot be converted to FIFO. To switch, create a new FIFO queue or delete and recreate the existing standard queue as FIFO."
+  },
+  {
+    "id": 267,
+    "front": "How does AWS Lambda VPC Networking work?",
+    "back": "Lambda functions run in AWS-owned VPCs with public internet access by default. When VPC-enabled, functions require NAT Gateway in public subnet for internet access and can access private VPC resources."
+  },
+  {
+    "id": 268,
+    "front": "What is AWS VPC Sharing?",
+    "back": "Allows multiple AWS accounts (within AWS Organizations) to share centrally managed VPC subnets. Participants manage resources in shared subnets without accessing resources of other participants or VPC owner."
+  },
+  {
+    "id": 269,
+    "front": "What is AWS DataSync?",
+    "back": "Service simplifying and accelerating transfer of large-scale data between on-premises, edge, other clouds, and AWS storage services (S3, EFS, FSx variants)."
+  },
+  {
+    "id": 270,
+    "front": "What is a Network Load Balancer (NLB)?",
+    "back": "Operates at OSI Layer 4 (Transport Layer), handles millions of requests per second, routes TCP traffic to instances or IP targets, rewriting destination IP addresses."
+  }
+]
+;

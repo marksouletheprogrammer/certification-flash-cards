@@ -16,6 +16,42 @@ A web-based flash card application for studying for various IT certifications. T
 
 That's it! No build process, server, or installation required.
 
+## Managing Flashcards
+
+Flashcard data is stored in JavaScript files (`.js` files), not JSON files. The app loads these files using standard `<script>` tags, so no server is needed - it works perfectly with `file://` URLs!
+
+### Adding or Editing Flashcards
+
+1. Open the relevant flashcard file:
+   - `aws-flashcards.js` - AWS Certified Solutions Architect Associate
+   - `ccco-flashcards.js` - Confluent Certified Cloud Operator
+   - `ccdak-flashcards.js` - Confluent Certified Developer for Apache Kafka
+
+2. Edit the flashcard array directly in the file:
+   ```javascript
+   const awsFlashcards = [
+     {
+       "id": 1,
+       "front": "Your question here?",
+       "back": "Your answer here."
+     },
+     // ... more flashcards
+   ];
+   ```
+
+3. Save the file
+
+4. Refresh your browser - changes will appear immediately!
+
+### Flashcard Format
+
+Each flashcard is an object with three properties:
+- `id` - A unique number for the flashcard
+- `front` - The question (AWS cards use "front"/"back")
+- `back` - The answer
+
+Note: CCCO and CCDAK cards use `question`/`answer` instead of `front`/`back`.
+
 ## How I made this.
 
 This was all made with Cursor and Claude 3.5/3.7 agents. The only human written code was code to add new flash cards. Inspired by [Andrej Karpathy's How I use LLMs](https://www.youtube.com/watch?v=EWvNQjAaOHw) and [Claudio Lassala's Breaking the Code Barrier: My First True No-Code AI Experience](https://lassala.net/2025/03/06/breaking-the-code-barrier-my-first-true-no-code-ai-experience/). 
